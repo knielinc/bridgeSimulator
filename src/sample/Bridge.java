@@ -20,4 +20,9 @@ public class Bridge {
     public void addSupport(BridgeSupport inSupport){
         supports.add(inSupport);
     }
+
+    public ArrayList<BridgeSupport> getSupports() {
+        return supports;
+    }
+
 }
