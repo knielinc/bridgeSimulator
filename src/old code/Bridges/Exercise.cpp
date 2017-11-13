@@ -229,4 +229,40 @@ void AdvanceTimeStep3(double k, double m, double d, double L, double dt,
   v1 += Vec2(AvxDeltaOut,AvyDeltaOut);
   v2 += Vec2(BvxDeltaOut,BvyDeltaOut);
   v3 += Vec2(CvxDeltaOut,CvyDeltaOut);
+
+
+  /*official code
+  	// Compute gravitational and damping forces for all mass points
+  	Vec2 f1 = Vec2(0, -g * m) - d * v1;
+  	Vec2 f2 = Vec2(0, -g * m) - d * v2;
+  	Vec2 f3 = Vec2(0, -g * m) - d * v3;
+
+  	// Compute spring forces
+  	Vec2 springF1 = -k * ((p1 - p2).length() - L) * (p1 - p2).getNormalizedCopy();
+  	Vec2 springF2 = -k * ((p2 - p3).length() - L) * (p2 - p3).getNormalizedCopy();
+  	Vec2 springF3 = -k * ((p3 - p1).length() - L) * (p3 - p1).getNormalizedCopy();
+
+  	// Add spring forces to vertices
+  	f1 += springF1 - springF3;
+  	f2 += springF2 - springF1;
+  	f3 += springF3 - springF2;
+
+  	// Additional force for collision
+  	const double kr = 100;
+  	if (p1.y < -1)
+  		f1 -= kr * Vec2(0, 1 + p1.y);
+  	if (p2.y < -1)
+  		f2 -= kr * Vec2(0, 1 + p2.y);
+  	if (p3.y < -1)
+  		f3 -= kr * Vec2(0, 1 + p3.y);
+
+  	// Velocity update
+  	v1 += dt / m * f1;
+  	v2 += dt / m * f2;
+  	v3 += dt / m * f3;
+
+  	// Position update
+  	p1 += dt * v1;
+  	p2 += dt * v2;
+  	p3 += dt * v3;*/
 }

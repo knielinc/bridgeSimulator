@@ -44,6 +44,9 @@ public class Main extends Application {
 
         final long timeStart = System.currentTimeMillis();
 
+        Bridge testBridge = new Bridge();
+        testBridge.createTestBridge();
+
         KeyFrame kf = new KeyFrame(Duration.seconds(0.017) // 60hz
                 ,(ActionEvent) -> {
             double t = (System.currentTimeMillis() - timeStart) / 1000.0;
@@ -54,13 +57,8 @@ public class Main extends Application {
             // Clear the canvas
             gc.clearRect(0, 0, 512,512);
 
-            gc.fillOval(x,y,10,10);
-
-            gc.setFill( Color.RED );
-            gc.setLineWidth(2);
-            Font theFont = Font.font( "Helvetica", FontWeight.LIGHT, 12 );
-            gc.setFont( theFont );
-            gc.fillText( "x: " + String.valueOf(Math.floor(x)) + " y: " + String.valueOf(Math.floor(y)), x, y );
+            testBridge.draw(gc);
+            testBridge.computeTimeStep(0.5,0.017);
 
             // background image clears canvas
 
