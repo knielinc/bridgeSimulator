@@ -4,18 +4,23 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+
 public class BridgeSupportAnchorPoint {
     private myVec pos;
     private double weight; // weight of a Support is determined by the weight of the 2 anchorpoints combined
     private myVec velocity;
+    private ArrayList<BridgeSupport> supports;
+    private boolean isFixed;
 
-
-    BridgeSupportAnchorPoint(double x, double y, double weight){
+    BridgeSupportAnchorPoint(double x, double y, double weight, boolean fixed){
         pos = new myVec(x,y);
         velocity = new myVec(0,0);
 
         this.weight = weight;
+        supports = new ArrayList<>();
 
+        isFixed = fixed;
     }
     public void draw(GraphicsContext gc){
         gc.setFill(Color.RED);
@@ -58,5 +63,18 @@ public class BridgeSupportAnchorPoint {
     public void setPos(myVec newVec){
         pos = newVec;
     }
+    public void addBridgeSupport (BridgeSupport in){
+        supports.add(in);
+    }
+    public void removeBridgeSupport (BridgeSupport in){
+        supports.remove(in);
+    }
 
+    public ArrayList<BridgeSupport> getSupports() {
+        return supports;
+    }
+
+    public boolean isFixed() {
+        return isFixed;
+    }
 }

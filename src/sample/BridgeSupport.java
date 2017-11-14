@@ -13,22 +13,33 @@ public class BridgeSupport {
 
     BridgeSupport(BridgeSupportAnchorPoint first, BridgeSupportAnchorPoint second, double inSpringConstant){
         pointA = first;
+        first.addBridgeSupport(this);
         pointB = second;
+        second.addBridgeSupport(this);
         springConstant = inSpringConstant;
         length = first.getPos().minus(second.getPos()).length();
     }
 
     public void draw(GraphicsContext gc){
-        pointA.draw(gc);
-        pointB.draw(gc);
         double yMax = gc.getCanvas().getHeight();
-        gc.setFill(Color.GREEN);
-        gc.setStroke(Color.BLUE);
+        int f = (int) Math.floor(Math.abs((length-getCurrentLength())/length) * 100 * 255);
+        f = Math.min(255,f);
+        gc.setStroke(Color.rgb(f,255-f,0));
         gc.setLineWidth(5);
         gc.strokeLine(pointA.getxPos(), yMax-pointA.getyPos(), pointB.getxPos(), yMax-pointB.getyPos());
+        pointA.draw(gc);
+        pointB.draw(gc);
+    }
+
+    public double calculateStress(){
+        return (Math.abs((length-getCurrentLength())/length) * 50); //high stress : 1 and above
     }
 
     public double getLength(){return length;}
+
+    public void setLength(double length) {
+        this.length = length;
+    }
 
     public double getCurrentLength(){
         return pointA.getPos().minus(pointB.getPos()).length();
@@ -40,6 +51,22 @@ public class BridgeSupport {
 
     public double getTension() {
         return tension;
+    }
+
+    public BridgeSupportAnchorPoint getPointA() {
+        return pointA;
+    }
+
+    public BridgeSupportAnchorPoint getPointB() {
+        return pointB;
+    }
+
+    public void setPointA(BridgeSupportAnchorPoint pointA) {
+        this.pointA = pointA;
+    }
+
+    public void setPointB(BridgeSupportAnchorPoint pointB) {
+        this.pointB = pointB;
     }
 
     public myVec getNormalizedVec(){

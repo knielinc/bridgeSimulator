@@ -3,6 +3,7 @@ package sample;
 import javafx.animation.AnimationTimer;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -19,7 +20,8 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+    GraphicsContext gc;
+    boolean gameStarted = false;
     @Override
     public void start(Stage theStage) throws Exception{
 
@@ -32,13 +34,28 @@ public class Main extends Application {
 
         Group root = new Group();
         Scene theScene = new Scene( root );
+
+        theScene.setOnKeyPressed((KeyEvent keyEvent) ->
+                {
+                        System.out.println("Es wurde folgende Taste gedrückt:\t" + keyEvent.getCode());
+                        if(keyEvent.getCode().isWhitespaceKey() && !gameStarted){
+                            startGame();
+                        }
+                }
+        );
+
         theStage.setScene( theScene );
 
-        Canvas canvas = new Canvas( 512, 512 );
+        Canvas canvas = new Canvas( 800, 450 );
         root.getChildren().add( canvas );
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc = canvas.getGraphicsContext2D();
 
+        theStage.show();
+    }
+
+    public void startGame(){
+        gameStarted = true;
         Timeline gameLoop = new Timeline();
         gameLoop.setCycleCount( Timeline.INDEFINITE );
 
@@ -47,7 +64,7 @@ public class Main extends Application {
         Bridge testBridge = new Bridge();
         testBridge.createTestBridge();
 
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.017) // 60hz
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.005) // 60hz
                 ,(ActionEvent) -> {
             double t = (System.currentTimeMillis() - timeStart) / 1000.0;
 
@@ -55,10 +72,10 @@ public class Main extends Application {
             double y = 232 + 128 * Math.sin(t);
 
             // Clear the canvas
-            gc.clearRect(0, 0, 512,512);
+            gc.clearRect(0, 0, 1600,900);
 
             testBridge.draw(gc);
-            testBridge.computeTimeStep(.01,0.017);
+            testBridge.computeTimeStep(0.9,0.01);
 
             // background image clears canvas
 
@@ -66,8 +83,6 @@ public class Main extends Application {
 
         gameLoop.getKeyFrames().add( kf );
         gameLoop.play();
-
-        theStage.show();
     }
 
 
