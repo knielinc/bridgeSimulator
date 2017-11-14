@@ -37,13 +37,13 @@ public class Bridge {
 
 
     public void createTestBridge(){
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(100,100,1));
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(200,100,1));
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(150,200,1));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300,300,.1));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(50,100,.1));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(150,100,.1));
 
         supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(0),bridgeSupportAnchorPoints.get(1), 10));
         supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(1),bridgeSupportAnchorPoints.get(2), 10));
-        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(0),bridgeSupportAnchorPoints.get(2), 10));
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(2),bridgeSupportAnchorPoints.get(0), 10));
     }
 
     public void computeTimeStep(double d, double dt){
@@ -82,9 +82,11 @@ public class Bridge {
         double k2 = bs2.getSpringConstant();
         double k3 = bs3.getSpringConstant();
 
-        myVec springF1 = bs1.getNormalizedVec().smult(k1 * (bs1.getCurrentLength() - bs1.getLength()));
-        myVec springF2 = bs2.getNormalizedVec().smult(k2 * (bs1.getCurrentLength() - bs1.getLength()));
-        myVec springF3 = bs3.getNormalizedVec().smult(k3 * (bs1.getCurrentLength() - bs1.getLength()));
+        myVec springF1 = bs1.getNormalizedVec().smult(-k1 * (bs1.getCurrentLength() - bs1.getLength()));
+        myVec springF2 = bs2.getNormalizedVec().smult(-k2 * (bs2.getCurrentLength() - bs2.getLength()));
+        myVec springF3 = bs3.getNormalizedVec().smult(-k3 * (bs3.getCurrentLength() - bs3.getLength()));
+
+        //System.out.println((bs1.getCurrentLength() - bs1.getLength()));
 
         // Add spring forces to vertices
         f1 = f1.plus(springF1.minus(springF3));
@@ -110,11 +112,11 @@ public class Bridge {
         p1 += dt * v1;
         p2 += dt * v2;
         p3 += dt * v3;*/
-        p1 = new myVec(dt*ap1.getVelocity().getX(),dt*ap1.getVelocity().getY());
-        p2 = new myVec(dt*ap2.getVelocity().getX(),dt*ap2.getVelocity().getY());
-        p3 = new myVec(dt*ap3.getVelocity().getX(),dt*ap3.getVelocity().getY());
+        //p1 = ap1.getVelocity().smult(dt);
+        p2 = ap2.getVelocity().smult(dt);
+        p3 = ap3.getVelocity().smult(dt);
 
-        ap1.setPos(ap1.getPos().plus(p1));
+        //ap1.setPos(ap1.getPos().plus(p1));
         ap2.setPos(ap2.getPos().plus(p2));
         ap3.setPos(ap3.getPos().plus(p3));
 
