@@ -24,8 +24,14 @@ public class BridgeSupportAnchorPoint {
     }
     public void draw(GraphicsContext gc){
         gc.setFill(Color.RED);
+        if(isFixed){
+            gc.setFill(Color.BLUE);
+        }
         double yMax = gc.getCanvas().getHeight();
         gc.fillOval(getxPos()-5,yMax-getyPos()-5,10,10);
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(2);
+        gc.strokeLine(getxPos(),yMax-getyPos(),getxPos()+(4*velocity.getX()),yMax-(getyPos() + (4*velocity.getY())));
     }
 
     public double getxPos() {
