@@ -1,12 +1,13 @@
 # bridgeSimulator
 simulating a 2D-Bridge with spring mass systems in JavaFX
 
-related work: 
+# related work: 
 PBD (Position based dynamics)
-http://mmacklin.com/flex_siggraph_slides.pdf
+1. http://mmacklin.com/flex_siggraph_slides.pdf
 
 stable and fast implicit solvers
-http://graphics.berkeley.edu/papers/Liu-FSM-2013-11/Liu-FSM-2013-11.pdf
-https://www.cs.cmu.edu/~baraff/papers/sig98.pdf
+1. http://graphics.berkeley.edu/papers/Liu-FSM-2013-11/Liu-FSM-2013-11.pdf
+2. https://www.cs.cmu.edu/~baraff/papers/sig98.pdf
 
-https://www.toptal.com/game/video-game-physics-part-iii-constrained-rigid-body-simulation
+Other examples:
+1. https://www.toptal.com/game/video-game-physics-part-iii-constrained-rigid-body-simulation
