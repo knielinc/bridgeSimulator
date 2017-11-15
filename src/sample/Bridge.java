@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class Bridge {
     private ArrayList<BridgeSupport> supports;
@@ -50,7 +51,7 @@ public class Bridge {
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(600,200,1,false));
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(650,200,1,false));
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(700,200,1,true));
-
+        //road
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(0),bridgeSupportAnchorPoints.get(1),100));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(1),bridgeSupportAnchorPoints.get(2),100));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(2),bridgeSupportAnchorPoints.get(3),100));
@@ -82,7 +83,6 @@ public class Bridge {
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(450,250,1,false));
 
         //upper upper supports
-        supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(0),bridgeSupportAnchorPoints.get(13),100));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(12),bridgeSupportAnchorPoints.get(1),100));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(1),bridgeSupportAnchorPoints.get(13),100));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(13),bridgeSupportAnchorPoints.get(14),100));
@@ -90,7 +90,10 @@ public class Bridge {
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(15),bridgeSupportAnchorPoints.get(16),100));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(16),bridgeSupportAnchorPoints.get(10),100));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(10),bridgeSupportAnchorPoints.get(17),100));
+        //can be commented out for original bridge (will break though)
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(16),bridgeSupportAnchorPoints.get(11),100));
+        supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(0),bridgeSupportAnchorPoints.get(13),100));
+
 
         //middle upper supports
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(12),bridgeSupportAnchorPoints.get(2),100));
@@ -130,6 +133,8 @@ public class Bridge {
     }
 
     public void computeTimeStep(double d, double dt){
+        ArrayList<BridgeSupportAnchorPoint> tmpNewAnchorPoints = new ArrayList();
+
         for (BridgeSupportAnchorPoint currAnchorPoint:bridgeSupportAnchorPoints) {
 
             if(!currAnchorPoint.isFixed()) {
@@ -138,9 +143,8 @@ public class Bridge {
 
                 myVec p = currAnchorPoint.getPos();
 
-                ArrayList<BridgeSupport> currSupports = currAnchorPoint.getSupports();
-
-                for (BridgeSupport currSupport : currSupports) {
+                for (ListIterator<BridgeSupport> iterator = currAnchorPoint.getSupports().listIterator(); iterator.hasNext();) {
+                    BridgeSupport currSupport = iterator.next();
 
                     double k = currSupport.getSpringConstant();
                     myVec springF = currSupport.getNormalizedVec().smult(-k * (currSupport.getCurrentLength() - currSupport.getLength()));
@@ -150,21 +154,28 @@ public class Bridge {
                     } else { // assuming else it's pointB
                         f = f.minus(springF);
                     }
-                    if (currSupport.calculateStress() > .8){
+                    if (currSupport.calculateStress() > .8 && !currSupport.isBroken()){
                         //make bridge breakable
                         BridgeSupportAnchorPoint pointA = currSupport.getPointA();
                         BridgeSupportAnchorPoint pointB = currSupport.getPointB();
-                        pointA.removeBridgeSupport(currSupport);
-                        pointB.removeBridgeSupport(currSupport);
-                        pointA = new BridgeSupportAnchorPoint(pointA.getxPos(),pointA.getyPos(),pointA.getWeight(),pointA.isFixed());
-                        pointB = new BridgeSupportAnchorPoint(pointB.getxPos(),pointB.getyPos(),pointB.getWeight(),pointB.isFixed());
-                        currSupport.setLength(pointA.getPos().minus(pointB.getPos()).length());
-                        currSupport.setPointA(pointA);
-                        currSupport.setPointB(pointB);
-                        pointA.addBridgeSupport(currSupport);
-                        pointB.addBridgeSupport(currSupport);
-                        bridgeSupportAnchorPoints.add(pointA);
-                        bridgeSupportAnchorPoints.add(pointB);
+
+                        BridgeSupportAnchorPoint newA = new BridgeSupportAnchorPoint(pointA.getxPos(),pointA.getyPos(),pointA.getWeight(),pointA.isFixed());
+                        BridgeSupportAnchorPoint newB = new BridgeSupportAnchorPoint(pointB.getxPos(),pointB.getyPos(),pointB.getWeight(),pointB.isFixed());
+
+                        newA.setVelocity(pointA.getVelocity());
+                        newB.setVelocity(pointB.getVelocity());
+
+                        currSupport.setLength(newA.getPos().minus(newB.getPos()).length());
+                        currSupport.setPointA(newA);
+                        currSupport.setPointB(newB);
+                        currSupport.setBroken(true);
+
+                        newA.addBridgeSupport(currSupport);
+                        newB.addBridgeSupport(currSupport);
+                        tmpNewAnchorPoints.add(newA);
+                        tmpNewAnchorPoints.add(newB);
+
+                        iterator.remove();
                     }
 
                 }
@@ -192,7 +203,9 @@ public class Bridge {
                 p = p.plus(currAnchorPoint.getVelocity().smult(dt));
                 currAnchorPoint.setPos(p);
             }
+
         }
+        bridgeSupportAnchorPoints.addAll(tmpNewAnchorPoints);
     }
 
 }

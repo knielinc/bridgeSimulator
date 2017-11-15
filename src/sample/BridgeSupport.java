@@ -10,6 +10,7 @@ public class BridgeSupport {
     private double tension;
     private BridgeSupportAnchorPoint pointA,pointB;
     private double springConstant; //might make final
+    private boolean isBroken = false;
 
     BridgeSupport(BridgeSupportAnchorPoint first, BridgeSupportAnchorPoint second, double inSpringConstant){
         pointA = first;
@@ -67,6 +68,14 @@ public class BridgeSupport {
 
     public void setPointB(BridgeSupportAnchorPoint pointB) {
         this.pointB = pointB;
+    }
+
+    public boolean isBroken() {
+        return isBroken;
+    }
+
+    public void setBroken(boolean bool){
+        isBroken = bool;
     }
 
     public myVec getNormalizedVec(){

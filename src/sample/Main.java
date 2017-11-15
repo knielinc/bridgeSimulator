@@ -64,7 +64,7 @@ public class Main extends Application {
         Bridge testBridge = new Bridge();
         testBridge.createTestBridge();
 
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.005) // 60hz
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.017) // 60hz
                 ,(ActionEvent) -> {
             double t = (System.currentTimeMillis() - timeStart) / 1000.0;
 
