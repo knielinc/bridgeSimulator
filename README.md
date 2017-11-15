@@ -9,5 +9,8 @@ stable and fast implicit solvers
 1. http://graphics.berkeley.edu/papers/Liu-FSM-2013-11/Liu-FSM-2013-11.pdf
 2. https://www.cs.cmu.edu/~baraff/papers/sig98.pdf
 
-Other examples:
-1. https://www.toptal.com/game/video-game-physics-part-iii-constrained-rigid-body-simulation
+Rigid bodies with implicit solver in 2d
+1. https://www.toptal.com/game/video-game-physics-part-i-an-introduction-to-rigid-body-dynamics
+2. https://www.toptal.com/game/video-game-physics-part-ii-collision-detection-for-solid-objects
+3. https://www.toptal.com/game/video-game-physics-part-iii-constrained-rigid-body-simulation
+
