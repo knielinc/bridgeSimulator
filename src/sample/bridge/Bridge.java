@@ -1,7 +1,7 @@
-package sample;
+package sample.bridge;
 
-import com.sun.javafx.geom.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
+import sample.myVec;
 
 import java.util.ArrayList;
 import java.util.Iterator;
