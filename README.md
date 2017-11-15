@@ -4,6 +4,7 @@ simulating a 2D-Bridge with spring mass systems in JavaFX
 # related work: 
 PBD (Position based dynamics)
 1. http://mmacklin.com/flex_siggraph_slides.pdf
+2. http://mmacklin.com/uppfrta_preprint.pdf
 
 stable and fast implicit solvers
 1. http://graphics.berkeley.edu/papers/Liu-FSM-2013-11/Liu-FSM-2013-11.pdf
