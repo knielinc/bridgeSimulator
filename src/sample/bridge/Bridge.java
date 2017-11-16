@@ -11,7 +11,7 @@ public class Bridge {
     private ArrayList<BridgeSupport> supports;
     private ArrayList<BridgeSupportAnchorPoint> bridgeSupportAnchorPoints;
 
-    Bridge(){
+    public Bridge(){
         //constuctor to be implemented
         bridgeSupportAnchorPoints = new ArrayList();
         supports = new ArrayList();
