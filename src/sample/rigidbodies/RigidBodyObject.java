@@ -5,8 +5,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import sample.myVec;
 
-import static com.sun.tools.doclint.Entity.theta;
-
 public class RigidBodyObject extends Particle{
     double angularVel;
     DrawablePolygon polygon;

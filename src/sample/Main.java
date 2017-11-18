@@ -32,7 +32,7 @@ public class Main extends Application {
                 {
                         System.out.println("Es wurde folgende Taste gedrückt:\t" + keyEvent.getCode());
                         if(keyEvent.getCode().isWhitespaceKey() && !gameStarted){
-                            startGame();
+                            startGame2();
                         }
                 }
         );
@@ -91,7 +91,7 @@ public class Main extends Application {
             gc.clearRect(0, 0, 1600,900);
 
             myScene.draw(gc);
-            myScene.updateRigidBodies();
+            myScene.updateRigidBodies(0.017);
             // background image clears canvas
 
         });
