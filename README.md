@@ -15,6 +15,7 @@ Rigid bodies with implicit solver in 2d
 * https://www.toptal.com/game/video-game-physics-part-ii-collision-detection-for-solid-objects
 * https://www.toptal.com/game/video-game-physics-part-iii-constrained-rigid-body-simulation
 
+* constraint algorithm: https://en.wikipedia.org/wiki/Constraint_algorithm#Lagrange_multiplier-based_methods
 * https://pdfs.semanticscholar.org/e2db/40c1e7506e3635dfb8df391e53b217276005.pdf
 
 GJK algorithm
