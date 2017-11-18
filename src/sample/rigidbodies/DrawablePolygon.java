@@ -1,32 +1,43 @@
 package sample.rigidbodies;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import sample.myVec;
 
 public class DrawablePolygon {
-    double[] xVals;
+    double[] xVals,negyVals;
     double[] yVals;
     int numberOfPoints;
     double area;
     double momentOfInertia;
     double mass;
 
-    DrawablePolygon(double[] xValues, double [] yValues, int n, double mass){
+    public DrawablePolygon(double[] xValues, double [] yValues, int n, double mass){
         //care! points must be defined as a traversal over the edges
-        xVals = xValues;
-        yVals = yValues;
+        this.mass = mass;
+        xVals = xValues.clone();
+        yVals = yValues.clone();
+        negyVals = new double[n];
         numberOfPoints = n;
         computeArea();
         //move shape so that it's centroid is in the origin
         myVec centroid = computeCentroid();
 
-        for (double xVal:xVals){
-            xVal -= centroid.getX();
-        }
-        for (double yVal:yVals){
-            yVal -= centroid.getY();
+        for (int i = 0; i < numberOfPoints;i++){
+            xVals[i] -= centroid.getX();
+            yVals[i] -= centroid.getY();
         }
 
         computeMomentOfInertia();
+
+        for (int i = 0; i < numberOfPoints;i++){
+            negyVals[i] = -yVals[i];
+        }
+    }
+
+    public void draw(GraphicsContext gc) {
+        gc.setFill(Color.BLACK);
+        gc.fillPolygon(xVals,negyVals,numberOfPoints);
     }
 
     public double[] getxVals() {
@@ -41,7 +52,7 @@ public class DrawablePolygon {
 
     public void computeArea(){
         area = 0;
-        for (int i = 0; i < numberOfPoints-1;){
+        for (int i = 0; i < numberOfPoints-1; i++){
             double xi = xVals[i];
             double yi = yVals[i];
             double xiplus1 = xVals[i+1];
@@ -65,7 +76,7 @@ public class DrawablePolygon {
         enumerator = 0;
         denominator = 0;
 
-        for (int i = 0; i < numberOfPoints-1;){
+        for (int i = 0; i < numberOfPoints-1; i++){
             double xi = xVals[i];
             double yi = yVals[i];
             double xiplus1 = xVals[i+1];
@@ -91,7 +102,7 @@ public class DrawablePolygon {
         cx = 0;
         cy = 0;
 
-        for (int i = 0; i < numberOfPoints-1;){
+        for (int i = 0; i < numberOfPoints-1; i++){
             double xi = xVals[i];
             double yi = yVals[i];
             double xiplus1 = xVals[i+1];
@@ -104,7 +115,7 @@ public class DrawablePolygon {
 
         cx *= 1.0/(area * 6);
 
-        for (int i = 0; i < numberOfPoints-1;){
+        for (int i = 0; i < numberOfPoints-1; i++){
             double xi = xVals[i];
             double yi = yVals[i];
             double xiplus1 = xVals[i+1];
@@ -122,5 +133,23 @@ public class DrawablePolygon {
 
     public double getMomentOfInertia() {
         return momentOfInertia;
+    }
+
+    public myVec GetSupport(myVec d) {
+        //Eric rather did work in Distributed than this
+        double highest = Double.MAX_VALUE;
+        myVec support = new myVec(0,0);
+
+        for (int i = 0; i < numberOfPoints; ++i) {
+            myVec v = new myVec(xVals[i],yVals[i]);
+            double dot = v.dot(d);
+
+            if (dot > highest) {
+                highest = dot;
+                support = v;
+            }
+        }
+
+        return support;
     }
 }

@@ -16,7 +16,7 @@ public class Particle {
     Particle(double x, double y, double weight, boolean fixed){
         pos = new myVec(x,y);
         velocity = new myVec(0,0);
-        this.mass = mass;
+        this.mass = weight;
         isFixed = fixed;
     }
     public void draw(GraphicsContext gc){

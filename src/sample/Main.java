@@ -61,15 +61,37 @@ public class Main extends Application {
                 ,(ActionEvent) -> {
             double t = (System.currentTimeMillis() - timeStart) / 1000.0;
 
-            double x = 232 + 128 * Math.cos(t);
-            double y = 232 + 128 * Math.sin(t);
-
             // Clear the canvas
             gc.clearRect(0, 0, 1600,900);
 
             testBridge.draw(gc);
             testBridge.computeTimeStep(0.9,0.01);
 
+            // background image clears canvas
+
+        });
+
+        gameLoop.getKeyFrames().add( kf );
+        gameLoop.play();
+    }
+
+    public void startGame2(){
+        gameStarted = true;
+        Timeline gameLoop = new Timeline();
+        gameLoop.setCycleCount( Timeline.INDEFINITE );
+
+        final long timeStart = System.currentTimeMillis();
+
+        GameScene myScene = new GameScene();
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.017) // 60hz
+                ,(ActionEvent) -> {
+            double t = (System.currentTimeMillis() - timeStart) / 1000.0;
+
+            // Clear the canvas
+            gc.clearRect(0, 0, 1600,900);
+
+            myScene.draw(gc);
+            myScene.updateRigidBodies();
             // background image clears canvas
 
         });

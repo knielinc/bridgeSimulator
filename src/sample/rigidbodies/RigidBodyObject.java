@@ -1,6 +1,7 @@
 package sample.rigidbodies;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import sample.myVec;
 
@@ -11,18 +12,26 @@ public class RigidBodyObject extends Particle{
     DrawablePolygon polygon;
     double momentOfInertia;
     double torque;
-    RigidBodyObject(double x, double y, double mass, boolean fixed, DrawablePolygon polygon) {
+    public RigidBodyObject(double x, double y, double mass, boolean fixed, DrawablePolygon polygon) {
         super(x, y, mass, fixed);
         angularVel = 0;
         this.polygon = polygon;
-        this.momentOfInertia = polygon.getMomentOfInertia(getMass());
+        this.momentOfInertia = polygon.getMomentOfInertia();
     }
 
     @Override
     public void draw(GraphicsContext gc) {
-        gc.translate(-getxPos(),-getyPos());
-        gc.fillPolygon(polygon.getxVals(),polygon.getyVals(),polygon.getNumberOfPoints());
-        gc.translate(getxPos(),getyPos());
+        double maxY = gc.getCanvas().getHeight();
+        gc.setFill(Color.BLACK);
+        //gc.fillOval(getxPos(),maxY-getyPos(),5,5);
+        gc.translate(getxPos(),-getyPos() + maxY);
+        gc.rotate(-torque);
+        polygon.draw(gc);
+        gc.rotate(torque);
+        gc.translate(-getxPos(),getyPos()-maxY);
+        //gc.fillOval(getxPos(),maxY-getyPos(),5,5);
+
+
     }
 
     public double getAngularVel() {
@@ -64,4 +73,11 @@ public class RigidBodyObject extends Particle{
       return  force.smult(1.0/getMass());
     }
 
+    public double getTorque() {
+        return torque;
+    }
+
+    public void setTorque(double torque) {
+        this.torque = torque;
+    }
 }
