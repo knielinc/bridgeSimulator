@@ -3,19 +3,26 @@ simulating a 2D-Bridge with spring mass systems in JavaFX
 
 # related work: 
 PBD (Position based dynamics)
-1. http://mmacklin.com/flex_siggraph_slides.pdf
-2. http://mmacklin.com/uppfrta_preprint.pdf
+* http://mmacklin.com/flex_siggraph_slides.pdf
+* http://mmacklin.com/uppfrta_preprint.pdf
 
 stable and fast implicit solvers
-1. http://graphics.berkeley.edu/papers/Liu-FSM-2013-11/Liu-FSM-2013-11.pdf
-2. https://www.cs.cmu.edu/~baraff/papers/sig98.pdf
+* http://graphics.berkeley.edu/papers/Liu-FSM-2013-11/Liu-FSM-2013-11.pdf
+* https://www.cs.cmu.edu/~baraff/papers/sig98.pdf
 
 Rigid bodies with implicit solver in 2d
-1. https://www.toptal.com/game/video-game-physics-part-i-an-introduction-to-rigid-body-dynamics
-2. https://www.toptal.com/game/video-game-physics-part-ii-collision-detection-for-solid-objects
-3. https://www.toptal.com/game/video-game-physics-part-iii-constrained-rigid-body-simulation
+* https://www.toptal.com/game/video-game-physics-part-i-an-introduction-to-rigid-body-dynamics
+* https://www.toptal.com/game/video-game-physics-part-ii-collision-detection-for-solid-objects
+* https://www.toptal.com/game/video-game-physics-part-iii-constrained-rigid-body-simulation
 
-4. https://pdfs.semanticscholar.org/e2db/40c1e7506e3635dfb8df391e53b217276005.pdf
+* https://pdfs.semanticscholar.org/e2db/40c1e7506e3635dfb8df391e53b217276005.pdf
 
 GJK algorithm
-https://github.com/kroitor/gjk.c
+* https://github.com/kroitor/gjk.c
+
+Popular Questions: 
+* http://bulletphysics.org/mediawiki-1.5.8/index.php/Collision_Detection_and_Physics_FAQ
+
+Box2D solver and contact Constraints for islands
+* https://github.com/erincatto/Box2D/blob/master/Box2D/Box2D/Dynamics/b2Island.cpp
+* https://github.com/erincatto/Box2D/blob/master/Box2D/Box2D/Dynamics/Contacts/b2ContactSolver.cpp
