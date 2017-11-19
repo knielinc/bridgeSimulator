@@ -9,6 +9,7 @@ PBD (Position based dynamics)
 stable and fast implicit solvers
 * http://graphics.berkeley.edu/papers/Liu-FSM-2013-11/Liu-FSM-2013-11.pdf
 * https://www.cs.cmu.edu/~baraff/papers/sig98.pdf
+* http://hugi.scene.org/online/hugi28/hugi%2028%20-%20coding%20corner%20uttumuttu%20implementing%20the%20implicit%20euler%20method%20for%20mass-spring%20systems.htm
 
 Rigid bodies with implicit solver in 2d
 * https://www.toptal.com/game/video-game-physics-part-i-an-introduction-to-rigid-body-dynamics
