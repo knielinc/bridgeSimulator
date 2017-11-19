@@ -3,25 +3,29 @@ package sample.bridge;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import sample.myVec;
+import sample.Vec2;
 
 import java.util.ArrayList;
 
 public class BridgeSupportAnchorPoint {
-    private myVec pos;
+    public static int INDEX = 0;
+    private int myIndex;
+    private Vec2 pos;
     private double weight; // weight of a Support is determined by the weight of the 2 anchorpoints combined
-    private myVec velocity;
+    private Vec2 velocity;
     private ArrayList<BridgeSupport> supports;
     private boolean isFixed;
 
     BridgeSupportAnchorPoint(double x, double y, double weight, boolean fixed){
-        pos = new myVec(x,y);
-        velocity = new myVec(0,0);
+        pos = new Vec2(x,y);
+        velocity = new Vec2(0,0);
 
         this.weight = weight;
         supports = new ArrayList<>();
 
         isFixed = fixed;
+        this.myIndex = INDEX;
+        INDEX++;
     }
     public void draw(GraphicsContext gc){
         gc.setFill(Color.RED);
@@ -43,7 +47,7 @@ public class BridgeSupportAnchorPoint {
         return pos.getY();
     }
 
-    public myVec getPos() {
+    public Vec2 getPos() {
         return pos;
     }
 
@@ -51,11 +55,11 @@ public class BridgeSupportAnchorPoint {
         return weight;
     }
 
-    public myVec getVelocity() {
+    public Vec2 getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(myVec velocity) {
+    public void setVelocity(Vec2 velocity) {
         this.velocity = velocity;
     }
 
@@ -67,7 +71,7 @@ public class BridgeSupportAnchorPoint {
         pos.setY(yPos);
     }
 
-    public void setPos(myVec newVec){
+    public void setPos(Vec2 newVec){
         pos = newVec;
     }
     public void addBridgeSupport (BridgeSupport in){
@@ -83,5 +87,13 @@ public class BridgeSupportAnchorPoint {
 
     public boolean isFixed() {
         return isFixed;
+    }
+
+    public static int getPublicMaxIndex() {
+        return INDEX;
+    }
+
+    public int getMyIndex() {
+        return myIndex;
     }
 }

@@ -23,8 +23,8 @@ public class GameScene {
     public void updateRigidBodies(double dt){
         for(RigidBodyObject tmpObject:rigidBodyObjects){
             /*
-            myVec force = new myVec(0,.001);
-            myVec relForcePos = new myVec(80,0);
+            Vec2 force = new Vec2(0,.001);
+            Vec2 relForcePos = new Vec2(80,0);
 
             tmpObject.setAngularVel(tmpObject.getAngularVel() + tmpObject.computeAngularAccel(relForcePos,force));
             tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(force)));
@@ -32,21 +32,28 @@ public class GameScene {
             tmpObject.setTorque(tmpObject.getTorque() + tmpObject.getAngularVel());
             System.out.println(tmpObject.getPos());
             */
+            Vec2 p = tmpObject.getPos().minus(new Vec2(150,200));
+            Vec2 correctedPosition = p.normalize().smult(50).minus(p).plus(tmpObject.getPos());
+
+            tmpObject.setPos(correctedPosition);
+
             double mass = tmpObject.getMass();
 
-            myVec fext = tmpObject.getPos().minus(new myVec(150,200));
+            Vec2 fext = tmpObject.getPos().minus(new Vec2(150,200));
             fext.setPos(fext.getY(),-1 * fext.getX());
-            fext = fext.normalize().smult(0.0001);
+            fext = fext.normalize().smult(0.00001);
 
             //testing out simple constraint solver with distance preserving constrained for 1 particle
 
-            myVec p = tmpObject.getPos().minus(new myVec(150,200));
-            myVec pdot = tmpObject.getVelocity();
+            Vec2 pdot = tmpObject.getVelocity();
             double lambda = fext.smult(-1).dot(p) - pdot.smult(mass).dot(pdot) / (p.dot(p));
-            myVec force = p.smult(lambda);
-            myVec relForcePos = new myVec(0,0);
+            Vec2 fc = p.smult(lambda);
+            Vec2 relForcePos = new Vec2(0,0);
 
-            tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(force.plus(fext))));
+            //fc = Vec2.VEC_ZERO;
+
+            //testing custom 2.nd constraint rule
+            tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(fc.plus(fext))));
             tmpObject.setPos(tmpObject.getPos().plus(tmpObject.getVelocity()));
             System.out.println(tmpObject.getPos());
 

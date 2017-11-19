@@ -3,6 +3,7 @@ package sample;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.transform.MatrixType;
 import javafx.util.Duration;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -65,7 +66,7 @@ public class Main extends Application {
             gc.clearRect(0, 0, 1600,900);
 
             testBridge.draw(gc);
-            testBridge.computeTimeStep(0.9,0.01);
+            testBridge.computeTimeStepExlicit(0.9,0.01);
 
             // background image clears canvas
 

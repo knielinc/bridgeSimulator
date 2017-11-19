@@ -2,20 +2,18 @@ package sample.rigidbodies;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import sample.myVec;
-
-import java.util.ArrayList;
+import sample.Vec2;
 
 public class Particle {
     //todo make similar implementaion as in BridgeSupportAnchorpoint
-    private myVec pos;
+    private Vec2 pos;
     private double mass; // weight of a Support is determined by the weight of the 2 anchorpoints combined
-    private myVec velocity;
+    private Vec2 velocity;
     private boolean isFixed;
 
     Particle(double x, double y, double weight, boolean fixed){
-        pos = new myVec(x,y);
-        velocity = new myVec(0,0);
+        pos = new Vec2(x,y);
+        velocity = new Vec2(0,0);
         this.mass = weight;
         isFixed = fixed;
     }
@@ -40,7 +38,7 @@ public class Particle {
         return pos.getY();
     }
 
-    public myVec getPos() {
+    public Vec2 getPos() {
         return pos;
     }
 
@@ -48,11 +46,11 @@ public class Particle {
         return mass;
     }
 
-    public myVec getVelocity() {
+    public Vec2 getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(myVec velocity) {
+    public void setVelocity(Vec2 velocity) {
         this.velocity = velocity;
     }
 
@@ -64,7 +62,7 @@ public class Particle {
         pos.setY(yPos);
     }
 
-    public void setPos(myVec newVec){
+    public void setPos(Vec2 newVec){
         pos = newVec;
     }
 

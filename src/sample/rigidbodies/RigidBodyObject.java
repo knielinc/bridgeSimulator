@@ -2,8 +2,7 @@ package sample.rigidbodies;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
-import sample.myVec;
+import sample.Vec2;
 
 public class RigidBodyObject extends Particle{
     double angularVel;
@@ -44,30 +43,30 @@ public class RigidBodyObject extends Particle{
         return polygon;
     }
 
-    public double getTorqueForForce(myVec relForcePos, myVec force){
+    public double getTorqueForForce(Vec2 relForcePos, Vec2 force){
         double tau = relForcePos.getX() * force.getY() - relForcePos.getY() * force.getX();
         return tau;
     }
 
-    public double computeAngularAccel(myVec relForcePos, myVec force){
+    public double computeAngularAccel(Vec2 relForcePos, Vec2 force){
         double tau = getTorqueForForce(relForcePos,force);
 
         return tau/momentOfInertia;
     }
 
-    public myVec getRelativePos(double x, double y){
-        return new myVec(x - getxPos(),y - getyPos());
+    public Vec2 getRelativePos(double x, double y){
+        return new Vec2(x - getxPos(),y - getyPos());
     }
 
-    public myVec getRelativePos(myVec pos){
-        return new myVec(pos.getX() - getxPos(),pos.getY() - getyPos());
+    public Vec2 getRelativePos(Vec2 pos){
+        return new Vec2(pos.getX() - getxPos(),pos.getY() - getyPos());
     }
 
     public double getMomentOfInertia() {
         return momentOfInertia;
     }
 
-    public myVec linearAcceleration(myVec force){
+    public Vec2 linearAcceleration(Vec2 force){
       return  force.smult(1.0/getMass());
     }
 

@@ -2,7 +2,7 @@ package sample.rigidbodies;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import sample.myVec;
+import sample.Vec2;
 
 public class DrawablePolygon {
     double[] xVals,negyVals;
@@ -21,7 +21,7 @@ public class DrawablePolygon {
         numberOfPoints = n;
         computeArea();
         //move shape so that it's centroid is in the origin
-        myVec centroid = computeCentroid();
+        Vec2 centroid = computeCentroid();
 
         for (int i = 0; i < numberOfPoints;i++){
             xVals[i] -= centroid.getX();
@@ -97,7 +97,7 @@ public class DrawablePolygon {
         momentOfInertia = (enumerator * mass)/ (denominator * 12);
     }
 
-    public myVec computeCentroid(){
+    public Vec2 computeCentroid(){
         double cx,cy;
         cx = 0;
         cy = 0;
@@ -128,20 +128,20 @@ public class DrawablePolygon {
 
         cy *= 1.0/(area * 6);
 
-        return new myVec(cx,cy);
+        return new Vec2(cx,cy);
     }
 
     public double getMomentOfInertia() {
         return momentOfInertia;
     }
 
-    public myVec GetSupport(myVec d) {
+    public Vec2 GetSupport(Vec2 d) {
         //Eric rather did work in Distributed than this
         double highest = Double.MAX_VALUE;
-        myVec support = new myVec(0,0);
+        Vec2 support = new Vec2(0,0);
 
         for (int i = 0; i < numberOfPoints; ++i) {
-            myVec v = new myVec(xVals[i],yVals[i]);
+            Vec2 v = new Vec2(xVals[i],yVals[i]);
             double dot = v.dot(d);
 
             if (dot > highest) {

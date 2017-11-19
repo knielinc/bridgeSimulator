@@ -1,16 +1,16 @@
 package sample.rigidbodies;
 
-import sample.myVec;
+import sample.Vec2;
 
 public class Simplex {
-    myVec pointA,pointB,pointC;
-    public Simplex(myVec a,myVec b,myVec c){
+    Vec2 pointA,pointB,pointC;
+    public Simplex(Vec2 a, Vec2 b, Vec2 c){
         pointA = a;
         pointB = b;
         pointC = c;
     }
 
-    public boolean isInside(myVec point){
+    public boolean isInside(Vec2 point){
         return true;
     }
 }

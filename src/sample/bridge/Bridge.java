@@ -1,7 +1,12 @@
 package sample.bridge;
 
+import com.sun.org.apache.regexp.internal.RE;
 import javafx.scene.canvas.GraphicsContext;
-import sample.myVec;
+import javafx.scene.transform.MatrixType;
+import org.apache.commons.math3.geometry.Vector;
+import org.apache.commons.math3.geometry.euclidean.oned.Vector1D;
+import org.apache.commons.math3.linear.*;
+import sample.Vec2;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -132,22 +137,22 @@ public class Bridge {
 
     }
 
-    public void computeTimeStep(double d, double dt){
+    public void computeTimeStepExlicit(double d, double dt){
         ArrayList<BridgeSupportAnchorPoint> tmpNewAnchorPoints = new ArrayList();
 
         for (BridgeSupportAnchorPoint currAnchorPoint:bridgeSupportAnchorPoints) {
 
             if(!currAnchorPoint.isFixed()) {
 
-                myVec f = new myVec(0, -9.81 * currAnchorPoint.getWeight()).minus(currAnchorPoint.getVelocity().smult(d));
+                Vec2 f = new Vec2(0, -9.81 * currAnchorPoint.getWeight()).minus(currAnchorPoint.getVelocity().smult(d));
 
-                myVec p = currAnchorPoint.getPos();
+                Vec2 p = currAnchorPoint.getPos();
 
                 for (ListIterator<BridgeSupport> iterator = currAnchorPoint.getSupports().listIterator(); iterator.hasNext();) {
                     BridgeSupport currSupport = iterator.next();
 
                     double k = currSupport.getSpringConstant();
-                    myVec springF = currSupport.getNormalizedVec().smult(-k * (currSupport.getCurrentLength() - currSupport.getLength()));
+                    Vec2 springF = currSupport.getNormalizedVec().smult(-k * (currSupport.getCurrentLength() - currSupport.getLength()));
 
                     if (currAnchorPoint == currSupport.getPointA()) {
                         f = f.plus(springF);
@@ -182,19 +187,19 @@ public class Bridge {
 
                 /*
                 tried with projected force
-                myVec a = currAnchorPoint.getVelocity();
-                myVec b = f;
-                myVec projectedVel = new myVec(0,0);
+                Vec2 a = currAnchorPoint.getVelocity();
+                Vec2 b = f;
+                Vec2 projectedVel = new Vec2(0,0);
                 if (b.getY() != 0 || b.getX() != 0){projectedVel = b.smult(a.dot(b)/b.dot(b));}
 
-                f = f.plus( new myVec(0, -9.81 * currAnchorPoint.getWeight()));
+                f = f.plus( new Vec2(0, -9.81 * currAnchorPoint.getWeight()));
                 f = f.minus(projectedVel);
                 */
 
-                // Additional force for collision
+                // Additional force for collisionasd
                 double kr_ = 100;
                 if (p.getY() < -1)
-                    f = f.minus(new myVec(0, 1 + p.getY()).smult(kr_));
+                    f = f.minus(new Vec2(0, 1 + p.getY()).smult(kr_));
 
                 // Velocity update
                 currAnchorPoint.setVelocity(currAnchorPoint.getVelocity().plus(f.smult(dt / currAnchorPoint.getWeight())));
@@ -206,6 +211,33 @@ public class Bridge {
 
         }
         bridgeSupportAnchorPoints.addAll(tmpNewAnchorPoints);
+    }
+
+    public void computeTimeStepImplicit(double d, double dt){
+        //setup jacobian matrices
+        for(BridgeSupport tmpSupport : supports){
+            BridgeSupportAnchorPoint a = tmpSupport.getPointA();
+            BridgeSupportAnchorPoint b = tmpSupport.getPointB();
+            int i = a.getMyIndex();
+            int j = b.getMyIndex();
+            RealVector posA,posB,aMinusB;
+            posA = new ArrayRealVector(new double[]{a.getxPos(),a.getyPos()});
+            posB = new ArrayRealVector(new double[]{b.getxPos(),b.getyPos()});
+            aMinusB = posA.subtract(posB);
+            double innerDotAB = aMinusB.dotProduct(aMinusB);
+            double oneOverInnerDotAB = 1.0 / innerDotAB;
+            RealMatrix outerDotAB = aMinusB.outerProduct(aMinusB);
+            RealMatrix twoByTwoI = MatrixUtils.createRealIdentityMatrix(2);
+            double currLength = aMinusB.getNorm();
+            double length = tmpSupport.getLength();
+            double k = -1 * tmpSupport.getSpringConstant();
+
+            RealMatrix Jx = outerDotAB.scalarMultiply(oneOverInnerDotAB).add(twoByTwoI.subtract(outerDotAB.scalarMultiply(oneOverInnerDotAB)).scalarMultiply(1.0 - (length / currLength))).scalarMultiply(k);
+            RealMatrix Jv = MatrixUtils.createRealIdentityMatrix(2).scalarMultiply(d);
+            tmpSupport.setJx(Jx);
+            tmpSupport.setJv(Jv);
+        }
+
     }
 
 }

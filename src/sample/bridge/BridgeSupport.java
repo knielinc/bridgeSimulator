@@ -2,13 +2,15 @@ package sample.bridge;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import sample.myVec;
+import org.apache.commons.math3.linear.RealMatrix;
+import sample.Vec2;
 
 public class BridgeSupport {
     private double xPos;
     private double yPos;
     private double length;
     private double tension;
+    private RealMatrix Jx,Jv;
     private BridgeSupportAnchorPoint pointA,pointB;
     private double springConstant; //might make final
     private boolean isBroken = false;
@@ -79,9 +81,25 @@ public class BridgeSupport {
         isBroken = bool;
     }
 
-    public myVec getNormalizedVec(){
-        myVec pos1 = pointA.getPos();
-        myVec pos2 = pointB.getPos();
+    public Vec2 getNormalizedVec(){
+        Vec2 pos1 = pointA.getPos();
+        Vec2 pos2 = pointB.getPos();
         return pos1.minus(pos2).normalize();
+    }
+
+    public void setJv(RealMatrix jv) {
+        Jv = jv;
+    }
+
+    public void setJx(RealMatrix jx) {
+        Jx = jx;
+    }
+
+    public RealMatrix getJv() {
+        return Jv;
+    }
+
+    public RealMatrix getJx() {
+        return Jx;
     }
 }
