@@ -211,6 +211,7 @@ public class Bridge {
 
         }
         bridgeSupportAnchorPoints.addAll(tmpNewAnchorPoints);
+        computeTimeStepImplicit(d, dt);
     }
 
     public void computeTimeStepImplicit(double d, double dt){

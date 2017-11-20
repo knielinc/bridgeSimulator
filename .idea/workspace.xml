@@ -1,31 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added TestScene for simple rigidbodyObject (drawing still upside down though)">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/commons_math3_3_6_1.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/myVec.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/GameScene.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/GameScene.class" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/Bridge.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/Bridge.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/BridgeSupport.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/BridgeSupport.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/BridgeSupportAnchorPoint.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/BridgeSupportAnchorPoint.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/rigidbodies/DrawablePolygon.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/rigidbodies/DrawablePolygon.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/rigidbodies/Particle.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/rigidbodies/Particle.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/rigidbodies/RigidBodyObject.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/rigidbodies/RigidBodyObject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/rigidbodies/Simplex.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/rigidbodies/Simplex.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Bridges.iml" afterPath="$PROJECT_DIR$/Bridges.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/old code/Bridges/Exercise.cpp" afterPath="$PROJECT_DIR$/src/old code/Bridges/Exercise.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/GameScene.java" afterPath="$PROJECT_DIR$/src/sample/GameScene.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/bridge/Bridge.java" afterPath="$PROJECT_DIR$/src/sample/bridge/Bridge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java" afterPath="$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java" afterPath="$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/rigidbodies/Particle.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/Particle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/sample/myVec.java" afterPath="$PROJECT_DIR$/src/sample/Vec2.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,11 +71,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="35" column="37" lean-forward="false" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -113,18 +96,18 @@
       <file leaf-file-name="Bridges.iml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Bridges.iml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="204">
               <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bridge.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Bridge.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="216" column="33" lean-forward="false" selection-start-line="216" selection-start-column="33" selection-end-line="216" selection-end-column="33" />
+            <state relative-caret-position="3349">
+              <caret line="213" column="33" lean-forward="false" selection-start-line="213" selection-start-column="33" selection-end-line="213" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -135,7 +118,7 @@
       <file leaf-file-name="BridgeSupportAnchorPoint.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="554">
+            <state relative-caret-position="1037">
               <caret line="91" column="39" lean-forward="false" selection-start-line="91" selection-start-column="39" selection-end-line="91" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -151,7 +134,7 @@
       <file leaf-file-name="BridgeSupport.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="554">
+            <state relative-caret-position="1207">
               <caret line="102" column="8" lean-forward="false" selection-start-line="102" selection-start-column="8" selection-end-line="102" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -176,7 +159,7 @@
       <file leaf-file-name="Exercise.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/old code/Bridges/Exercise.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
+            <state relative-caret-position="4114">
               <caret line="242" column="36" lean-forward="false" selection-start-line="242" selection-start-column="36" selection-end-line="242" selection-end-column="36" />
               <folding />
             </state>
@@ -248,11 +231,11 @@
         <option value="$PROJECT_DIR$/src/old code/Bridges/Exercise.cpp" />
         <option value="$PROJECT_DIR$/src/sample/myVec.java" />
         <option value="$PROJECT_DIR$/src/sample/Vec2.java" />
-        <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/Matrix.java" />
         <option value="$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java" />
         <option value="$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java" />
         <option value="$PROJECT_DIR$/src/sample/bridge/Bridge.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
       </list>
     </option>
   </component>
@@ -264,8 +247,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1976" />
-    <option name="y" value="-8" />
+    <option name="x" value="5" />
+    <option name="y" value="-18" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -288,7 +271,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -331,9 +316,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -561,31 +544,36 @@
       <option name="project" value="LOCAL" />
       <updated>1510869814569</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added apache commons math and started implicit solver for M-S-S">
+      <created>1511125679146</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1511125679146</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30540827" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09544008" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2173913" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2173913" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17493796" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15989584" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -600,10 +588,12 @@
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30540827" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -681,7 +671,8 @@
     <MESSAGE value="Fixed bugs when Bridge was breaking" />
     <MESSAGE value="Started Develop Branch for adding of rigid bodies" />
     <MESSAGE value="Added Polygon Class and added features to Particle/RigidBodyObject" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Polygon Class and added features to Particle/RigidBodyObject" />
+    <MESSAGE value="Added apache commons math and started implicit solver for M-S-S" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added apache commons math and started implicit solver for M-S-S" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -816,13 +807,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Bridges.iml">
@@ -850,13 +841,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Bridges.iml">
@@ -877,13 +868,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
@@ -894,13 +885,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
@@ -969,9 +960,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="18" column="26" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -979,10 +967,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="13" column="20" lean-forward="false" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-          <folding>
-            <element signature="e#254#255#0" expanded="false" />
-            <element signature="e#281#282#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -990,15 +974,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2397">
           <caret line="149" column="13" lean-forward="false" selection-start-line="149" selection-start-column="13" selection-end-line="149" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/old code/Bridges/Exercise.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
+        <state relative-caret-position="4114">
           <caret line="242" column="36" lean-forward="false" selection-start-line="242" selection-start-column="36" selection-end-line="242" selection-end-column="36" />
           <folding />
         </state>
@@ -1015,36 +996,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Matrix.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="31" lean-forward="false" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Matrix.java" />
     <entry file="file://$PROJECT_DIR$/.idea/dictionaries/christianknieling.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Bridges.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1073,13 +1029,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="12" column="11" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
+        <state relative-caret-position="1207">
           <caret line="102" column="8" lean-forward="false" selection-start-line="102" selection-start-column="8" selection-end-line="102" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1090,7 +1045,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
+        <state relative-caret-position="1037">
           <caret line="91" column="39" lean-forward="false" selection-start-line="91" selection-start-column="39" selection-end-line="91" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1104,11 +1059,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="216" column="33" lean-forward="false" selection-start-line="216" selection-start-column="33" selection-end-line="216" selection-end-column="33" />
+        <state relative-caret-position="3349">
+          <caret line="213" column="33" lean-forward="false" selection-start-line="213" selection-start-column="33" selection-end-line="213" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="35" column="37" lean-forward="false" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bridges.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>

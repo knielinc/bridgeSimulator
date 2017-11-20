@@ -33,7 +33,7 @@ public class Main extends Application {
                 {
                         System.out.println("Es wurde folgende Taste gedrückt:\t" + keyEvent.getCode());
                         if(keyEvent.getCode().isWhitespaceKey() && !gameStarted){
-                            startGame2();
+                            startGame();
                         }
                 }
         );
