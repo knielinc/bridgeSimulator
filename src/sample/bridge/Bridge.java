@@ -16,7 +16,7 @@ import java.util.ListIterator;
 public class Bridge {
     private ArrayList<BridgeSupport> supports;
     private ArrayList<BridgeSupportAnchorPoint> bridgeSupportAnchorPoints;
-    private boolean bridgeIsBreakable = true;
+    private boolean bridgeIsBreakable = false;
 
     public Bridge(){
         //constuctor to be implemented
@@ -70,7 +70,7 @@ public class Bridge {
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(8),bridgeSupportAnchorPoints.get(9),70));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(9),bridgeSupportAnchorPoints.get(10),70));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(10),bridgeSupportAnchorPoints.get(11),70));
-
+        /*
         //upper upper support points 12 -> 17
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(100,150,1,true));
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(250,300,1,false));
@@ -136,7 +136,7 @@ public class Bridge {
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(24),bridgeSupportAnchorPoints.get(25),70));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(24),bridgeSupportAnchorPoints.get(20),70));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(25),bridgeSupportAnchorPoints.get(21),70));
-
+        */
     }
 
     public void computeTimeStepExplicit(double d, double dt){
@@ -249,10 +249,15 @@ public class Bridge {
             double k = tmpSupport.getSpringConstant();
 
             RealMatrix Jx = outerDotAB.scalarMultiply(oneOverInnerDotAB).add(twoByTwoI.subtract(outerDotAB.scalarMultiply(oneOverInnerDotAB)).scalarMultiply(1.0 - (length / currLength))).scalarMultiply(k);
-            DfDx.setEntry(i*2,j*2,Jx.getEntry(0,0));
-            DfDx.setEntry(i*2 + 1,j*2,Jx.getEntry(1,0));
-            DfDx.setEntry(i*2,j*2 + 1,Jx.getEntry(0,1));
-            DfDx.setEntry(i*2 + 1,j*2 + 1,Jx.getEntry(1,1));
+            DfDx.setEntry(i*2    ,j*2,      Jx.getEntry(0,0));
+            DfDx.setEntry(i*2 + 1,j*2,      Jx.getEntry(1,0));
+            DfDx.setEntry(i*2    ,j*2 + 1,  Jx.getEntry(0,1));
+            DfDx.setEntry(i*2 + 1,j*2 + 1,  Jx.getEntry(1,1));
+            /*
+            DfDx.setEntry(j*2    ,i*2,      Jx.getEntry(0,0));
+            DfDx.setEntry(j*2 + 1,i*2,      Jx.getEntry(1,0));
+            DfDx.setEntry(j*2    ,i*2 + 1,  Jx.getEntry(0,1));
+            DfDx.setEntry(j*2 + 1,i*2 + 1,  Jx.getEntry(1,1));*/
 
             tmpSupport.setJx(Jx);
         }
@@ -269,12 +274,12 @@ public class Bridge {
             v0.setEntry(index + 1,currPoint.getVelocity().getY());
         }
 
-        RealVector b = f0.add(DfDx.operate(v0));*/
+        RealVector b = f0.add(DfDx.operate(v0).mapMultiply(dt * dt)); */
         RealVector b = f0.add(calculateBForImplicit().mapMultiplyToSelf(dt * dt));
 
         b.mapMultiplyToSelf(dt * dt);
 
-        RealVector deltaV = gaussSeidel(M,b);
+        RealVector deltaV = gaussSeidel(A,b);
 
         //System.out.println("norm = " + A.operate(x0).subtract(b).getNorm() + " Matrix: " + A.operate(x0).subtract(b));
 
@@ -369,6 +374,10 @@ public class Bridge {
         for (BridgeSupportAnchorPoint currPoint : bridgeSupportAnchorPoints){
             int indexY = currPoint.getMyIndex() * 2 + 1;
             out.setEntry(indexY,out.getEntry(indexY) - 9.81 * currPoint.getWeight());
+            // Additional force for collisionasd
+            double kr_ = 100;
+            if (currPoint.getPos().getY() < -1)
+                out.setEntry(indexY,out.getEntry(indexY) - (1 + currPoint.getPos().getY()) * (kr_));
         }
 
         return out;
@@ -376,26 +385,37 @@ public class Bridge {
 
     public RealVector gaussSeidel(RealMatrix M, RealVector b){
         int dimension = 2 * bridgeSupportAnchorPoints.size();
+        RealVector oldvec = new ArrayRealVector(dimension);
         RealVector out = new ArrayRealVector(dimension);
-        double error = Integer.MAX_VALUE;
-        double threshold = 0.001;
-        for (int iterationstep = 0;iterationstep < 1000;iterationstep++) {
-            error = 0;
+        double threshold = 0.000000001;
+        for (int iterationstep = 0; iterationstep < 25; iterationstep++) {
             for (int k = 0; k < dimension; k++) {
                 double lhs = 0, rhs = 0;
+
                 for (int i = 0; i < k; i++) {
                     lhs += M.getEntry(k, i) * out.getEntry(i);
                 }
+
                 for (int i = k + 1; i < dimension; i++) {
                     lhs += M.getEntry(k, i) * out.getEntry(i);
                 }
+
                 double x_k = 1.0 / M.getEntry(k, k) * (b.getEntry(k) - lhs - rhs);
-                error = Math.max(error, Math.abs(x_k - out.getEntry(k)));
+
                 out.setEntry(k, x_k);
             }
-            if (error < threshold){
-                break;
+            RealVector residual = oldvec.subtract(out);
+            double myError = residual.getNorm();
+
+            System.out.println("it: " + iterationstep + " Error: " + myError);
+
+            if(myError < threshold){
+                //break;
             }
+            oldvec = out.copy();
+
+            //System.out.println(iterationstep + " error: " +error);
+
         }
         return out;
     }
