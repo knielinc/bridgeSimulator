@@ -2,7 +2,9 @@ package sample.bridge;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
+import org.apache.commons.math3.linear.RealVector;
 import sample.Vec2;
 
 public class BridgeSupport {
@@ -94,6 +96,7 @@ public class BridgeSupport {
     public void setJx(RealMatrix jx) {
         Jx = jx;
     }
+
 
     public RealMatrix getJv() {
         return Jv;

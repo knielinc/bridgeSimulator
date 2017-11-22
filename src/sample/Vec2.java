@@ -1,6 +1,11 @@
 package sample;
 
 
+import org.apache.commons.math3.geometry.Vector;
+import org.apache.commons.math3.geometry.euclidean.oned.Vector1D;
+import org.apache.commons.math3.linear.ArrayRealVector;
+import org.apache.commons.math3.linear.RealVector;
+
 public class Vec2 {
 
     public static final Vec2 VEC_ZERO = new Vec2(0, 0);
@@ -63,6 +68,9 @@ public class Vec2 {
         this.y = y;
     }
 
+    public RealVector getRealVec(){
+        return new ArrayRealVector(new double[] {x,y});
+    }
 
     @Override
     public String toString() {

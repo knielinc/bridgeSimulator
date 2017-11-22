@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.transform.MatrixType;
 import org.apache.commons.math3.geometry.Vector;
 import org.apache.commons.math3.geometry.euclidean.oned.Vector1D;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import org.apache.commons.math3.linear.*;
 import sample.Vec2;
 
@@ -68,7 +69,7 @@ public class Bridge {
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(8),bridgeSupportAnchorPoints.get(9),70));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(9),bridgeSupportAnchorPoints.get(10),70));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(10),bridgeSupportAnchorPoints.get(11),70));
-
+        /*
         //upper upper support points 12 -> 17
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(100,150,1,true));
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(250,300,1,false));
@@ -134,7 +135,7 @@ public class Bridge {
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(24),bridgeSupportAnchorPoints.get(25),70));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(24),bridgeSupportAnchorPoints.get(20),70));
         supports.add( new BridgeSupport(bridgeSupportAnchorPoints.get(25),bridgeSupportAnchorPoints.get(21),70));
-
+        */
     }
 
     public void computeTimeStepExlicit(double d, double dt){
@@ -211,11 +212,88 @@ public class Bridge {
 
         }
         bridgeSupportAnchorPoints.addAll(tmpNewAnchorPoints);
-        computeTimeStepImplicit(d, dt);
     }
 
     public void computeTimeStepImplicit(double d, double dt){
         //setup jacobian matrices
+
+        int dimension = bridgeSupportAnchorPoints.size()*2;
+
+        SparseRealMatrix DfDx,DfDv,M;
+
+        DfDx = new OpenMapRealMatrix(dimension,dimension);
+        DfDv = new OpenMapRealMatrix(dimension,dimension);
+        M  = new OpenMapRealMatrix(dimension,dimension);
+
+        for (int i = 0; i < dimension; i++){
+            DfDv.addToEntry(i,i,d);
+            M.addToEntry(i,i,1);
+        }
+
+        for (BridgeSupport tmpSupport:supports){
+            BridgeSupportAnchorPoint a = tmpSupport.getPointA();
+            BridgeSupportAnchorPoint b = tmpSupport.getPointB();
+            int i = a.getMyIndex();
+            int j = b.getMyIndex();
+            RealVector posA,posB,aMinusB;
+            posA = new ArrayRealVector(new double[]{a.getxPos(),a.getyPos()});
+            posB = new ArrayRealVector(new double[]{b.getxPos(),b.getyPos()});
+            aMinusB = posA.subtract(posB);
+            double innerDotAB = aMinusB.dotProduct(aMinusB);
+            double oneOverInnerDotAB = 1.0 / innerDotAB;
+            RealMatrix outerDotAB = aMinusB.outerProduct(aMinusB);
+            RealMatrix twoByTwoI = MatrixUtils.createRealIdentityMatrix(2);
+            double currLength = aMinusB.getNorm();
+            double length = tmpSupport.getLength();
+            double k = tmpSupport.getSpringConstant();
+
+            RealMatrix Jx = outerDotAB.scalarMultiply(oneOverInnerDotAB).add(twoByTwoI.subtract(outerDotAB.scalarMultiply(oneOverInnerDotAB)).scalarMultiply(1.0 - (length / currLength))).scalarMultiply(k);
+            DfDx.setEntry(i*2,j*2,Jx.getEntry(0,0));
+            DfDx.setEntry(i*2 + 1,j*2,Jx.getEntry(1,0));
+            DfDx.setEntry(i*2,j*2 + 1,Jx.getEntry(0,1));
+            DfDx.setEntry(i*2 + 1,j*2 + 1,Jx.getEntry(1,1));
+
+            tmpSupport.setJx(Jx);
+        }
+
+        RealMatrix A = M.subtract(DfDv.scalarMultiply(dt)).subtract(DfDx.scalarMultiply(dt * dt));
+
+        RealVector b = calculateBForImplicit(dt);
+
+        ConjugateGradient gc = new ConjugateGradient(1000000,.000001,true);
+
+        RealVector x0 = new ArrayRealVector(dimension);
+        RealVector deltav = gc.solveInPlace(new Array2DRowRealMatrix(A.getData()),null,b,x0);
+
+        for (BridgeSupportAnchorPoint tmpPoint:bridgeSupportAnchorPoints) {
+            int i = tmpPoint.getMyIndex();
+            if (!tmpPoint.isFixed()){
+                tmpPoint.setVelocity(tmpPoint.getVelocity().plus(new Vec2(deltav.getEntry(i),deltav.getEntry(i+1))));
+
+                tmpPoint.setPos(tmpPoint.getPos().plus(tmpPoint.getVelocity().smult(dt)));
+            }
+
+        }
+        /*
+           _f(p1) = (-k * ((p1 - p2).length() - L) * (p1 - p2).getNormalizedCopy())
+           or easier:
+           (-k * (1 - L/(p1 - p2).length()) * (p1 - p2))
+
+           (-k * ((p1 - p2).length() - L) * (p1 - p2).getNormalizedCopy())
+           f(x1,y1).x = -k * (1 - L/sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))) * (x1 - x2)
+           f(x1,y1).y = -k * (1 - L/sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))) * (y1 - y2)
+           -k * (sqrt((x-z) * (x-z) + (y-w) * (y-w)) - L) * (x - z) / (sqrt((x-z) * (x-z) + (y-w) * (y-w)))
+           -k * (1 - L/sqrt((x-z) * (x-z) + (y-w) * (y-w))) * (x - z)
+
+            fx. d/dx = k ((L (w - y)^2)/((w - y)^2 + (x - z)^2)^(3/2) - 1)
+            fx. d/dy = (k L (w - y) (x - z))/((w - y)^2 + (x - z)^2)^(3/2)
+
+            fy. d/dx = (k L (w - y) (x - z))/((w - y)^2 + (x - z)^2)^(3/2)
+            fy. d/dy = k ((L (x - z)^2)/((w - x)^2 + (y - z)^2)^(3/2) - 1)
+
+           dij = (vij)*kd
+         */
+        /* for storing jx in support for own sparse matrix mult
         for(BridgeSupport tmpSupport : supports){
             BridgeSupportAnchorPoint a = tmpSupport.getPointA();
             BridgeSupportAnchorPoint b = tmpSupport.getPointB();
@@ -239,6 +317,36 @@ public class Bridge {
             tmpSupport.setJv(Jv);
         }
 
+        RealVector b = calculateBForImplicit(dt);
+        */
+
+
+
     }
+
+    public RealVector calculateBForImplicit(double dt){
+        //get b for Ax = b
+        int dimension = bridgeSupportAnchorPoints.size()*2;
+
+        RealVector out = new ArrayRealVector(dimension); // out = zero vec
+
+        for (BridgeSupport currSupport: supports) {
+            RealVector tmp = currSupport.getJx().preMultiply(currSupport.getPointA().getPos().getRealVec().subtract(currSupport.getPointB().getPos().getRealVec()));
+            int i = currSupport.getPointA().getMyIndex() * 2;
+            int j = currSupport.getPointB().getMyIndex() * 2;
+
+            if(dimension < i || dimension < j ){
+                System.out.println("DIMENSION FAIL");
+            }
+
+            out.setSubVector(i, out.getSubVector(i,2).subtract(tmp));
+            out.setSubVector(j, out.getSubVector(j,2).add(tmp));
+        }
+
+        out.mapMultiplyToSelf(dt);
+
+        return out;
+    }
+
 
 }

@@ -66,7 +66,7 @@ public class Main extends Application {
             gc.clearRect(0, 0, 1600,900);
 
             testBridge.draw(gc);
-            testBridge.computeTimeStepExlicit(0.9,0.01);
+            testBridge.computeTimeStepImplicit(0.9,0.01);
 
             // background image clears canvas
 
