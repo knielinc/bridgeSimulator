@@ -16,7 +16,7 @@ import java.util.ListIterator;
 public class Bridge {
     private ArrayList<BridgeSupport> supports;
     private ArrayList<BridgeSupportAnchorPoint> bridgeSupportAnchorPoints;
-    private boolean bridgeIsBreakable = false;
+    private boolean bridgeIsBreakable = true;
 
     public Bridge(){
         //constuctor to be implemented
@@ -139,7 +139,7 @@ public class Bridge {
 
     }
 
-    public void computeTimeStepExlicit(double d, double dt){
+    public void computeTimeStepExplicit(double d, double dt){
         ArrayList<BridgeSupportAnchorPoint> tmpNewAnchorPoints = new ArrayList();
 
         for (BridgeSupportAnchorPoint currAnchorPoint:bridgeSupportAnchorPoints) {

@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/Vec2.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/Vec2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/Bridge.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/Bridge.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/BridgeSupport.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/BridgeSupport.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/bridge/Bridge.java" afterPath="$PROJECT_DIR$/src/sample/bridge/Bridge.java" />
@@ -74,8 +70,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret line="61" column="35" lean-forward="true" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+            <state relative-caret-position="129">
+              <caret line="68" column="56" lean-forward="false" selection-start-line="68" selection-start-column="56" selection-end-line="68" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,8 +102,8 @@
       <file leaf-file-name="Bridge.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3613">
-              <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+            <state relative-caret-position="105">
+              <caret line="18" column="44" lean-forward="false" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
               <folding>
                 <element signature="method#computeTimeStepImplicit#0;class#Bridge#0" expanded="false" />
               </folding>
@@ -118,14 +114,12 @@
       <file leaf-file-name="BridgeSupportAnchorPoint.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
+            <state relative-caret-position="582">
               <caret line="91" column="39" lean-forward="false" selection-start-line="91" selection-start-column="39" selection-end-line="91" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2177#2178#0" expanded="true" />
                 <element signature="e#2205#2206#0" expanded="true" />
-                <element signature="e#2236#2237#0" expanded="true" />
-                <element signature="e#2266#2267#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -552,7 +546,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511201207605</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fixed implicit method (weight not yet general though, but easy to fix)">
+      <created>1511359998219</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1511359998219</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -673,7 +674,8 @@
     <MESSAGE value="Started Develop Branch for adding of rigid bodies" />
     <MESSAGE value="Added Polygon Class and added features to Particle/RigidBodyObject" />
     <MESSAGE value="Added apache commons math and started implicit solver for M-S-S" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added apache commons math and started implicit solver for M-S-S" />
+    <MESSAGE value="Fixed implicit method (weight not yet general though, but easy to fix)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed implicit method (weight not yet general though, but easy to fix)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -799,8 +801,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#2177#2178#0" expanded="true" />
             <element signature="e#2205#2206#0" expanded="true" />
-            <element signature="e#2236#2237#0" expanded="true" />
-            <element signature="e#2266#2267#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1017,20 +1017,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="91" column="39" lean-forward="false" selection-start-line="91" selection-start-column="39" selection-end-line="91" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2177#2178#0" expanded="true" />
-            <element signature="e#2205#2206#0" expanded="true" />
-            <element signature="e#2236#2237#0" expanded="true" />
-            <element signature="e#2266#2267#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Bridges.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1044,16 +1030,6 @@
         <state relative-caret-position="708">
           <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
-          <caret line="61" column="35" lean-forward="true" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1077,10 +1053,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="68" column="56" lean-forward="false" selection-start-line="68" selection-start-column="56" selection-end-line="68" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="91" column="39" lean-forward="false" selection-start-line="91" selection-start-column="39" selection-end-line="91" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2177#2178#0" expanded="true" />
+            <element signature="e#2205#2206#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3613">
-          <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+        <state relative-caret-position="105">
+          <caret line="18" column="44" lean-forward="false" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
           <folding>
             <element signature="method#computeTimeStepImplicit#0;class#Bridge#0" expanded="false" />
           </folding>
