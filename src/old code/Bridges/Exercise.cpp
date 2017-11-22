@@ -81,7 +81,6 @@ void AdvanceTimeStep1(double k, double m, double d, double L, double dt, int met
         //Yn+1
         p2 = x1 + h * fx2;
         v2 = y1 + h * fy2;
-
         /*
         printf("\n Midpoint: \n Friction force: %f ",d*v2);
 
@@ -94,7 +93,6 @@ void AdvanceTimeStep1(double k, double m, double d, double L, double dt, int met
       //implicit Euler
     case 4:
       {
-        //same as euler, but update velocity first
         double h = dt;
         v2 = (m*v2 - h*(g*m+k*(L+p2)))/(d*h + h*h*k + m);
         p2 = p2 + dt*v2;

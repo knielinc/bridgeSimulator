@@ -1,23 +1,17 @@
 package sample;
 
-import javafx.animation.AnimationTimer;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.transform.MatrixType;
 import javafx.util.Duration;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import sample.bridge.Bridge;
 
 public class Main extends Application {
     GraphicsContext gc;
@@ -68,15 +62,38 @@ public class Main extends Application {
                 ,(ActionEvent) -> {
             double t = (System.currentTimeMillis() - timeStart) / 1000.0;
 
-            double x = 232 + 128 * Math.cos(t);
-            double y = 232 + 128 * Math.sin(t);
+            // Clear the canvas
+            gc.clearRect(0, 0, 1600,900);
+
+            //testBridge.draw(gc);
+            testBridge.computeTimeStepImplicit(0.5,.1);
+            testBridge.draw(gc);
+
+            // background image clears canvas
+
+        });
+
+        gameLoop.getKeyFrames().add( kf );
+        gameLoop.play();
+    }
+
+    public void startGame2(){
+        gameStarted = true;
+        Timeline gameLoop = new Timeline();
+        gameLoop.setCycleCount( Timeline.INDEFINITE );
+
+        final long timeStart = System.currentTimeMillis();
+
+        GameScene myScene = new GameScene();
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.017) // 60hz
+                ,(ActionEvent) -> {
+            double t = (System.currentTimeMillis() - timeStart) / 1000.0;
 
             // Clear the canvas
             gc.clearRect(0, 0, 1600,900);
 
-            testBridge.draw(gc);
-            testBridge.computeTimeStep(0.9,0.01);
-
+            myScene.draw(gc);
+            myScene.updateRigidBodies(0.017);
             // background image clears canvas
 
         });
