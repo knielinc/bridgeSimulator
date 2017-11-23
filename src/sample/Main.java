@@ -3,6 +3,7 @@ package sample;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.MatrixType;
 import javafx.util.Duration;
 import javafx.application.Application;
@@ -16,6 +17,10 @@ import sample.bridge.Bridge;
 public class Main extends Application {
     GraphicsContext gc;
     boolean gameStarted = false;
+    long startTime = System.currentTimeMillis();
+    int counterForFps;
+    double fps = 0;
+
     @Override
     public void start(Stage theStage) throws Exception{
 
@@ -53,22 +58,31 @@ public class Main extends Application {
         Timeline gameLoop = new Timeline();
         gameLoop.setCycleCount( Timeline.INDEFINITE );
 
-        final long timeStart = System.currentTimeMillis();
 
         Bridge testBridge = new Bridge();
         testBridge.createTestBridge();
 
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.003) // 60hz
+        counterForFps = 10;
+        final long timeStart = System.currentTimeMillis();
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.015) // 60hz
                 ,(ActionEvent) -> {
-            double t = (System.currentTimeMillis() - timeStart) / 1000.0;
-
             // Clear the canvas
             gc.clearRect(0, 0, 1600,900);
-
             //testBridge.draw(gc);
-            testBridge.computeTimeStepImplicit(0.5,.1);
+            testBridge.computeTimeStepImplicit(0.5,.2);
+            //testBridge.computeTimeStepExplicit(0.5,.01);
+
             testBridge.draw(gc);
 
+            if(counterForFps == 0){
+                fps = ((double)10000.0/ (double)(System.currentTimeMillis() - startTime));
+                startTime = System.currentTimeMillis();
+                counterForFps = 10;
+            } else {
+                counterForFps--;
+            }
+            gc.setFill(Color.BLACK);
+            gc.fillText("Framerate: " + String.valueOf(Math.floor((fps* 100))/100.0),0,20);
             // background image clears canvas
 
         });

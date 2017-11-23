@@ -225,10 +225,17 @@ public class Bridge {
         DfDx = new OpenMapRealMatrix(dimension,dimension);
         DfDv = new OpenMapRealMatrix(dimension,dimension);
         M  = new OpenMapRealMatrix(dimension,dimension);
-
+        /* set all masses to 1
         for (int i = 0; i < dimension; i++){
             DfDv.addToEntry(i,i,d);
             M.addToEntry(i,i,1);
+        }
+        */
+        //set MassMatrix with weights
+        for (BridgeSupportAnchorPoint currPoint:bridgeSupportAnchorPoints){
+            int index = currPoint.getMyIndex() * 2;
+            M.setEntry(index,index,currPoint.getWeight());
+            M.setEntry(index + 1, index + 1, currPoint.getWeight());
         }
 
         //Compute df/dx,df/dy with trick from Choi, K 2002
@@ -264,14 +271,15 @@ public class Bridge {
             DfDv.setSubMatrix(DfDv.getSubMatrix(i*2,i*2 + 1,i * 2, i*2 + 1).subtract(Jv).getData(),i*2,i*2);
             DfDv.setSubMatrix(DfDv.getSubMatrix(j*2,j*2 + 1,j * 2, j*2 + 1).subtract(Jv).getData(),j*2,j*2);
 
+            //set Jx for function "calculateDfDxV0ForImplicit"
             tmpSupport.setJx(Jx);
         }
 
         RealMatrix A = M.subtract(DfDv.scalarMultiply(dt)).subtract(DfDx.scalarMultiply(dt * dt));
 
-        RealVector f0 = calculateF0ForImplicit(d).mapMultiplyToSelf(dt);
+        RealVector f0 = calculateF0ForImplicit(d);
 
-        RealVector b = f0.add(calculateDfDxV0ForImplicit().mapMultiply(dt * dt));
+        RealVector b = f0.mapMultiply(dt).add(calculateDfDxV0ForImplicit().mapMultiply(dt * dt));
 
         b.mapMultiplyToSelf(dt * dt);
 
@@ -283,7 +291,7 @@ public class Bridge {
             int i = tmpPoint.getMyIndex() * 2;
             if (!tmpPoint.isFixed()){
                 tmpPoint.setVelocity(tmpPoint.getVelocity().plus(new Vec2(deltaV.getEntry(i),deltaV.getEntry(i+1))));
-
+                tmpPoint.setForce(new Vec2(f0.getEntry(i),f0.getEntry(i+1)));
                 tmpPoint.setPos(tmpPoint.getPos().plus(tmpPoint.getVelocity().smult(dt)));
             }
         }
@@ -377,7 +385,7 @@ public class Bridge {
             RealVector residual = oldvec.subtract(out);
             double myError = residual.getNorm();
 
-            System.out.println("it: " + iterationstep + " Error: " + myError);
+            //System.out.println("it: " + iterationstep + " Error: " + myError);
 
             if(myError < threshold){
                 break;

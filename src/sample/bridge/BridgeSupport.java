@@ -28,7 +28,7 @@ public class BridgeSupport {
 
     public void draw(GraphicsContext gc){
         double yMax = gc.getCanvas().getHeight();
-        int f = (int) Math.floor(Math.abs((length-getCurrentLength())/length) * 100 * 255);
+        int f = (int) Math.floor(Math.abs((length-getCurrentLength())/length) * 25 * 255);
         f = Math.min(255,f);
         gc.setStroke(Color.rgb(f,255-f,0));
         gc.setLineWidth(5);
