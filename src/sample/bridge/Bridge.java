@@ -281,8 +281,6 @@ public class Bridge {
 
         RealVector b = f0.mapMultiply(dt).add(calculateDfDxV0ForImplicit().mapMultiply(dt * dt));
 
-        b.mapMultiplyToSelf(dt * dt);
-
         RealVector deltaV = gaussSeidel(A,b);
 
         //System.out.println("norm = " + A.operate(x0).subtract(b).getNorm() + " Matrix: " + A.operate(x0).subtract(b));
