@@ -20,6 +20,7 @@ public class Main extends Application {
     long startTime = System.currentTimeMillis();
     int counterForFps;
     double fps = 0;
+    final int UPDATE_FPS_COUNTER_STEPS = 100;
 
     @Override
     public void start(Stage theStage) throws Exception{
@@ -62,22 +63,22 @@ public class Main extends Application {
         Bridge testBridge = new Bridge();
         testBridge.createTestBridge();
 
-        counterForFps = 10;
+        counterForFps = UPDATE_FPS_COUNTER_STEPS;
         final long timeStart = System.currentTimeMillis();
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.015) // 60hz
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.017) // 60hz
                 ,(ActionEvent) -> {
             // Clear the canvas
             gc.clearRect(0, 0, 1600,900);
             //testBridge.draw(gc);
-            //testBridge.computeTimeStepImplicit(0.5,.01);
-            testBridge.computeTimeStepExplicit(0.5,.01);
+            testBridge.computeTimeStepImplicit(0.1,.1);
+            //testBridge.computeTimeStepExplicit(0.5,.001);
 
             testBridge.draw(gc);
 
             if(counterForFps == 0){
-                fps = ((double)10000.0/ (double)(System.currentTimeMillis() - startTime));
+                fps = ((double) UPDATE_FPS_COUNTER_STEPS * 1000.0/ (double)(System.currentTimeMillis() - startTime));
                 startTime = System.currentTimeMillis();
-                counterForFps = 10;
+                counterForFps = UPDATE_FPS_COUNTER_STEPS;
             } else {
                 counterForFps--;
             }

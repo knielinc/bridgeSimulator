@@ -8,6 +8,7 @@ import org.apache.commons.math3.geometry.euclidean.oned.Vector1D;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import org.apache.commons.math3.linear.*;
 import sample.Vec2;
+import sample.utils.HelperClass;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -281,7 +282,7 @@ public class Bridge {
 
         RealVector b = f0.mapMultiply(dt).add(calculateDfDxV0ForImplicit().mapMultiply(dt * dt));
 
-        RealVector deltaV = gaussSeidel(A,b);
+        RealVector deltaV = HelperClass.gaussSeidel(A,b);
 
         //System.out.println("norm = " + A.operate(x0).subtract(b).getNorm() + " Matrix: " + A.operate(x0).subtract(b));
 
@@ -358,42 +359,6 @@ public class Bridge {
         return out;
     }
 
-    public RealVector gaussSeidel(RealMatrix M, RealVector b){
-        int dimension = 2 * bridgeSupportAnchorPoints.size();
-        RealVector oldvec = new ArrayRealVector(dimension);
-        RealVector out = new ArrayRealVector(dimension);
-        int cutoff = 100;
-        double threshold = 0.0000001;
-        for (int iterationstep = 0; iterationstep < cutoff; iterationstep++) {
-            for (int k = 0; k < dimension; k++) {
-                double lhs = 0, rhs = 0;
 
-                for (int i = 0; i < k; i++) {
-                    lhs += M.getEntry(k, i) * out.getEntry(i);
-                }
-
-                for (int i = k + 1; i < dimension; i++) {
-                    lhs += M.getEntry(k, i) * out.getEntry(i);
-                }
-                double entry = M.getEntry(k,k);
-                double x_k = 1.0 / entry * (b.getEntry(k) - lhs - rhs);
-
-                out.setEntry(k, x_k);
-            }
-            RealVector residual = oldvec.subtract(out);
-            double myError = residual.getNorm();
-
-            //System.out.println("it: " + iterationstep + " Error: " + myError);
-
-            if(myError < threshold){
-                break;
-            }
-            oldvec = out.copy();
-
-            //System.out.println(iterationstep + " error: " +error);
-
-        }
-        return out;
-    }
 
 }

@@ -135,7 +135,7 @@ public class DrawablePolygon {
         return momentOfInertia;
     }
 
-    public Vec2 GetSupport(Vec2 d) {
+    public Vec2 getSupport(Vec2 d) {
         //Eric rather did work in Distributed than this
         double highest = Double.MAX_VALUE;
         Vec2 support = new Vec2(0,0);
