@@ -17,7 +17,6 @@ public class Vec2 {
         this.y = y;
     }
 
-    // TODO: implement these Vec2 functions!
     public double getX() {
         return this.x;
     }
@@ -66,6 +65,16 @@ public class Vec2 {
     public void setPos(double x, double y){
         this.x = x;
         this.y = y;
+    }
+
+    public void set(Vec2 in){
+        this.x = in.getX();
+        this.y = in.getY();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (((Vec2)obj).x == x) && ((Vec2)obj).y == y;
     }
 
     public RealVector getRealVec(){

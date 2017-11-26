@@ -5,6 +5,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import sample.Vec2;
 import sample.rigidbodies.DrawablePolygon;
+import sample.rigidbodies.Simplex;
 
 public class HelperClass {
 
@@ -50,18 +51,69 @@ public class HelperClass {
         return polygon1.getSupport(direction).minus(polygon2.getSupport(direction.smult(-1)));
     }
 
-    private Vec2 getNextSupportDirection(Vec2 pointA, Vec2 pointB){
-        Vec2 AB = pointA.minus(pointB);
-        Vec2 AO = pointA.smult(-1);
-
-        AO.smult(AB.dot(AB)).minus(AB.smult(AB.dot(AO)));
-
-        return AO.smult(AB.dot(AB)).minus(AB.smult(AB.dot(AO)));
+    public static Vec2 tripleProduct(Vec2 a, Vec2 b, Vec2 c){
+        //(a x b) x c
+        return a.smult(-1 * c.dot(b)).plus(b.smult(c.dot(a)));
     }
 
-    public static boolean gjk(){
+    public static Vec2 getNextSupportDirection(Vec2 pointA, Vec2 pointB){
+        Vec2 AB = pointB.minus(pointA);
+        Vec2 AO = pointA.smult(-1);
 
-        return true;
+        // old code AO.smult(AB.dot(AB)).minus(AB.smult(AB.dot(AO)));
+
+        return tripleProduct(AB,AO,AB);
+    }
+
+
+    public static boolean gjk(DrawablePolygon polygon1, DrawablePolygon polygon2){
+        /*
+        // get the first Minkowski Difference point
+        Simplex.add(support(A, B, d));
+        // negate d for the next point
+        d.negate();
+        // start looping
+        while (true) {
+            // add a new point to the simplex because we haven't terminated yet
+            Simplex.add(support(A, B, d));
+            // make sure that the last point we added actually passed the origin
+            if (Simplex.getLast().dot(d) <= 0) {
+                // if the point added last was not past the origin in the direction of d
+                // then the Minkowski Sum cannot possibly contain the origin since
+                // the last point added is on the edge of the Minkowski Difference
+                return false;
+            } else {
+                // otherwise we need to determine if the origin is in
+                // the current simplex
+                if (Simplex.contains(ORIGIN)) {
+                    // if it does then we know there is a collision
+                    return true;
+                } else {
+                    // otherwise we cannot be certain so find the edge who is
+                    // closest to the origin and use its normal (in the direction
+                    // of the origin) as the new d and continue the loop
+                    d = getDirection(Simplex);
+                }
+            }
+        }
+        */
+        Simplex mySimplex = new Simplex();
+        Vec2 direction = new Vec2(1,1);
+        mySimplex.addPoint(getMinkovskiPointForDirection(direction,polygon1,polygon2));
+
+        direction = direction.smult(-1);
+
+        while (true){
+            mySimplex.addPoint(getMinkovskiPointForDirection(direction,polygon1,polygon2));
+
+            if (mySimplex.getLast().dot(direction) <= 0){
+                return false;
+            } else {
+                if (mySimplex.containsOriginForGJK(direction)){
+                    return true;
+                }
+            }
+        }
     }
 
     public static Vec2 epa(){
