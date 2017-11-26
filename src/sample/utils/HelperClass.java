@@ -5,6 +5,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import sample.Vec2;
 import sample.rigidbodies.DrawablePolygon;
+import sample.rigidbodies.RigidBodyObject;
 import sample.rigidbodies.Simplex;
 
 public class HelperClass {
@@ -47,7 +48,7 @@ public class HelperClass {
         return out;
     }
 
-    public static Vec2 getMinkovskiPointForDirection(Vec2 direction, DrawablePolygon polygon1, DrawablePolygon polygon2){
+    public static Vec2 getMinkovskiPointForDirection(Vec2 direction, RigidBodyObject polygon1, RigidBodyObject polygon2){
         return polygon1.getSupport(direction).minus(polygon2.getSupport(direction.smult(-1)));
     }
 
@@ -66,37 +67,8 @@ public class HelperClass {
     }
 
 
-    public static boolean gjk(DrawablePolygon polygon1, DrawablePolygon polygon2){
-        /*
-        // get the first Minkowski Difference point
-        Simplex.add(support(A, B, d));
-        // negate d for the next point
-        d.negate();
-        // start looping
-        while (true) {
-            // add a new point to the simplex because we haven't terminated yet
-            Simplex.add(support(A, B, d));
-            // make sure that the last point we added actually passed the origin
-            if (Simplex.getLast().dot(d) <= 0) {
-                // if the point added last was not past the origin in the direction of d
-                // then the Minkowski Sum cannot possibly contain the origin since
-                // the last point added is on the edge of the Minkowski Difference
-                return false;
-            } else {
-                // otherwise we need to determine if the origin is in
-                // the current simplex
-                if (Simplex.contains(ORIGIN)) {
-                    // if it does then we know there is a collision
-                    return true;
-                } else {
-                    // otherwise we cannot be certain so find the edge who is
-                    // closest to the origin and use its normal (in the direction
-                    // of the origin) as the new d and continue the loop
-                    d = getDirection(Simplex);
-                }
-            }
-        }
-        */
+    public static boolean gjk(RigidBodyObject polygon1, RigidBodyObject polygon2){
+
         Simplex mySimplex = new Simplex();
         Vec2 direction = new Vec2(1,1);
         mySimplex.addPoint(getMinkovskiPointForDirection(direction,polygon1,polygon2));

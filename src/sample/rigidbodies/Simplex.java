@@ -36,7 +36,7 @@ public class Simplex {
     }
 
     public Vec2 getB(){
-        return points.get(1);
+        return points.get(points.size()-2);
     }
 
     public void setB(Vec2 newB){
@@ -57,7 +57,6 @@ public class Simplex {
         a normal vector (a perpendicular) to that side towards the Origin and a vector from the Origin to opposite vertex of the triangle.
         Then you check if dot product of the two vectors is positive (greater than zero)...
          */
-
         Vec2 a = getLast();
 
         Vec2 ao = a.smult(-1);
@@ -74,11 +73,13 @@ public class Simplex {
 
             if (abPerp.dot(ao) > 0){
                 points.remove(c);
+                isFull = false;
 
                 nextDirection.set(abPerp);
 
             } else if(acPerp.dot(ao) > 0){
                 points.remove(b);
+                isFull = false;
 
                 nextDirection.set(acPerp);
 
@@ -86,7 +87,13 @@ public class Simplex {
                 return true;
             }
         } else {
-            nextDirection.set(HelperClass.getNextSupportDirection(getLast(),getB()));
+            Vec2 b = getB();
+
+            Vec2 ab = b.minus(a);
+
+            Vec2 abPerp = HelperClass.tripleProduct(ab, ao, ab);
+
+            nextDirection.set(abPerp.normalize());
         }
         return false;
     }

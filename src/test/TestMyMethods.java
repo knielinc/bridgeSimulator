@@ -4,8 +4,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Ignore;
 import sample.Vec2;
+import sample.rigidbodies.DrawablePolygon;
+import sample.rigidbodies.RigidBodyObject;
 import sample.rigidbodies.Simplex;
 import sample.utils.HelperClass;
+
+import java.util.ArrayList;
 
 public class TestMyMethods {
     @Test
@@ -31,6 +35,18 @@ public class TestMyMethods {
 
     @Test
     public void testGJK(){
+        DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,1);
+        RigidBodyObject rigidBody1 = new RigidBodyObject(15,0,1,false, rectangle);
+        RigidBodyObject rigidBody2 = new RigidBodyObject(-15,0,1,false, rectangle);
+        RigidBodyObject rigidBody3 = new RigidBodyObject(-6,0,1,false, rectangle);
+
+
+        boolean test1 = HelperClass.gjk(rigidBody1,rigidBody2);
+        boolean test2 = HelperClass.gjk(rigidBody1,rigidBody2);
+        boolean test3 = HelperClass.gjk(rigidBody1,rigidBody3);
+        rigidBody3.setTorque(45);
+        boolean test4 = HelperClass.gjk(rigidBody1,rigidBody3);
+
 
     }
 }
