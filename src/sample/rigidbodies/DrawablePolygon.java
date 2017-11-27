@@ -137,7 +137,7 @@ public class DrawablePolygon {
 
     public Vec2 getSupport(Vec2 d) {
         //Eric rather did work in Distributed than this
-        double highest = Double.MIN_VALUE;
+        double highest = Double.NEGATIVE_INFINITY;
         Vec2 support = new Vec2(0,0);
 
         for (int i = 0; i < numberOfPoints; ++i) {

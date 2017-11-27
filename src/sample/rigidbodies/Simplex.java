@@ -87,6 +87,7 @@ public class Simplex {
                 return true;
             }
         } else {
+            //only 2 points
             Vec2 b = getB();
 
             Vec2 ab = b.minus(a);

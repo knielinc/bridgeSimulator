@@ -40,11 +40,14 @@ public class TestMyMethods {
         RigidBodyObject rigidBody2 = new RigidBodyObject(-15,0,1,false, rectangle);
         RigidBodyObject rigidBody3 = new RigidBodyObject(-6,0,1,false, rectangle);
 
+        Vec2 xDirection = new Vec2(1,0);
 
         boolean test1 = HelperClass.gjk(rigidBody1,rigidBody2);
         boolean test2 = HelperClass.gjk(rigidBody1,rigidBody2);
         boolean test3 = HelperClass.gjk(rigidBody1,rigidBody3);
-        rigidBody3.setTorque(45);
+        Vec2 newSupport = rigidBody3.getSupport(xDirection);
+        rigidBody3.setTorque(Math.PI / 4.0);
+        Vec2 newSuppor2 = rigidBody3.getSupport(xDirection);
         boolean test4 = HelperClass.gjk(rigidBody1,rigidBody3);
 
 

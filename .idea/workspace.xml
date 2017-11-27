@@ -7,7 +7,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/utils/HelperClass.java" afterPath="$PROJECT_DIR$/src/sample/utils/HelperClass.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/TestMyMethods.java" afterPath="$PROJECT_DIR$/src/test/TestMyMethods.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -21,11 +20,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/bridgeSimulator$Main.coverage" NAME="Main Coverage Results" MODIFIED="1510689780911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>sample.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/bridgeSimulator$TestMyMethods_testGJK.coverage" NAME="TestMyMethods.testGJK Coverage Results" MODIFIED="1511737214240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>test.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/bridgeSimulator$Main.coverage" NAME="Main Coverage Results" MODIFIED="1510689780911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>sample.*</FILTER>
     </SUITE>
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -74,23 +73,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TestMyMethods.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestMyMethods.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/TestMyMethods.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="286">
+              <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HelperClass.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HelperClass.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/utils/HelperClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+            <state relative-caret-position="94">
+              <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,7 +98,7 @@
       <file leaf-file-name="RigidBodyObject.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
+            <state relative-caret-position="331">
               <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
               <folding />
             </state>
@@ -111,10 +108,10 @@
       <file leaf-file-name="Vec2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Vec2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state relative-caret-position="735">
+              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
-                <element signature="e#1257#1258#0" expanded="true" />
+                <marker date="1511768369000" expanded="true" signature="1672:1682" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -123,8 +120,8 @@
       <file leaf-file-name="DrawablePolygon.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="139" column="41" lean-forward="false" selection-start-line="139" selection-start-column="41" selection-end-line="139" selection-end-column="41" />
+            <state relative-caret-position="325">
+              <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -133,15 +130,9 @@
       <file leaf-file-name="Simplex.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="95" column="48" lean-forward="false" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#636#637#0" expanded="true" />
-                <element signature="e#686#687#0" expanded="true" />
-                <element signature="e#711#712#0" expanded="true" />
-                <element signature="e#761#762#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-21">
+              <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -206,11 +197,11 @@
         <option value="$PROJECT_DIR$/src/test/Test.java" />
         <option value="$PROJECT_DIR$/src/test/TextMyMethods.java" />
         <option value="$PROJECT_DIR$/src/sample/Vec2.java" />
-        <option value="$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java" />
-        <option value="$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java" />
-        <option value="$PROJECT_DIR$/src/test/TestMyMethods.java" />
         <option value="$PROJECT_DIR$/src/sample/utils/HelperClass.java" />
         <option value="$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java" />
+        <option value="$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java" />
+        <option value="$PROJECT_DIR$/src/test/TestMyMethods.java" />
+        <option value="$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java" />
       </list>
     </option>
   </component>
@@ -221,11 +212,9 @@
     </treeState>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="134" />
-    <option name="y" value="16" />
-    <option name="width" value="1680" />
-    <option name="height" value="1023" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -247,7 +236,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -284,13 +272,6 @@
               <item name="bridgeSimulator" type="b2602c69:ProjectViewProjectNode" />
               <item name="bridgeSimulator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bridgeSimulator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bridgeSimulator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -301,8 +282,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -699,34 +681,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestMyMethods_testGJK - 2017.11.26 at 23h 57m 06s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 08h 50m 48s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 00h 00m 15s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 08h 52m 28s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 00h 01m 01s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 08h 54m 33s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 00h 50m 14s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 08h 56m 23s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 00h 50m 32s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 08h 57m 47s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 00h 51m 15s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 08h 57m 51s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 00h 51m 23s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 08h 58m 25s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 00h 52m 55s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 09h 19m 57s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 00h 52m 59s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 09h 20m 49s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 00h 53m 25s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.11.27 at 09h 21m 29s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -734,7 +716,7 @@
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -744,18 +726,17 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09544008" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19724284" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19602978" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17493796" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13802083" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22103004" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31389183" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43796527" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -766,6 +747,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -823,13 +805,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/GameScene.java</url>
-          <line>40</line>
+          <line>41</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/GameScene.java</url>
-          <line>36</line>
+          <line>37</line>
           <properties />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
@@ -847,15 +829,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/TestMyMethods.java</url>
-          <line>43</line>
+          <line>47</line>
           <properties />
-          <option name="timeStamp" value="55" />
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/TestMyMethods.java</url>
-          <line>47</line>
+          <line>50</line>
           <properties />
-          <option name="timeStamp" value="57" />
+          <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/sample/rigidbodies/Particle.java</url>
@@ -866,7 +848,7 @@
           <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="59" />
+      <option name="time" value="61" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -941,13 +923,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Bridges.iml">
@@ -976,13 +958,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Bridges.iml">
@@ -1004,13 +986,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="11" lean-forward="true" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
@@ -1139,14 +1121,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/TestTest.java" />
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/runners/model/FrameworkMethod.class">
@@ -1188,63 +1170,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Vec2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state relative-caret-position="735">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
-            <element signature="e#1257#1258#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="139" column="41" lean-forward="false" selection-start-line="139" selection-start-column="41" selection-end-line="139" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="95" column="48" lean-forward="false" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#636#637#0" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-            <element signature="e#711#712#0" expanded="true" />
-            <element signature="e#761#762#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/TestMyMethods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1511768369000" expanded="true" signature="1672:1682" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/utils/HelperClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        <state relative-caret-position="94">
+          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-21">
+          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/TestMyMethods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -80,13 +80,13 @@ public class RigidBodyObject extends Particle{
 
     public Vec2 getSupport(Vec2 direction){
         double x,y;
-        x = Math.cos(torque) * direction.getX() + Math.sin(torque) * direction.getY();
-        y = -1 * Math.sin(torque) * direction.getX() + Math.cos(torque) * direction.getY();
+        x = Math.cos(-torque) * direction.getX() + Math.sin(-torque) * direction.getY();
+        y = -1 * Math.sin(-torque) * direction.getX() + Math.cos(-torque) * direction.getY();
         Vec2 newDirection = new Vec2(x,y);
-        Vec2 returnVal = polygon.getSupport(direction);
+        Vec2 returnVal = polygon.getSupport(newDirection);
 
-        x = Math.cos(torque) * returnVal.getX() + -1 * Math.sin(torque) * returnVal.getY();
-        y = Math.sin(torque) * returnVal.getX() + Math.cos(torque) * returnVal.getY();
+        x = Math.cos(torque) * returnVal.getX() + Math.sin(torque) * returnVal.getY();
+        y = -1 * Math.sin(torque) * returnVal.getX() + Math.cos(torque) * returnVal.getY();
 
         returnVal.setPos(x,y);
 
