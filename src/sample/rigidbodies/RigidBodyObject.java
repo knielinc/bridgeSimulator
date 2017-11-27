@@ -9,10 +9,11 @@ public class RigidBodyObject extends Particle{
     DrawablePolygon polygon;
     double momentOfInertia;
     double torque;
-    public RigidBodyObject(double x, double y, double mass, boolean fixed, DrawablePolygon polygon) {
+    public RigidBodyObject(double x, double y, double torque, double mass, boolean fixed, DrawablePolygon polygon) {
         super(x, y, mass, fixed);
         angularVel = 0;
         this.polygon = polygon;
+        this.torque = torque;
         this.momentOfInertia = polygon.getMomentOfInertia();
     }
 
@@ -22,13 +23,17 @@ public class RigidBodyObject extends Particle{
         gc.setFill(Color.BLACK);
         //gc.fillOval(getxPos(),maxY-getyPos(),5,5);
         gc.translate(getxPos(),-getyPos() + maxY);
-        gc.rotate(-torque);
+        gc.rotate(-getTorqueInDegrees());
         polygon.draw(gc);
-        gc.rotate(torque);
+        gc.rotate(getTorqueInDegrees());
         gc.translate(-getxPos(),getyPos()-maxY);
         //gc.fillOval(getxPos(),maxY-getyPos(),5,5);
 
 
+    }
+
+    public double getTorqueInDegrees(){
+        return Math.toDegrees(torque);
     }
 
     public double getAngularVel() {
@@ -80,13 +85,13 @@ public class RigidBodyObject extends Particle{
 
     public Vec2 getSupport(Vec2 direction){
         double x,y;
-        x = Math.cos(-torque) * direction.getX() + Math.sin(-torque) * direction.getY();
-        y = -1 * Math.sin(-torque) * direction.getX() + Math.cos(-torque) * direction.getY();
+        x = Math.cos(torque) * direction.getX() + Math.sin(torque) * direction.getY();
+        y = -1 * Math.sin(torque) * direction.getX() + Math.cos(torque) * direction.getY();
         Vec2 newDirection = new Vec2(x,y);
         Vec2 returnVal = polygon.getSupport(newDirection);
 
-        x = Math.cos(torque) * returnVal.getX() + Math.sin(torque) * returnVal.getY();
-        y = -1 * Math.sin(torque) * returnVal.getX() + Math.cos(torque) * returnVal.getY();
+        x = Math.cos(-torque) * returnVal.getX() + Math.sin(-torque) * returnVal.getY();
+        y = -1 * Math.sin(-torque) * returnVal.getX() + Math.cos(-torque) * returnVal.getY();
 
         returnVal.setPos(x,y);
 

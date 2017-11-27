@@ -36,9 +36,9 @@ public class TestMyMethods {
     @Test
     public void testGJK(){
         DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,1);
-        RigidBodyObject rigidBody1 = new RigidBodyObject(15,0,1,false, rectangle);
-        RigidBodyObject rigidBody2 = new RigidBodyObject(-15,0,1,false, rectangle);
-        RigidBodyObject rigidBody3 = new RigidBodyObject(-6,0,1,false, rectangle);
+        RigidBodyObject rigidBody1 = new RigidBodyObject(15,0,0,1,false, rectangle);
+        RigidBodyObject rigidBody2 = new RigidBodyObject(-15,0,0,1,false, rectangle);
+        RigidBodyObject rigidBody3 = new RigidBodyObject(-6,0,0,1,false, rectangle);
 
         Vec2 xDirection = new Vec2(1,0);
 

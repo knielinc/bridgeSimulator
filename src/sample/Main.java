@@ -60,8 +60,7 @@ public class Main extends Application {
         gameLoop.setCycleCount( Timeline.INDEFINITE );
 
 
-        Bridge testBridge = new Bridge();
-        testBridge.createTestBridge();
+        GameScene myGame = new GameScene();
 
         counterForFps = UPDATE_FPS_COUNTER_STEPS;
         final long timeStart = System.currentTimeMillis();
@@ -70,10 +69,10 @@ public class Main extends Application {
             // Clear the canvas
             gc.clearRect(0, 0, 1600,900);
             //testBridge.draw(gc);
-            testBridge.computeTimeStepImplicit(0.1,.1);
+            myGame.update(0.01);
             //testBridge.computeTimeStepExplicit(0.5,.001);
 
-            testBridge.draw(gc);
+            myGame.draw(gc);
 
             if(counterForFps == 0){
                 fps = ((double) UPDATE_FPS_COUNTER_STEPS * 1000.0/ (double)(System.currentTimeMillis() - startTime));
