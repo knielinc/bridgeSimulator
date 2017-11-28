@@ -121,7 +121,7 @@ public class BridgeSupport {
     public Vec2 getVec(){
         Vec2 pos1 = pointA.getPos();
         Vec2 pos2 = pointB.getPos();
-        return pos1.minus(pos2);
+        return pos2.minus(pos1);
     }
 
     public Vec2 getNormalizedVec(){

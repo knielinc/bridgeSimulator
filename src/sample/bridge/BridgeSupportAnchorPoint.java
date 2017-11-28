@@ -42,6 +42,9 @@ public class BridgeSupportAnchorPoint {
         double xForce = force.getX();
         double yForce = force.getY();
         gc.strokeLine(getxPos(),yMax-getyPos(),getxPos()+(xForce),yMax-(getyPos() + (yForce)));
+        gc.setFill(Color.CYAN);
+        gc.fillText(String.valueOf(getMyIndex()),getxPos(),yMax - getyPos());
+
     }
 
     public double getxPos() {
