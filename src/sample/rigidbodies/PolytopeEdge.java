@@ -5,6 +5,8 @@ import sample.Vec2;
 public class PolytopeEdge {
     private Vec2 a,b;
 
+    private double t = Double.NaN;
+
     public PolytopeEdge(Vec2 a, Vec2 b){
         this.a = a;
         this.b = b;
@@ -57,7 +59,7 @@ public class PolytopeEdge {
 
         Vec2 returnVec;
 
-        double t = (a.smult(-1)).mul(n).dot(new Vec2(1,1)) / n.dot(n);
+        t = (a.smult(-1)).mul(n).dot(new Vec2(1,1)) / n.dot(n);
 
         if (t < 0){
 
@@ -86,4 +88,18 @@ public class PolytopeEdge {
         return a.equals(point) || b.equals(point);
     }
 
+    public double getT() {
+        if(!Double.isNaN(t)){
+            return t;
+        } else {
+            Vec2 n = b.minus(a);
+            t = (a.smult(-1)).mul(n).dot(new Vec2(1,1)) / n.dot(n);
+            return t;
+        }
+    }
+
+    public Vec2 getPointWithT(double inT){
+        Vec2 n = b.minus(a);
+        return n.smult(inT).plus(a);
+    }
 }

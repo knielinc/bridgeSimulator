@@ -28,11 +28,11 @@ public class TestMyMethods {
     public void testSimplex(){
 
         Simplex mySimplex = new Simplex();
-
+        /*
         mySimplex.addPoint(new Vec2(-2,0));
         mySimplex.addPoint(new Vec2(1,-1));
         mySimplex.addPoint(new Vec2(1,1));
-
+        */
         assertEquals(mySimplex.containsOrigin(),true);
     }
 
@@ -44,7 +44,7 @@ public class TestMyMethods {
         RigidBodyObject rigidBody3 = new RigidBodyObject(-6,0,0,1,false, rectangle);
 
         RigidBodyObject rigidBody4 = new RigidBodyObject(0,0,0,1,false, rectangle);
-        RigidBodyObject rigidBody5 = new RigidBodyObject(0,5,0,1,false, rectangle);
+        RigidBodyObject rigidBody5 = new RigidBodyObject(0,15,0,1,false, rectangle);
 
 
         Vec2 xDirection = new Vec2(1,0);
@@ -57,8 +57,8 @@ public class TestMyMethods {
         Vec2 newSuppor2 = rigidBody3.getSupport(xDirection);
         boolean test4 = HelperClass.gjk(rigidBody1,rigidBody3);
 
-        Vec2 translation = HelperClass.EPA(rigidBody1,rigidBody3);
-        Vec2 translation2 = HelperClass.EPA(rigidBody4,rigidBody5);
+        Vec2[] translation = HelperClass.EPA(rigidBody1,rigidBody3);
+        Vec2[] translation2 = HelperClass.EPA(rigidBody4,rigidBody5);
 
         assertEquals(test1,false);
         assertEquals(test2,false);

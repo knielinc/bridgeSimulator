@@ -91,30 +91,7 @@ public class Main extends Application {
         gameLoop.play();
     }
 
-    public void startGame2(){
-        gameStarted = true;
-        Timeline gameLoop = new Timeline();
-        gameLoop.setCycleCount( Timeline.INDEFINITE );
 
-        final long timeStart = System.currentTimeMillis();
-
-        GameScene myScene = new GameScene();
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.017) // 60hz
-                ,(ActionEvent) -> {
-            double t = (System.currentTimeMillis() - timeStart) / 1000.0;
-
-            // Clear the canvas
-            gc.clearRect(0, 0, 1600,900);
-
-            myScene.draw(gc);
-            myScene.updateRigidBodies(0.017);
-            // background image clears canvas
-
-        });
-
-        gameLoop.getKeyFrames().add( kf );
-        gameLoop.play();
-    }
 
 
     public static void main(String[] args) {

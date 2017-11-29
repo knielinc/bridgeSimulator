@@ -1,5 +1,6 @@
 package sample.rigidbodies;
 
+import com.sun.tools.corba.se.idl.toJavaPortable.Helper;
 import sample.Vec2;
 import sample.utils.HelperClass;
 
@@ -8,6 +9,11 @@ import java.util.ArrayList;
 public class Simplex {
     //Vec2[] points = new Vec2[3];
     ArrayList<Vec2> points = new ArrayList<>();
+
+    ArrayList<Vec2> supportPointsA = new ArrayList<>();
+    ArrayList<Vec2> supportPointsB = new ArrayList<>();
+
+
     int oldestVal = 0;
     boolean isFull = false;
 
@@ -15,6 +21,27 @@ public class Simplex {
 
     }
 
+    public void addPoint(Vec2 direction, RigidBodyObject ro1,RigidBodyObject ro2){
+
+        Vec2 inPoint = HelperClass.getMinkovskiPointForDirection(direction, ro1, ro2);
+        Vec2 suppA = ro1.getSupport(direction);
+        Vec2 suppB = ro2.getSupport(direction.smult(-1));
+
+
+        if (!isFull){
+            if (points.size() == 2){
+                isFull = true;
+            }
+            points.add(inPoint);
+            supportPointsA.add(suppA);
+            supportPointsB.add(suppB);
+        } else {
+            points.remove(0);
+            supportPointsA.remove(0);
+            supportPointsB.remove(0);
+        }
+    }
+    /*
     public void addPoint(Vec2 inPoint){
 
         if (!isFull){
@@ -26,6 +53,7 @@ public class Simplex {
             points.remove(0);
         }
     }
+    */
 
     public boolean isInside(Vec2 point){
         return true;
@@ -73,12 +101,20 @@ public class Simplex {
 
             if (abPerp.dot(ao) > 0){
                 points.remove(c);
+
+                supportPointsA.remove(0);
+                supportPointsB.remove(0);
+
                 isFull = false;
 
                 nextDirection.set(abPerp);
 
             } else if(acPerp.dot(ao) > 0){
                 points.remove(b);
+
+                supportPointsA.remove(1);
+                supportPointsB.remove(1);
+
                 isFull = false;
 
                 nextDirection.set(acPerp);
@@ -123,5 +159,13 @@ public class Simplex {
 
     public ArrayList<Vec2> getPoints() {
         return points;
+    }
+
+    public ArrayList<Vec2> getSupportPointsA() {
+        return supportPointsA;
+    }
+
+    public ArrayList<Vec2> getSupportPointsB() {
+        return supportPointsB;
     }
 }

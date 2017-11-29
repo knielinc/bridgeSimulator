@@ -168,7 +168,7 @@ public class Bridge {
         supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(25), bridgeSupportAnchorPoints.get(21), 70, false));
 
         //middleSupports
-        
+
         supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(3), bridgeSupportAnchorPoints.get(19) , 70, false));
         supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(8), bridgeSupportAnchorPoints.get(22) , 70, false));
 
