@@ -44,6 +44,34 @@ public class Bridge {
         return bridgeSupportAnchorPoints;
     }
 
+    public void createTestRoad(){
+        //line 0-11 left -> right
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(100, 200, 1, true));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(150, 200, 1, false));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(200, 200, 1, false));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(250, 200, 1, false));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300, 200, 1, false));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(350, 200, 1, false));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(450, 200, 1, false));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(500, 200, 1, false));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(550, 200, 1, false));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(600, 200, 1, false));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(650, 200, 1, false));
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(700, 200, 1, true));
+        //road
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(0), bridgeSupportAnchorPoints.get(1), 70, true));
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(1), bridgeSupportAnchorPoints.get(2), 70, true));
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(2), bridgeSupportAnchorPoints.get(3), 70, true));
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(3), bridgeSupportAnchorPoints.get(4), 70, true));
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(4), bridgeSupportAnchorPoints.get(5), 70, true));
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(5), bridgeSupportAnchorPoints.get(6), 70, true));
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(6), bridgeSupportAnchorPoints.get(7), 70, true));
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(7), bridgeSupportAnchorPoints.get(8), 70, true));
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(8), bridgeSupportAnchorPoints.get(9), 70, true));
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(9), bridgeSupportAnchorPoints.get(10), 70, true));
+        supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(10), bridgeSupportAnchorPoints.get(11), 70, true));
+
+    }
 
     public void createTestBridge() {
         //line 0-11 left -> right
@@ -140,6 +168,7 @@ public class Bridge {
         supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(25), bridgeSupportAnchorPoints.get(21), 70, false));
 
         //middleSupports
+        
         supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(3), bridgeSupportAnchorPoints.get(19) , 70, false));
         supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(8), bridgeSupportAnchorPoints.get(22) , 70, false));
 

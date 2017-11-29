@@ -37,19 +37,20 @@ public class BridgeSupport {
 
     public void draw(GraphicsContext gc){
         double yMax = gc.getCanvas().getHeight();
-        int f = (int) Math.floor(Math.abs((length-getCurrentLength())/length) * 25 * 255);
+        int f = (int) Math.floor(Math.abs((length-getCurrentLength())/length) * 40 * 255);
         f = Math.min(255,f);
         gc.setStroke(Color.rgb(f,255-f,0));
         gc.setLineWidth(5);
-        gc.strokeLine(pointA.getxPos(), yMax-pointA.getyPos(), pointB.getxPos(), yMax-pointB.getyPos());
-        pointA.draw(gc);
-        pointB.draw(gc);
         if (isRoad){
             //System.out.println(getAngle());
             streetRB.setTorque(getAngle());
             streetRB.setPos(getPos());
             streetRB.draw(gc);
         }
+        gc.strokeLine(pointA.getxPos(), yMax-pointA.getyPos(), pointB.getxPos(), yMax-pointB.getyPos());
+        pointA.draw(gc);
+        pointB.draw(gc);
+
     }
 
     public double calculateStress(){

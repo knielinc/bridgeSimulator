@@ -1,10 +1,13 @@
 package test;
 
 import static org.junit.Assert.*;
+
+import com.sun.tools.corba.se.idl.toJavaPortable.Helper;
 import org.junit.Test;
 import org.junit.Ignore;
 import sample.Vec2;
 import sample.rigidbodies.DrawablePolygon;
+import sample.rigidbodies.PolytopeEdge;
 import sample.rigidbodies.RigidBodyObject;
 import sample.rigidbodies.Simplex;
 import sample.utils.HelperClass;
@@ -40,6 +43,10 @@ public class TestMyMethods {
         RigidBodyObject rigidBody2 = new RigidBodyObject(-15,0,0,1,false, rectangle);
         RigidBodyObject rigidBody3 = new RigidBodyObject(-6,0,0,1,false, rectangle);
 
+        RigidBodyObject rigidBody4 = new RigidBodyObject(0,0,0,1,false, rectangle);
+        RigidBodyObject rigidBody5 = new RigidBodyObject(0,5,0,1,false, rectangle);
+
+
         Vec2 xDirection = new Vec2(1,0);
 
         boolean test1 = HelperClass.gjk(rigidBody1,rigidBody2);
@@ -50,6 +57,29 @@ public class TestMyMethods {
         Vec2 newSuppor2 = rigidBody3.getSupport(xDirection);
         boolean test4 = HelperClass.gjk(rigidBody1,rigidBody3);
 
+        Vec2 translation = HelperClass.EPA(rigidBody1,rigidBody3);
+        Vec2 translation2 = HelperClass.EPA(rigidBody4,rigidBody5);
+
+        assertEquals(test1,false);
+        assertEquals(test2,false);
+        assertEquals(test3,false);
+        assertEquals(test4,true);
+
+    }
+
+    @Test
+
+    public void testDistanceToSegment(){
+
+        PolytopeEdge edge = new PolytopeEdge(new Vec2(-1,0),new Vec2(1,0));
+
+        double result1 = edge.getDistanceToCenter();
+        double result2 = edge.getDistanceToPoint(new Vec2(2,0));
+        double result3 = edge.getDistanceToPoint(new Vec2(0,1));
+
+        double result4 = edge.getDistanceToPoint(new Vec2(2,1));
+
+        double result5 = edge.getDistanceToPoint(new Vec2(-2,1));
 
     }
 }

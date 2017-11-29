@@ -69,7 +69,7 @@ public class Main extends Application {
             // Clear the canvas
             gc.clearRect(0, 0, 1600,900);
             //testBridge.draw(gc);
-            myGame.update(0.1);
+            myGame.update(0.05);
             //testBridge.computeTimeStepExplicit(0.5,.001);
 
             myGame.draw(gc);

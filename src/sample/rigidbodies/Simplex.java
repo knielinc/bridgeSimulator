@@ -120,4 +120,8 @@ public class Simplex {
 
         return true;
     }
+
+    public ArrayList<Vec2> getPoints() {
+        return points;
+    }
 }

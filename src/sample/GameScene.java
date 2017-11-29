@@ -30,18 +30,25 @@ public class GameScene {
 
 
     }
-
+    private int counter = 0;
     public void draw(GraphicsContext gc){
         for(RigidBodyObject tmpObject:rigidBodyObjects){
             tmpObject.draw(gc);
         }
         myBridge.draw(gc);
+        /* add new elements every x'th iteration
+        counter++;
+        if (counter > 10){
+            DrawablePolygon car = new DrawablePolygon(new double[]{-10.,10.,10.,5,-5.,-10.},new double[]{0,0,3,7,7,3},6,1);
+            rigidBodyObjects.add(new RigidBodyObject(100,300,Math.toRadians(0),1,false, car));
+            counter = 0;
+        } */
     }
 
     public void update(double dt){
         updateRigidBodies(dt);
-        myBridge.computeTimeStepImplicit(0.5,dt);
-        //myBridge.collapseBridge(13);
+        myBridge.computeTimeStepImplicit(0.1,dt);
+        myBridge.collapseBridge(.95);
     }
 
     public void updateRigidBodies(double dt){
@@ -101,7 +108,7 @@ public class GameScene {
 
             if(tmpObject.getxPos() > 1000 || tmpObject.getyPos() < 0){
                 tmpObject.setPos(new Vec2(100,300));
-                tmpObject.setVelocity(tmpObject.getVelocity().normalize());
+                //tmpObject.setVelocity(tmpObject.getVelocity().normalize());
             }
 
 
