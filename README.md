@@ -15,6 +15,7 @@ Rigid bodies with implicit solver in 2d
 * https://www.toptal.com/game/video-game-physics-part-i-an-introduction-to-rigid-body-dynamics
 * https://www.toptal.com/game/video-game-physics-part-ii-collision-detection-for-solid-objects
 * https://www.toptal.com/game/video-game-physics-part-iii-constrained-rigid-body-simulation
+
 * https://gamedevelopment.tutsplus.com/tutorials/how-to-create-a-custom-2d-physics-engine-oriented-rigid-bodies--gamedev-8032
 
 * constraint algorithm: https://en.wikipedia.org/wiki/Constraint_algorithm#Lagrange_multiplier-based_methods
@@ -22,6 +23,9 @@ Rigid bodies with implicit solver in 2d
 
 GJK algorithm
 * https://github.com/kroitor/gjk.c
+
+Collision Response
+* https://www.myphysicslab.com/engine2D/collision-en.html
 
 Popular Questions: 
 * http://bulletphysics.org/mediawiki-1.5.8/index.php/Collision_Detection_and_Physics_FAQ
