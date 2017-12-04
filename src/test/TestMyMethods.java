@@ -44,7 +44,7 @@ public class TestMyMethods {
         RigidBodyObject rigidBody3 = new RigidBodyObject(-6,0,0,1,false, rectangle);
 
         RigidBodyObject rigidBody4 = new RigidBodyObject(0,0,0,1,false, rectangle);
-        RigidBodyObject rigidBody5 = new RigidBodyObject(0,15,0,1,false, rectangle);
+        RigidBodyObject rigidBody5 = new RigidBodyObject(0,20,0,1,false, rectangle);
 
 
         Vec2 xDirection = new Vec2(1,0);
@@ -56,6 +56,7 @@ public class TestMyMethods {
         rigidBody3.setTorque(Math.PI / 4.0);
         Vec2 newSuppor2 = rigidBody3.getSupport(xDirection);
         boolean test4 = HelperClass.gjk(rigidBody1,rigidBody3);
+
 
         Vec2[] translation = HelperClass.EPA(rigidBody1,rigidBody3);
         Vec2[] translation2 = HelperClass.EPA(rigidBody4,rigidBody5);

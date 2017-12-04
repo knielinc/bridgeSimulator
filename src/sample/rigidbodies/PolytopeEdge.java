@@ -5,6 +5,10 @@ import sample.Vec2;
 public class PolytopeEdge {
     private Vec2 a,b;
 
+    private double distanceToCenter = Double.NaN;
+
+    private Vec2 outerNormalVecFromOrigin = new Vec2(Double.NaN,Double.NaN);
+
     private double t = Double.NaN;
 
     public PolytopeEdge(Vec2 a, Vec2 b){
@@ -47,40 +51,55 @@ public class PolytopeEdge {
         return distance;
     }
 
+    public Vec2 getClosestPointToOrigin(){
+        return getPointWithT(getT());
+    }
+
     public double getDistanceToCenter(){
 
-        return getDistanceToPoint(new Vec2(0,0));
+        if(Double.isNaN(distanceToCenter)) {
+            return getDistanceToPoint(new Vec2(0, 0));
+        } else {
+            return distanceToCenter;
+        }
+
+    }
+
+    public Vec2 getNormal(){
+        Vec2 n = b.minus(a);
+        return  new Vec2(n.getY(),-n.getX());
 
     }
 
     public Vec2 getOuterNormalVecFromOrigin(){
+        if (Double.isNaN(outerNormalVecFromOrigin.getX()) || Double.isNaN(outerNormalVecFromOrigin.getY())) {
+            Vec2 n = b.minus(a);
 
-        Vec2 n = b.minus(a);
+            Vec2 returnVec;
 
-        Vec2 returnVec;
+            t = (a.smult(-1)).mul(n).dot(new Vec2(1, 1)) / n.dot(n);
 
-        t = (a.smult(-1)).mul(n).dot(new Vec2(1,1)) / n.dot(n);
+            if (t < 0) {
 
-        if (t < 0){
+                returnVec = (a.smult(-1));
 
-            returnVec = (a.smult(-1));
+            } else if (t > 1) {
 
-        } else if (t > 1){
+                returnVec = (b.smult(-1));
 
-            returnVec = (b.smult(-1));
+            } else {
+                n = n.normalize();
 
+                Vec2 projectionVec = a.minus(n.smult(a.dot(n)));
+
+                returnVec = projectionVec.smult(-1);
+            }
+
+            // make returnvec point away from center
+            return returnVec;
         } else {
-            n = n.normalize();
-
-            Vec2 projectionVec = a.minus(n.smult(a.dot(n)));
-
-            returnVec = projectionVec.smult(-1);
+            return outerNormalVecFromOrigin;
         }
-
-        // make returnvec point away from center
-
-        returnVec = returnVec;
-        return returnVec;
 
     }
 

@@ -4,11 +4,16 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import sample.Vec2;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class RigidBodyObject extends Particle{
     double angularVel;
     DrawablePolygon polygon;
     double momentOfInertia;
     double torque;
+    Vec2 collisionPoint;
+
     public RigidBodyObject(double x, double y, double torque, double mass, boolean fixed, DrawablePolygon polygon) {
         super(x, y, mass, fixed);
         angularVel = 0;
@@ -28,6 +33,16 @@ public class RigidBodyObject extends Particle{
         gc.rotate(getTorqueInDegrees());
         gc.translate(-getxPos(),getyPos()-maxY);
         //gc.fillOval(getxPos(),maxY-getyPos(),5,5);
+
+        //draw collisionPoints
+        if (collisionPoint != null) {
+            gc.setFill(Color.WHITE);
+            gc.fillRect(collisionPoint.getX() - 5, maxY - collisionPoint.getY() - 5, 10, 10);
+            gc.setStroke(Color.BLACK);
+            gc.setLineWidth(1);
+            gc.strokeRect(collisionPoint.getX() - 5, maxY - collisionPoint.getY() - 5, 10, 10);
+        }
+        collisionPoint = null;
 
 
     }
@@ -96,5 +111,13 @@ public class RigidBodyObject extends Particle{
         returnVal.setPos(x,y);
 
         return returnVal.plus(getPos());
+    }
+
+    public Vec2 getCollisionPoint() {
+        return collisionPoint;
+    }
+
+    public void setCollisionPoint(Vec2 collisionPoint) {
+        this.collisionPoint = collisionPoint;
     }
 }

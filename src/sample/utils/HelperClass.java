@@ -105,9 +105,11 @@ public class HelperClass {
 
 
             if (mySimplex.getLast().dot(direction) <= 0){
+                mySimplex.setCollides(false);
                 return mySimplex;
             } else {
                 if (mySimplex.containsOriginForGJK(direction)){
+                    mySimplex.setCollides(true);
                     return mySimplex;
                 }
             }
@@ -119,7 +121,7 @@ public class HelperClass {
 
         Simplex mySimplex = gjkForEPA(rb1, rb2);
 
-        boolean collides = mySimplex.containsOrigin();
+        boolean collides = mySimplex.collides();
 
         ArrayList<Vec2>  polytope =  mySimplex.getPoints();
         ArrayList<Vec2>  supportPointsA =  mySimplex.getSupportPointsA();
@@ -166,10 +168,33 @@ public class HelperClass {
             pointB = supportEdgesB.get(indexClosestEdge).getPointWithT(closestEdge.getT());
 
 
-            Vec2 nextSuppdirection = translationVec;
-            //if origin is inside go away from center to get next point and vice versa if origin is outside
+            Vec2 nextSuppdirection;
+            //TODO use winding instead
+            if (translationVec.length() != 0) {
+                nextSuppdirection = translationVec;
+                //if origin is inside go away from center to get next point and vice versa if origin is outside
 
-            if (collides){
+
+            } else {
+                Vec2 normal = closestEdge.getNormal().normalize();
+
+                //abusing the fact, that the shape is convex i project the vector from any point in the Polytope not on the Edge to the closestPoint on the Edge onto the normal of the closestEdge
+                int nextEdge = Math.floorMod(indexClosestEdge + 1 ,edges.size());
+
+                Vec2 otherPoint;
+
+                if (closestEdge.containsPoint(edges.get(nextEdge).geta())){
+                    otherPoint = edges.get(nextEdge).getb();
+                } else {
+                    otherPoint = edges.get(nextEdge).geta();
+                }
+                otherPoint = otherPoint.minus(closestEdge.getClosestPointToOrigin());
+                otherPoint.smult(-1);
+                nextSuppdirection = normal.smult(normal.dot(otherPoint));
+
+            }
+
+            if (collides) {
                 nextSuppdirection = nextSuppdirection.smult(-1);
             }
 
@@ -179,6 +204,9 @@ public class HelperClass {
 
 
             if (closestEdge.containsPoint(nextPoint)){
+                rb1.setCollisionPoint(pointA);
+                rb2.setCollisionPoint(pointB);
+
                 return new Vec2[]{translationVec,pointA,pointB};
             } else {
                 edges.add(new PolytopeEdge(closestEdge.geta(),nextPoint));

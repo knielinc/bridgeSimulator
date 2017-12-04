@@ -12,7 +12,7 @@ public class Simplex {
 
     ArrayList<Vec2> supportPointsA = new ArrayList<>();
     ArrayList<Vec2> supportPointsB = new ArrayList<>();
-
+    private boolean collides = false;
 
     int oldestVal = 0;
     boolean isFull = false;
@@ -107,7 +107,11 @@ public class Simplex {
 
                 isFull = false;
 
-                nextDirection.set(abPerp);
+                if(abPerp.length() > 0) {
+                    nextDirection.set(abPerp.normalize());
+                } else {
+                    nextDirection.set(new Vec2(ab.getY(),-ab.getX()));
+                }
 
             } else if(acPerp.dot(ao) > 0){
                 points.remove(b);
@@ -117,7 +121,11 @@ public class Simplex {
 
                 isFull = false;
 
-                nextDirection.set(acPerp);
+                if(acPerp.length() > 0) {
+                    nextDirection.set(acPerp.normalize());
+                } else {
+                    nextDirection.set(new Vec2(ac.getY(),-ac.getX()));
+                }
 
             } else {
                 return true;
@@ -129,8 +137,11 @@ public class Simplex {
             Vec2 ab = b.minus(a);
 
             Vec2 abPerp = HelperClass.tripleProduct(ab, ao, ab);
-
-            nextDirection.set(abPerp.normalize());
+            if(abPerp.length() > 0) {
+                nextDirection.set(abPerp.normalize());
+            } else {
+                nextDirection.set(new Vec2(ab.getY(),-ab.getX()));
+            }
         }
         return false;
     }
@@ -167,5 +178,13 @@ public class Simplex {
 
     public ArrayList<Vec2> getSupportPointsB() {
         return supportPointsB;
+    }
+
+    public void setCollides(boolean collides) {
+        this.collides = collides;
+    }
+
+    public boolean collides() {
+        return collides;
     }
 }

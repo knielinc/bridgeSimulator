@@ -1,6 +1,7 @@
 package sample;
 
 
+import org.apache.commons.math3.exception.ZeroException;
 import org.apache.commons.math3.geometry.Vector;
 import org.apache.commons.math3.geometry.euclidean.oned.Vector1D;
 import org.apache.commons.math3.linear.ArrayRealVector;
@@ -43,6 +44,10 @@ public class Vec2 {
 
     public Vec2 normalize() {
         double q = length();
+        if(q==0){
+            throw new RuntimeException(new ZeroException());
+        }
+
         return new Vec2(getX() / q, getY() / q);
     }
 
