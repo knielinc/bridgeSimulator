@@ -164,6 +164,8 @@ public class HelperClass {
 
             Vec2 translationVec = closestEdge.getOuterNormalVecFromOrigin();
 
+
+
             pointA = supportEdgesA.get(indexClosestEdge).getPointWithT(closestEdge.getT());
             pointB = supportEdgesB.get(indexClosestEdge).getPointWithT(closestEdge.getT());
 
@@ -207,7 +209,7 @@ public class HelperClass {
                 rb1.setCollisionPoint(pointA);
                 rb2.setCollisionPoint(pointB);
 
-                return new Vec2[]{translationVec,pointA,pointB};
+                return new Vec2[]{translationVec,pointA,pointB,nextSuppdirection.normalize()};
             } else {
                 edges.add(new PolytopeEdge(closestEdge.geta(),nextPoint));
                 edges.add(new PolytopeEdge(nextPoint,closestEdge.getb()));

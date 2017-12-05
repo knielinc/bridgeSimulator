@@ -4,9 +4,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import sample.Vec2;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 public class RigidBodyObject extends Particle{
     double angularVel;
     DrawablePolygon polygon;
@@ -14,8 +11,8 @@ public class RigidBodyObject extends Particle{
     double torque;
     Vec2 collisionPoint;
 
-    public RigidBodyObject(double x, double y, double torque, double mass, boolean fixed, DrawablePolygon polygon) {
-        super(x, y, mass, fixed);
+    public RigidBodyObject(double x, double y, double torque, boolean fixed, DrawablePolygon polygon) {
+        super(x, y, polygon.getMass(), fixed);
         angularVel = 0;
         this.polygon = polygon;
         this.torque = torque;
@@ -92,6 +89,14 @@ public class RigidBodyObject extends Particle{
 
     public double getTorque() {
         return torque;
+    }
+
+    public void updatePos(double dt){
+        setPos(getPos().plus(getVelocity().smult(dt)));
+    }
+
+    public void updateTorque(double dt){
+        setTorque(getTorque() + getAngularVel() * dt);
     }
 
     public void setTorque(double torque) {

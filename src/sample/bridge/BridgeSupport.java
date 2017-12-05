@@ -2,9 +2,7 @@ package sample.bridge;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
-import org.apache.commons.math3.linear.RealVector;
 import sample.Vec2;
 import sample.rigidbodies.DrawablePolygon;
 import sample.rigidbodies.RigidBodyObject;
@@ -30,8 +28,8 @@ public class BridgeSupport {
         length = first.getPos().minus(second.getPos()).length();
         this.isRoad = isRoad;
         if (this.isRoad){
-            DrawablePolygon street = new DrawablePolygon(new double[]{-length/2.0,length/2.0,length/2.0,-length/2.0},new double[]{-5,-5,5,5},4,pointA.getWeight() + pointB.getWeight());
-            streetRB = new RigidBodyObject(getPos().getX(),getPos().getY(),getAngle(),pointA.getWeight() + pointB.getWeight(), false, street);
+            DrawablePolygon street = new DrawablePolygon(new double[]{-length/2.0,-length/4.0,length/4.0,length/2.0,length/4.0,-length/4.0},new double[]{0,-5,-5,0,5,5},6,pointA.getWeight() + pointB.getWeight());
+            streetRB = new RigidBodyObject(getPos().getX(),getPos().getY(),getAngle(), false, street);
         }
     }
 

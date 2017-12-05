@@ -40,12 +40,15 @@ public class PolytopeEdge {
 
             distance = point.minus(b).length();
 
-        } else {
-            n = n.normalize();
+        } else if (n.length() > 0){
+            n = n.normalize(); //todo fix nullpointerreference
 
             Vec2 projectionVec = a.minus(point).minus(n.smult(a.minus(point).dot(n)));
 
             distance = projectionVec.length();
+        } else {
+            distance = point.minus(a).length();
+            //return distance to a point when b-a is Zero
         }
 
         return distance;

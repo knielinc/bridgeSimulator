@@ -2,17 +2,13 @@ package test;
 
 import static org.junit.Assert.*;
 
-import com.sun.tools.corba.se.idl.toJavaPortable.Helper;
 import org.junit.Test;
-import org.junit.Ignore;
 import sample.Vec2;
 import sample.rigidbodies.DrawablePolygon;
 import sample.rigidbodies.PolytopeEdge;
 import sample.rigidbodies.RigidBodyObject;
 import sample.rigidbodies.Simplex;
 import sample.utils.HelperClass;
-
-import java.util.ArrayList;
 
 public class TestMyMethods {
     @Test
@@ -39,12 +35,12 @@ public class TestMyMethods {
     @Test
     public void testGJK(){
         DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,1);
-        RigidBodyObject rigidBody1 = new RigidBodyObject(15,0,0,1,false, rectangle);
-        RigidBodyObject rigidBody2 = new RigidBodyObject(-15,0,0,1,false, rectangle);
-        RigidBodyObject rigidBody3 = new RigidBodyObject(-6,0,0,1,false, rectangle);
+        RigidBodyObject rigidBody1 = new RigidBodyObject(15,0,0, false, rectangle);
+        RigidBodyObject rigidBody2 = new RigidBodyObject(-15,0,0, false, rectangle);
+        RigidBodyObject rigidBody3 = new RigidBodyObject(-6,0,0, false, rectangle);
 
-        RigidBodyObject rigidBody4 = new RigidBodyObject(0,0,0,1,false, rectangle);
-        RigidBodyObject rigidBody5 = new RigidBodyObject(0,20,0,1,false, rectangle);
+        RigidBodyObject rigidBody4 = new RigidBodyObject(0,0,0, false, rectangle);
+        RigidBodyObject rigidBody5 = new RigidBodyObject(0,20,0, false, rectangle);
 
 
         Vec2 xDirection = new Vec2(1,0);

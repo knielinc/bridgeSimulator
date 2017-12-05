@@ -59,6 +59,8 @@ public class Vec2 {
         return new Vec2(getX() * f, getY() * f);
     }
 
+    public double cross(Vec2 o){return (o.getY() * x - o.getX() * y);}
+
     public void setX(double x) {
         this.x = x;
     }

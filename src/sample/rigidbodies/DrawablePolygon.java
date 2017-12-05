@@ -152,4 +152,8 @@ public class DrawablePolygon {
 
         return support;
     }
+
+    public double getMass() {
+        return mass;
+    }
 }
