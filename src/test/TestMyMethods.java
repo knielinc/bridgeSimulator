@@ -55,7 +55,11 @@ public class TestMyMethods {
 
 
         Vec2[] translation = HelperClass.EPA(rigidBody1,rigidBody3);
+        Vec2[] translation_ = HelperClass.EPA2(rigidBody1,rigidBody3);
+
         Vec2[] translation2 = HelperClass.EPA(rigidBody4,rigidBody5);
+        Vec2[] translation2_ = HelperClass.EPA2(rigidBody4,rigidBody5);
+
 
         assertEquals(test1,false);
         assertEquals(test2,false);

@@ -29,7 +29,7 @@ public class BridgeSupport {
         this.isRoad = isRoad;
         if (this.isRoad){
             DrawablePolygon street = new DrawablePolygon(new double[]{-length/2.0,-length/4.0,length/4.0,length/2.0,length/4.0,-length/4.0},new double[]{0,-5,-5,0,5,5},6,pointA.getWeight() + pointB.getWeight());
-            streetRB = new RigidBodyObject(getPos().getX(),getPos().getY(),getAngle(), false, street);
+            streetRB = new RigidBodyObject(getPos().getX(),getPos().getY(),getAngle(), true, street);
         }
     }
 

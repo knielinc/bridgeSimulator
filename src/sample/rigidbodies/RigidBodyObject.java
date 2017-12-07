@@ -10,6 +10,8 @@ public class RigidBodyObject extends Particle{
     double momentOfInertia;
     double torque;
     Vec2 collisionPoint;
+    Vec2 collisionCorrectionVec;
+    Vec2 restCollisionForce;
 
     public RigidBodyObject(double x, double y, double torque, boolean fixed, DrawablePolygon polygon) {
         super(x, y, polygon.getMass(), fixed);
@@ -32,13 +34,28 @@ public class RigidBodyObject extends Particle{
         //gc.fillOval(getxPos(),maxY-getyPos(),5,5);
 
         //draw collisionPoints
-        if (collisionPoint != null) {
-            gc.setFill(Color.WHITE);
+        if (collisionPoint != null && collisionCorrectionVec != null) {
+            /*gc.setFill(Color.WHITE);
             gc.fillRect(collisionPoint.getX() - 5, maxY - collisionPoint.getY() - 5, 10, 10);
             gc.setStroke(Color.BLACK);
             gc.setLineWidth(1);
-            gc.strokeRect(collisionPoint.getX() - 5, maxY - collisionPoint.getY() - 5, 10, 10);
+            gc.strokeRect(collisionPoint.getX() - 5, maxY - collisionPoint.getY() - 5, 10, 10);*/
+
+            gc.setStroke(Color.RED);
+            gc.setLineWidth(3);
+            gc.strokeLine(collisionPoint.getX(), maxY - collisionPoint.getY(), collisionPoint.getX() + collisionCorrectionVec.getX(), maxY - (collisionCorrectionVec.getY() + collisionPoint.getY()));
         }
+
+        if (collisionPoint != null && restCollisionForce != null) {
+            gc.setStroke(Color.BLUE);
+            gc.setLineWidth(3);
+            gc.strokeLine(collisionPoint.getX(), maxY - collisionPoint.getY(), collisionPoint.getX() + restCollisionForce.getX(), maxY - (restCollisionForce.getY() + collisionPoint.getY()));
+        }
+
+        gc.setStroke(Color.BLUE);
+        gc.setLineWidth(3);
+        gc.strokeLine(getxPos(), maxY - getyPos(), getxPos() + getVelocity().getX(), maxY - (getVelocity().getY() + getyPos()));
+
         collisionPoint = null;
 
 
@@ -124,5 +141,13 @@ public class RigidBodyObject extends Particle{
 
     public void setCollisionPoint(Vec2 collisionPoint) {
         this.collisionPoint = collisionPoint;
+    }
+
+    public void setCollisionCorrectionVec(Vec2 collisionCorrectionVec) {
+        this.collisionCorrectionVec = collisionCorrectionVec;
+    }
+
+    public void setRestCollisionForce(Vec2 restCollisionForce) {
+        this.restCollisionForce = restCollisionForce;
     }
 }

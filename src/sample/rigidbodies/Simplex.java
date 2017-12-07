@@ -110,7 +110,7 @@ public class Simplex {
                 if(abPerp.length() > 0) {
                     nextDirection.set(abPerp.normalize());
                 } else {
-                    nextDirection.set(new Vec2(ab.getY(),-ab.getX()));
+                    nextDirection.set(new Vec2(ab.getY(),-ab.getX()));//bullshitcode
                 }
 
             } else if(acPerp.dot(ao) > 0){

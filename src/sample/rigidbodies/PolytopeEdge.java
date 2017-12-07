@@ -68,9 +68,15 @@ public class PolytopeEdge {
 
     }
 
-    public Vec2 getNormal(){
+    public Vec2 getNormal(boolean orientationIsClockwise){
         Vec2 n = b.minus(a);
-        return  new Vec2(n.getY(),-n.getX());
+        if(orientationIsClockwise) {
+            return new Vec2(n.getY(), -n.getX());
+
+        } else {
+            return new Vec2(-n.getY(), n.getX());
+
+        }
 
     }
 
@@ -104,6 +110,10 @@ public class PolytopeEdge {
             return outerNormalVecFromOrigin;
         }
 
+    }
+
+    public void setDistanceToCenter(double distanceToCenter) {
+        this.distanceToCenter = distanceToCenter;
     }
 
     public boolean containsPoint(Vec2 point){

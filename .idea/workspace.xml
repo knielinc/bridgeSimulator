@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/EPAEdge.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/GameScene.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/GameScene.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/Vec2.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/Vec2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/BridgeSupport.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/BridgeSupport.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/BridgeSupportAnchorPoint.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/bridge/BridgeSupportAnchorPoint.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Bridges/sample/rigidbodies/RigidBodyObject.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/rigidbodies/RigidBodyObject.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/GameScene.java" afterPath="$PROJECT_DIR$/src/sample/GameScene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/Vec2.java" afterPath="$PROJECT_DIR$/src/sample/Vec2.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java" afterPath="$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java" afterPath="$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/rigidbodies/PolytopeEdge.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/PolytopeEdge.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/utils/HelperClass.java" afterPath="$PROJECT_DIR$/src/sample/utils/HelperClass.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/TestMyMethods.java" afterPath="$PROJECT_DIR$/src/test/TestMyMethods.java" />
     </list>
@@ -83,53 +84,12 @@
       <file leaf-file-name="HelperClass.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/utils/HelperClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2970">
-              <caret line="198" column="16" lean-forward="false" selection-start-line="198" selection-start-column="16" selection-end-line="198" selection-end-column="16" />
+            <state relative-caret-position="822">
+              <caret line="277" column="78" lean-forward="false" selection-start-line="277" selection-start-column="78" selection-end-line="277" selection-end-column="78" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#gjk#0;class#HelperClass#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1028">
-              <caret line="100" column="28" lean-forward="false" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestMyMethods.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/TestMyMethods.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="49" column="57" lean-forward="false" selection-start-line="49" selection-start-column="57" selection-end-line="49" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PolytopeEdge.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/PolytopeEdge.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="50" column="57" lean-forward="false" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Vec2.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Vec2.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="61" column="61" lean-forward="false" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -137,8 +97,8 @@
       <file leaf-file-name="GameScene.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/GameScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="29" column="54" lean-forward="false" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+            <state relative-caret-position="664">
+              <caret line="267" column="93" lean-forward="false" selection-start-line="267" selection-start-column="93" selection-end-line="267" selection-end-column="93" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -146,28 +106,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RigidBodyObject.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java">
+      <file leaf-file-name="EPAEdge.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/EPAEdge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+            <state relative-caret-position="360">
+              <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="22" />
               <folding>
-                <element signature="e#2773#2774#0" expanded="true" />
-                <element signature="e#2834#2835#0" expanded="true" />
+                <element signature="e#571#572#0" expanded="true" />
+                <element signature="e#600#601#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrawablePolygon.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java">
+      <file leaf-file-name="PolytopeEdge.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/PolytopeEdge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="156" column="8" lean-forward="false" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="20" />
-              <folding>
-                <element signature="e#4372#4373#0" expanded="true" />
-                <element signature="e#4399#4400#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="564">
+              <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -175,8 +132,32 @@
       <file leaf-file-name="BridgeSupport.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="30" column="169" lean-forward="false" selection-start-line="30" selection-start-column="169" selection-end-line="30" selection-end-column="169" />
+            <state relative-caret-position="288">
+              <caret line="31" column="91" lean-forward="false" selection-start-line="31" selection-start-column="91" selection-end-line="31" selection-end-column="91" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Bridge.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="327" column="33" lean-forward="false" selection-start-line="327" selection-start-column="25" selection-end-line="327" selection-end-column="33" />
+              <folding>
+                <element signature="method#computeTimeStepExplicit#0;class#Bridge#0" expanded="false" />
+                <element signature="method#calculateDfDxV0ForImplicit#0;class#Bridge#0" expanded="false" />
+                <element signature="method#calculateF0ForImplicit#0;class#Bridge#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vec2.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Vec2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -185,9 +166,34 @@
       <file leaf-file-name="Simplex.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="113" column="17" lean-forward="false" selection-start-line="113" selection-start-column="17" selection-end-line="113" selection-end-column="17" />
+            <state relative-caret-position="1995">
+              <caret line="149" column="20" lean-forward="false" selection-start-line="149" selection-start-column="20" selection-end-line="149" selection-end-column="20" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RigidBodyObject.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="655">
+              <caret line="141" column="28" lean-forward="true" selection-start-line="141" selection-start-column="28" selection-end-line="141" selection-end-column="28" />
+              <folding>
+                <element signature="e#4820#4821#0" expanded="true" />
+                <element signature="e#4880#4881#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="451">
+              <caret line="100" column="29" lean-forward="false" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -222,6 +228,16 @@
       <find>length</find>
       <find>normalize</find>
       <find>distanceto</find>
+      <find>getNormal</find>
+      <find>getnormal</find>
+      <find>getnorm</find>
+      <find>pointa</find>
+      <find>support</find>
+      <find>set</find>
+      <find>force</find>
+      <find>Setforce</find>
+      <find>forceOnObject</find>
+      <find>setcollision</find>
     </findStrings>
     <replaceStrings>
       <replace>myVec</replace>
@@ -257,18 +273,19 @@
         <option value="$PROJECT_DIR$/src/test/TestTest.java" />
         <option value="$PROJECT_DIR$/src/test/Test.java" />
         <option value="$PROJECT_DIR$/src/test/TextMyMethods.java" />
-        <option value="$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java" />
         <option value="$PROJECT_DIR$/src/sample/rigidbodies/Edge.java" />
         <option value="$PROJECT_DIR$/src/sample/bridge/Bridge.java" />
-        <option value="$PROJECT_DIR$/src/test/TestMyMethods.java" />
-        <option value="$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java" />
-        <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/Vec2.java" />
-        <option value="$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java" />
-        <option value="$PROJECT_DIR$/src/sample/rigidbodies/PolytopeEdge.java" />
         <option value="$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java" />
+        <option value="$PROJECT_DIR$/src/sample/rigidbodies/EPAEdge.java" />
+        <option value="$PROJECT_DIR$/src/sample/rigidbodies/PolytopeEdge.java" />
+        <option value="$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java" />
+        <option value="$PROJECT_DIR$/src/test/TestMyMethods.java" />
+        <option value="$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java" />
+        <option value="$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java" />
         <option value="$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java" />
         <option value="$PROJECT_DIR$/src/sample/utils/HelperClass.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/GameScene.java" />
       </list>
     </option>
@@ -303,6 +320,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -357,9 +377,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -811,34 +828,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestMyMethods_testGJK - 2017.11.30 at 02h 50m 26s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.12.06 at 01h 53m 30s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.30 at 02h 54m 09s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.12.06 at 10h 23m 00s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.30 at 02h 56m 09s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.12.06 at 10h 27m 33s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.30 at 02h 58m 27s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.12.06 at 10h 31m 14s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.30 at 16h 56m 57s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.12.06 at 10h 31m 32s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.30 at 17h 38m 57s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.12.06 at 10h 33m 41s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.30 at 17h 39m 36s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.12.06 at 10h 34m 42s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.30 at 17h 39m 39s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.12.06 at 10h 35m 45s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.30 at 18h 03m 56s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.12.06 at 10h 36m 24s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TestMyMethods_testGJK - 2017.11.30 at 18h 03m 58s.xml">
+    <history-entry file="TestMyMethods_testGJK - 2017.12.06 at 10h 36m 55s.xml">
       <configuration name="TestMyMethods.testGJK" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -866,17 +883,18 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09544008" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20606695" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13702929" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17493796" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1953602" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32740587" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27405858" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31066945" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -890,7 +908,6 @@
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32754344" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -984,7 +1001,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/TestMyMethods.java</url>
-          <line>70</line>
+          <line>74</line>
           <properties />
           <option name="timeStamp" value="94" />
         </line-breakpoint>
@@ -995,25 +1012,19 @@
           <option name="timeStamp" value="95" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/GameScene.java</url>
-          <line>132</line>
+          <url>file://$PROJECT_DIR$/src/sample/utils/HelperClass.java</url>
+          <line>97</line>
           <properties />
-          <option name="timeStamp" value="100" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/GameScene.java</url>
-          <line>178</line>
-          <properties />
-          <option name="timeStamp" value="102" />
+          <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/utils/HelperClass.java</url>
-          <line>211</line>
+          <line>213</line>
           <properties />
-          <option name="timeStamp" value="104" />
+          <option name="timeStamp" value="112" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="105" />
+      <option name="time" value="118" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1022,24 +1033,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1265,27 +1258,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="170" column="0" lean-forward="false" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
-          <folding>
-            <element signature="method#computeTimeStepExplicit#0;class#Bridge#0" expanded="false" />
-            <element signature="method#computeTimeStepImplicit#0;class#Bridge#0" expanded="false" />
-            <element signature="method#calculateDfDxV0ForImplicit#0;class#Bridge#0" expanded="false" />
-            <element signature="method#calculateF0ForImplicit#0;class#Bridge#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="44" column="29" lean-forward="false" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_71.jdk/Contents/Home/javafx-src.zip!/javafx/animation/Animation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
@@ -1308,82 +1280,115 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="113" column="17" lean-forward="false" selection-start-line="113" selection-start-column="17" selection-end-line="113" selection-end-column="17" />
+        <state relative-caret-position="2205">
+          <caret line="156" column="8" lean-forward="false" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="20" />
+          <folding>
+            <element signature="e#4372#4373#0" expanded="false" />
+            <element signature="e#4399#4400#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/Edge.java" />
+    <entry file="file://$PROJECT_DIR$/src/test/TestMyMethods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Vec2.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="61" column="61" lean-forward="false" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
+        <state relative-caret-position="1995">
+          <caret line="149" column="20" lean-forward="false" selection-start-line="149" selection-start-column="20" selection-end-line="149" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/PolytopeEdge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="50" column="57" lean-forward="false" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
+        <state relative-caret-position="564">
+          <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="30" column="169" lean-forward="false" selection-start-line="30" selection-start-column="169" selection-end-line="30" selection-end-column="169" />
+        <state relative-caret-position="288">
+          <caret line="31" column="91" lean-forward="false" selection-start-line="31" selection-start-column="91" selection-end-line="31" selection-end-column="91" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="156" column="8" lean-forward="false" selection-start-line="156" selection-start-column="8" selection-end-line="156" selection-end-column="20" />
+        <state relative-caret-position="195">
+          <caret line="327" column="33" lean-forward="false" selection-start-line="327" selection-start-column="25" selection-end-line="327" selection-end-column="33" />
           <folding>
-            <element signature="e#4372#4373#0" expanded="true" />
-            <element signature="e#4399#4400#0" expanded="true" />
+            <element signature="method#computeTimeStepExplicit#0;class#Bridge#0" expanded="false" />
+            <element signature="method#calculateDfDxV0ForImplicit#0;class#Bridge#0" expanded="false" />
+            <element signature="method#calculateF0ForImplicit#0;class#Bridge#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/EPAEdge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="22" />
+          <folding>
+            <element signature="e#571#572#0" expanded="true" />
+            <element signature="e#600#601#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Vec2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="45" column="9" lean-forward="false" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+        <state relative-caret-position="655">
+          <caret line="141" column="28" lean-forward="true" selection-start-line="141" selection-start-column="28" selection-end-line="141" selection-end-column="28" />
           <folding>
-            <element signature="e#2773#2774#0" expanded="true" />
-            <element signature="e#2834#2835#0" expanded="true" />
+            <element signature="e#4820#4821#0" expanded="true" />
+            <element signature="e#4880#4881#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/utils/HelperClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="822">
+          <caret line="277" column="78" lean-forward="false" selection-start-line="277" selection-start-column="78" selection-end-line="277" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#gjk#0;class#HelperClass#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1028">
-          <caret line="100" column="28" lean-forward="false" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/TestMyMethods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="49" column="57" lean-forward="false" selection-start-line="49" selection-start-column="57" selection-end-line="49" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/utils/HelperClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
-          <caret line="198" column="16" lean-forward="false" selection-start-line="198" selection-start-column="16" selection-end-line="198" selection-end-column="16" />
+        <state relative-caret-position="451">
+          <caret line="100" column="29" lean-forward="false" selection-start-line="100" selection-start-column="29" selection-end-line="100" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1392,8 +1397,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/GameScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="29" column="54" lean-forward="false" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+        <state relative-caret-position="664">
+          <caret line="267" column="93" lean-forward="false" selection-start-line="267" selection-start-column="93" selection-end-line="267" selection-end-column="93" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

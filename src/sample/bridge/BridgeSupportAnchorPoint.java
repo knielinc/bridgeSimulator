@@ -13,7 +13,7 @@ public class BridgeSupportAnchorPoint {
     private Vec2 pos;
     private double weight; // weight of a Support is determined by the weight of the 2 anchorpoints combined
     private Vec2 velocity;
-    private Vec2 force;
+    private Vec2 force = Vec2.VEC_ZERO;
     private ArrayList<BridgeSupport> supports;
     private boolean isFixed;
 
@@ -39,9 +39,11 @@ public class BridgeSupportAnchorPoint {
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(2);
         //gc.strokeLine(getxPos(),yMax-getyPos(),getxPos()+(4*velocity.getX()),yMax-(getyPos() + (4*velocity.getY())));
-        double xForce = force.getX();
-        double yForce = force.getY();
-        gc.strokeLine(getxPos(),yMax-getyPos(),getxPos()+(xForce),yMax-(getyPos() + (yForce)));
+        if (force!=Vec2.VEC_ZERO) {
+            double xForce = force.getX();
+            double yForce = force.getY();
+            gc.strokeLine(getxPos(), yMax - getyPos(), getxPos() + (xForce), yMax - (getyPos() + (yForce)));
+        }
         gc.setFill(Color.CYAN);
         gc.fillText(String.valueOf(getMyIndex()),getxPos(),yMax - getyPos());
 
@@ -110,6 +112,8 @@ public class BridgeSupportAnchorPoint {
     }
 
     public void setForce(Vec2 force) {
-        this.force = force;
+        if(!isFixed) {
+            this.force = force;
+        }
     }
 }

@@ -4,6 +4,7 @@ import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import sample.Vec2;
+import sample.rigidbodies.EPAEdge;
 import sample.rigidbodies.PolytopeEdge;
 import sample.rigidbodies.RigidBodyObject;
 import sample.rigidbodies.Simplex;
@@ -93,8 +94,12 @@ public class HelperClass {
 
     public static Simplex gjkForEPA(RigidBodyObject polygon1, RigidBodyObject polygon2){
 
+        if(polygon1.getxPos() == 323){
+            System.out.println("edgecase found!");
+        }
         Simplex mySimplex = new Simplex();
         Vec2 direction = new Vec2(1,1);
+
         mySimplex.addPoint(direction,polygon1,polygon2);
 
 
@@ -164,21 +169,17 @@ public class HelperClass {
 
             Vec2 translationVec = closestEdge.getOuterNormalVecFromOrigin();
 
-
-
             pointA = supportEdgesA.get(indexClosestEdge).getPointWithT(closestEdge.getT());
             pointB = supportEdgesB.get(indexClosestEdge).getPointWithT(closestEdge.getT());
 
 
             Vec2 nextSuppdirection;
-            //TODO use winding instead
             if (translationVec.length() != 0) {
                 nextSuppdirection = translationVec;
                 //if origin is inside go away from center to get next point and vice versa if origin is outside
 
-
             } else {
-                Vec2 normal = closestEdge.getNormal().normalize();
+                Vec2 normal = closestEdge.getNormal(collides).normalize();
 
                 //abusing the fact, that the shape is convex i project the vector from any point in the Polytope not on the Edge to the closestPoint on the Edge onto the normal of the closestEdge
                 int nextEdge = Math.floorMod(indexClosestEdge + 1 ,edges.size());
@@ -202,14 +203,17 @@ public class HelperClass {
 
             Vec2 nextPoint = getMinkovskiPointForDirection(nextSuppdirection,rb1,rb2);
             Vec2 nextSupportPointA = rb1.getSupport(nextSuppdirection);
-            Vec2 nextSupportPointB = rb2.getSupport(nextSuppdirection);
+            Vec2 nextSupportPointB = rb2.getSupport(nextSuppdirection.smult(-1));
 
 
             if (closestEdge.containsPoint(nextPoint)){
                 rb1.setCollisionPoint(pointA);
+                rb1.setCollisionCorrectionVec(translationVec);
                 rb2.setCollisionPoint(pointB);
-
-                return new Vec2[]{translationVec,pointA,pointB,nextSuppdirection.normalize()};
+                if(nextSuppdirection.length() == 0){
+                    System.out.println("0vec for nextSuppDirection");
+                }
+                return new Vec2[]{translationVec,pointA,pointB,nextSuppdirection.normalize().smult(-1)};
             } else {
                 edges.add(new PolytopeEdge(closestEdge.geta(),nextPoint));
                 edges.add(new PolytopeEdge(nextPoint,closestEdge.getb()));
@@ -226,6 +230,102 @@ public class HelperClass {
                 supportEdgesB.remove(indexClosestEdge);
             }
         }
+    }
+
+
+    public static Vec2[] EPA2(RigidBodyObject rb1, RigidBodyObject rb2){
+        //polytope = last iteration of GJK
+
+        Simplex mySimplex = gjkForEPA(rb1, rb2);
+
+        boolean collides = mySimplex.collides();
+
+        ArrayList<Vec2>  s =  mySimplex.getPoints();
+        ArrayList<Vec2>  supportPointsA =  mySimplex.getSupportPointsA();
+        ArrayList<Vec2>  supportPointsB =  mySimplex.getSupportPointsB();
+
+        while(true){
+            //find closest edge
+            EPAEdge e = findClosestEdge(s,collides);
+
+            Vec2 p = getMinkovskiPointForDirection(e.getNormal(),rb1,rb2);
+
+            double d = p.dot(e.getNormal());
+
+            Vec2 nextSupportPointA = rb1.getSupport(e.getNormal());
+            Vec2 nextSupportPointB = rb2.getSupport(e.getNormal().smult(-1));
+
+            if(d - e.getDistance() < 0.00001){
+                Vec2 normal = e.getNormal();
+                double depth = d;
+
+                int indexBefore = e.getIndex() - 1 >= 0 ? e.getIndex() - 1:s.size()-1;
+                int nextIndex = e.getIndex() + 1 < s.size() ? e.getIndex() + 1:0;
+
+                PolytopeEdge closestEdge = new PolytopeEdge(s.get(indexBefore),s.get(e.getIndex()));
+                PolytopeEdge EdgeA = new PolytopeEdge(supportPointsA.get(indexBefore),supportPointsA.get(e.getIndex()));
+                PolytopeEdge EdgeB = new PolytopeEdge(supportPointsB.get(indexBefore),supportPointsB.get(e.getIndex()));
+
+                Vec2 pointA = EdgeA.getPointWithT(closestEdge.getT());
+                Vec2 pointB = EdgeB.getPointWithT(closestEdge.getT());
+
+                Vec2 translationVec = normal.smult(-d);
+
+                rb1.setCollisionPoint(pointA);
+                rb1.setCollisionCorrectionVec(translationVec);
+                rb2.setCollisionPoint(pointB);
+
+                return new Vec2[]{translationVec,pointA,pointB,normal.smult(-1)};
+            } else {
+                s.add(e.getIndex(),p);
+                supportPointsA.add(e.getIndex(),nextSupportPointA);
+                supportPointsB.add(e.getIndex(),nextSupportPointB);
+            }
+        }
+
+    }
+
+    public static EPAEdge findClosestEdge(ArrayList<Vec2> s,boolean orientationIsClockwise){
+        EPAEdge closest = new EPAEdge();
+
+        closest.setDistance(Double.MAX_VALUE);
+
+
+        for(int i = 0; i < s.size(); i++){
+
+            int j = i + 1 == s.size() ? 0 : i + 1;
+
+            Vec2 a = s.get(i);
+
+            Vec2 b = s.get(j);
+
+            Vec2 e = b.minus(a);
+
+            Vec2 n;// = tripleProduct(e,oa,e);
+
+            if(orientationIsClockwise){
+                n = new Vec2(e.getY(),-e.getX());
+            } else {
+                n = new Vec2(-e.getY(),e.getX());
+            }
+
+            if(n.length() > 0){
+                n = n.normalize();
+            } else {
+                n = new Vec2(0,1);
+            }
+
+            double d = n.dot(a);
+
+            if(d < closest.getDistance()){
+                closest.setDistance(d);
+                closest.setNormal(n);
+                closest.setIndex(j);
+            }
+
+        }
+        return closest;
+
     }
 
 }
