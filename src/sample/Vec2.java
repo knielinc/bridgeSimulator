@@ -1,6 +1,7 @@
 package sample;
 
 
+import org.apache.commons.math3.exception.ZeroException;
 import org.apache.commons.math3.geometry.Vector;
 import org.apache.commons.math3.geometry.euclidean.oned.Vector1D;
 import org.apache.commons.math3.linear.ArrayRealVector;
@@ -17,7 +18,6 @@ public class Vec2 {
         this.y = y;
     }
 
-    // TODO: implement these Vec2 functions!
     public double getX() {
         return this.x;
     }
@@ -44,6 +44,10 @@ public class Vec2 {
 
     public Vec2 normalize() {
         double q = length();
+        if(q==0){
+            throw new RuntimeException(new ZeroException());
+        }
+
         return new Vec2(getX() / q, getY() / q);
     }
 
@@ -54,6 +58,8 @@ public class Vec2 {
     public Vec2 smult(double f) {
         return new Vec2(getX() * f, getY() * f);
     }
+
+    public double cross(Vec2 o){return (o.getY() * x - o.getX() * y);}
 
     public void setX(double x) {
         this.x = x;
@@ -66,6 +72,16 @@ public class Vec2 {
     public void setPos(double x, double y){
         this.x = x;
         this.y = y;
+    }
+
+    public void set(Vec2 in){
+        this.x = in.getX();
+        this.y = in.getY();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (((Vec2)obj).x == x) && ((Vec2)obj).y == y;
     }
 
     public RealVector getRealVec(){

@@ -2,10 +2,10 @@ package sample.bridge;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
-import org.apache.commons.math3.linear.RealVector;
 import sample.Vec2;
+import sample.rigidbodies.DrawablePolygon;
+import sample.rigidbodies.RigidBodyObject;
 
 public class BridgeSupport {
     private double xPos;
@@ -16,25 +16,38 @@ public class BridgeSupport {
     private BridgeSupportAnchorPoint pointA,pointB;
     private double springConstant; //might make final
     private boolean isBroken = false;
+    private boolean isRoad;
+    private RigidBodyObject streetRB;
 
-    BridgeSupport(BridgeSupportAnchorPoint first, BridgeSupportAnchorPoint second, double inSpringConstant){
+    BridgeSupport(BridgeSupportAnchorPoint first, BridgeSupportAnchorPoint second, double inSpringConstant, boolean isRoad){
         pointA = first;
         first.addBridgeSupport(this);
         pointB = second;
         second.addBridgeSupport(this);
         springConstant = inSpringConstant;
         length = first.getPos().minus(second.getPos()).length();
+        this.isRoad = isRoad;
+        if (this.isRoad){
+            DrawablePolygon street = new DrawablePolygon(new double[]{-length/2.0,-length/4.0,length/4.0,length/2.0,length/4.0,-length/4.0},new double[]{0,-5,-5,0,5,5},6,(pointA.getWeight() + pointB.getWeight()) * 10);
+            streetRB = new RigidBodyObject(getPos().getX(),getPos().getY(),getAngle(), false, street);
+            streetRB.setSupport(this);
+        }
     }
 
-    public void draw(GraphicsContext gc){
+    public void draw(GraphicsContext gc) {
         double yMax = gc.getCanvas().getHeight();
-        int f = (int) Math.floor(Math.abs((length-getCurrentLength())/length) * 100 * 255);
-        f = Math.min(255,f);
-        gc.setStroke(Color.rgb(f,255-f,0));
+        int f = (int) Math.floor(Math.abs((length - getCurrentLength()) / length) * 40 * 255);
+        f = Math.min(255, f);
+        gc.setStroke(Color.rgb(f, 255 - f, 0));
         gc.setLineWidth(5);
+        if (isRoad){
+            streetRB.draw(gc);
+        }
+
         gc.strokeLine(pointA.getxPos(), yMax-pointA.getyPos(), pointB.getxPos(), yMax-pointB.getyPos());
         pointA.draw(gc);
         pointB.draw(gc);
+
     }
 
     public double calculateStress(){
@@ -83,6 +96,32 @@ public class BridgeSupport {
         isBroken = bool;
     }
 
+    public boolean isRoad() {
+        return isRoad;
+    }
+
+    public RigidBodyObject getStreetRB() {
+        if(isRoad){
+            return streetRB;
+        } else {
+            return null;
+        }
+    }
+
+    public Vec2 getPos(){
+        return pointB.getPos().plus(pointA.getPos()).smult(0.5);
+    }
+
+    public double getAngle(){
+        return Math.atan2(getVec().getY(),getVec().getX());
+    }
+
+    public Vec2 getVec(){
+        Vec2 pos1 = pointA.getPos();
+        Vec2 pos2 = pointB.getPos();
+        return pos2.minus(pos1);
+    }
+
     public Vec2 getNormalizedVec(){
         Vec2 pos1 = pointA.getPos();
         Vec2 pos2 = pointB.getPos();
@@ -104,5 +143,15 @@ public class BridgeSupport {
 
     public RealMatrix getJx() {
         return Jx;
+    }
+
+    public void  updateRoadRB (double dt){
+        if (isRoad){
+            //System.out.println(getAngle());
+            streetRB.setAngularVel((getAngle() - streetRB.getTorque()) / dt);
+            streetRB.setVelocity(getPos().minus(streetRB.getPos()).smult(1/dt));
+            streetRB.setTorque(getAngle());
+            streetRB.setPos(getPos());
+        }
     }
 }

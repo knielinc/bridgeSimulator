@@ -3,6 +3,7 @@ package sample;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.MatrixType;
 import javafx.util.Duration;
 import javafx.application.Application;
@@ -13,12 +14,21 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import sample.bridge.Bridge;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Main extends Application {
+    public static int DELAY = 1000/60;
+
     GraphicsContext gc;
     boolean gameStarted = false;
+    long startTime = System.currentTimeMillis();
+    int counterForFps;
+    double fps = 0;
+    final int UPDATE_FPS_COUNTER_STEPS = 100;
+
     @Override
     public void start(Stage theStage) throws Exception{
-
         /*Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Bridges");
         primaryStage.setScene(new Scene(root, 600, 400));
@@ -53,47 +63,55 @@ public class Main extends Application {
         Timeline gameLoop = new Timeline();
         gameLoop.setCycleCount( Timeline.INDEFINITE );
 
+        GameScene myGame = new GameScene();
+
+        counterForFps = UPDATE_FPS_COUNTER_STEPS;
         final long timeStart = System.currentTimeMillis();
+        /*
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
 
-        Bridge testBridge = new Bridge();
-        testBridge.createTestBridge();
+            @Override
+            public void run() {
+                // Clear the canvas
+                //testBridge.draw(gc);
+                myGame.update(0.1);
+                //testBridge.computeTimeStepExplicit(0.5,.001);
+                gc.clearRect(0, 0, 1600,900);
+                myGame.draw(gc);
 
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.003) // 60hz
-                ,(ActionEvent) -> {
-            double t = (System.currentTimeMillis() - timeStart) / 1000.0;
+                if(counterForFps == 0){
+                    fps = ((double) UPDATE_FPS_COUNTER_STEPS * 1000.0/ (double)(System.currentTimeMillis() - startTime));
+                    startTime = System.currentTimeMillis();
+                    counterForFps = UPDATE_FPS_COUNTER_STEPS;
+                } else {
+                    counterForFps--;
+                }
+                gc.setFill(Color.BLACK);
+                gc.fillText("Framerate: " + String.valueOf(Math.floor((fps* 100))/100.0),0,20);
+                // background image clears canvas
+            }
+        }, 0, DELAY); */
 
-            // Clear the canvas
-            gc.clearRect(0, 0, 1600,900);
-
-            //testBridge.draw(gc);
-            testBridge.computeTimeStepImplicit(0.5,.1);
-            testBridge.draw(gc);
-
-            // background image clears canvas
-
-        });
-
-        gameLoop.getKeyFrames().add( kf );
-        gameLoop.play();
-    }
-
-    public void startGame2(){
-        gameStarted = true;
-        Timeline gameLoop = new Timeline();
-        gameLoop.setCycleCount( Timeline.INDEFINITE );
-
-        final long timeStart = System.currentTimeMillis();
-
-        GameScene myScene = new GameScene();
         KeyFrame kf = new KeyFrame(Duration.seconds(0.017) // 60hz
                 ,(ActionEvent) -> {
-            double t = (System.currentTimeMillis() - timeStart) / 1000.0;
-
             // Clear the canvas
             gc.clearRect(0, 0, 1600,900);
+            //testBridge.draw(gc);
+            myGame.update(0.03);
+            //testBridge.computeTimeStepExplicit(0.5,.001);
 
-            myScene.draw(gc);
-            myScene.updateRigidBodies(0.017);
+            myGame.draw(gc);
+
+            if(counterForFps == 0){
+                fps = ((double) UPDATE_FPS_COUNTER_STEPS * 1000.0/ (double)(System.currentTimeMillis() - startTime));
+                startTime = System.currentTimeMillis();
+                counterForFps = UPDATE_FPS_COUNTER_STEPS;
+            } else {
+                counterForFps--;
+            }
+            gc.setFill(Color.BLACK);
+            gc.fillText("Framerate: " + String.valueOf(Math.floor((fps* 100))/100.0),0,20);
             // background image clears canvas
 
         });
@@ -101,6 +119,8 @@ public class Main extends Application {
         gameLoop.getKeyFrames().add( kf );
         gameLoop.play();
     }
+
+
 
 
     public static void main(String[] args) {

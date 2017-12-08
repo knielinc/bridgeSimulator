@@ -135,9 +135,9 @@ public class DrawablePolygon {
         return momentOfInertia;
     }
 
-    public Vec2 GetSupport(Vec2 d) {
+    public Vec2 getSupport(Vec2 d) {
         //Eric rather did work in Distributed than this
-        double highest = Double.MAX_VALUE;
+        double highest = Double.NEGATIVE_INFINITY;
         Vec2 support = new Vec2(0,0);
 
         for (int i = 0; i < numberOfPoints; ++i) {
@@ -151,5 +151,9 @@ public class DrawablePolygon {
         }
 
         return support;
+    }
+
+    public double getMass() {
+        return mass;
     }
 }
