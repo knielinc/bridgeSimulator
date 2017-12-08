@@ -28,7 +28,7 @@ public class BridgeSupport {
         length = first.getPos().minus(second.getPos()).length();
         this.isRoad = isRoad;
         if (this.isRoad){
-            DrawablePolygon street = new DrawablePolygon(new double[]{-length/2.0,-length/4.0,length/4.0,length/2.0,length/4.0,-length/4.0},new double[]{0,-5,-5,0,5,5},6,pointA.getWeight() + pointB.getWeight());
+            DrawablePolygon street = new DrawablePolygon(new double[]{-length/2.0,-length/4.0,length/4.0,length/2.0,length/4.0,-length/4.0},new double[]{0,-5,-5,0,5,5},6,(pointA.getWeight() + pointB.getWeight()) * 10);
             streetRB = new RigidBodyObject(getPos().getX(),getPos().getY(),getAngle(), false, street);
             streetRB.setSupport(this);
         }
@@ -148,8 +148,8 @@ public class BridgeSupport {
     public void  updateRoadRB (double dt){
         if (isRoad){
             //System.out.println(getAngle());
-            streetRB.setAngularVel((getAngle() - streetRB.getTorque()) * dt);
-            streetRB.setVelocity(getPos().minus(streetRB.getPos()).smult(dt));
+            streetRB.setAngularVel((getAngle() - streetRB.getTorque()) / dt);
+            streetRB.setVelocity(getPos().minus(streetRB.getPos()).smult(1/dt));
             streetRB.setTorque(getAngle());
             streetRB.setPos(getPos());
         }

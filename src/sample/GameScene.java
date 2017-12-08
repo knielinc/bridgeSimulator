@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class GameScene {
 
-    private final double PENETRATION_THRESHOLD = .5;
+    private final double PENETRATION_THRESHOLD = 3;
     ArrayList<RigidBodyObject> rigidBodyObjects;
     Bridge myBridge;
     public GameScene(){
@@ -28,23 +28,23 @@ public class GameScene {
         rigidBodyObjects.add(new RigidBodyObject(300,300,Math.toRadians(0),1,false, rectangle));
         */
 
-        /*
+
         DrawablePolygon car = new DrawablePolygon(new double[]{-40.,-30,30,40.,40.,20,-20.,-40.},new double[]{0,-5,-5,0,12,28,28,12},8,10);
         rigidBodyObjects.add(new RigidBodyObject(150,300,Math.toRadians(0),false, car));
         rigidBodyObjects.get(0).setVelocity(new Vec2(8,0));
 
         rigidBodyObjects.add(new RigidBodyObject(600,300,Math.toRadians(0),false, car));
-        rigidBodyObjects.get(1).setVelocity(new Vec2(-8,0));*/
+        rigidBodyObjects.get(1).setVelocity(new Vec2(-8,0));
 
-
-        //DrawablePolygon rectangle = new DrawablePolygon(new double[]{-1000.,1000.,1000.,-1000.},new double[]{-100.,-100.,100.,100.},4,100);
+        /*
+        DrawablePolygon floor = new DrawablePolygon(new double[]{-1000.,1000.,1000.,-1000.},new double[]{-100.,-100.,100.,100.},4,100);
 
         DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,2);
 
-        rigidBodyObjects.add(new RigidBodyObject(450,400,Math.toRadians(0),false, rectangle));
+        rigidBodyObjects.add(new RigidBodyObject(450,400,Math.toRadians(0),false, rectangle));*/
 
 
-        //rigidBodyObjects.add(new RigidBodyObject(350,380,Math.toRadians(0),false, rectangle));
+        //rigidBodyObjects.add(new RigidBodyObject(0,250,Math.toRadians(0),true, floor));
         //rigidBodyObjects.add(new RigidBodyObject(350,300,Math.toRadians(0),false, rectangle));
         //rigidBodyObjects.add(new RigidBodyObject(350,320,Math.toRadians(0),false, rectangle));
         //rigidBodyObjects.add(new RigidBodyObject(350,340,Math.toRadians(0),false, rectangle));
@@ -65,17 +65,17 @@ public class GameScene {
             tmpObject.draw(gc);
         }
 
-        /*
+
         counter++;
         if (rigidBodyObjects.size() < 5 && counter > 100){
-            DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,100);
+            DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,2);
             rigidBodyObjects.add(new RigidBodyObject(350,300,Math.toRadians(0), false, rectangle));
             counter = 0;
-        }*/
+        }
     }
 
     public void update(double dt){
-        updateRigidBodies(dt,.1);
+        updateRigidBodies(dt,1);
         myBridge.computeTimeStepImplicit(0.1,dt);
         //myBridge.collapseBridge(.9);
     }
@@ -167,12 +167,12 @@ public class GameScene {
                                 // r x J = (Jx ray - Jy rax)
 
 
-                                Vec2 n = translationNormal.normalize().smult(-1);
+                                Vec2 n = translationNormal.normalize();
 
                                 double j = (1.0 + e) * vAB1.dot(n) * (-1.0);
 
                                 double denominator;
-                                if (collidesWithStatic) {
+                                if (otherObject.isFixed()) {
                                     denominator = 1.0 / m1 + (rAP.cross(n) * rAP.cross(n)) / Ia;
                                     //denominator = 1.0 / m1 + 1.0 / m2 + (rAP.cross(n) * rAP.cross(n)) / Ia + (rBP.cross(n) * rBP.cross(n)) / Ib;
 
@@ -191,7 +191,12 @@ public class GameScene {
                                 double wA2 = wA1 + tmpObject.getTorqueForForce(rAP, jn) / Ia;//rAP.cross(jn)/Ia;
                                 double wB2 = wB1 - rBP.cross(jn) / Ib;
 
-                                //Vec2 vAB2 = vAP2.minus(vB2);
+                                Vec2 vAP2 = vA2.plus(new Vec2(-wA2 * rAP.getY(), wA2 * rAP.getX()));
+                                Vec2 vBP2 = vB2.plus(new Vec2(-wB2 * rBP.getY(), wB2 * rBP.getX()));
+
+                                Vec2 vAB2 = vAP2.minus(vBP2);
+
+                                //System.out.println("vAB2.dot(n)= " + vAB2.dot(n) + " , vAB1.dot(n) * -e = " + vAB1.dot(n) * -e);
                                 //double lhs = translationNormal.dot(vAB2);
                                 double rhs = translationNormal.dot(vAB1) * (-e);
 
@@ -200,27 +205,22 @@ public class GameScene {
                                 tmpObject.setAngularVel(wA2);
 
                                 if (tmpObject.getPos().minus(tmpObject.getPos().plus(tmpObject.getVelocity()).plus(translationVec)).length() > 50) {
-                                    System.out.println("CAAARE");
+                                    //System.out.println("CAAARE");
                                 }
 
                                 tmpObject.updatePos(dt);
                                 if(translationVec.length() > 0) {
-                                    tmpObject.setPos(tmpObject.getPos().plus(translationVec.normalize().smult(translationVec.length() - PENETRATION_THRESHOLD)));
+                                    tmpObject.setPos(tmpObject.getPos().plus(translationVec.normalize().smult(translationVec.length() - PENETRATION_THRESHOLD/2.0)));
                                 }
                                 //System.out.println(translationVec);
                                 tmpObject.updateTorque(dt);
 
-                                if (!collidesWithStatic && !otherObject.isFixed()) {
+                                if (!otherObject.isFixed() && !otherObject.isPartOfBridge()) {
                                     otherObject.setVelocity(vB2);
                                     otherObject.setAngularVel(wB2);
-                                    //otherSupport.getPointA().setVelocity(vB2);
-                                    //otherSupport.getPointB().setVelocity(vB2);
-
-
-
-                                    //otherObject.updatePos(dt);
-                                    //otherObject.updateTorque(dt);
                                 }
+
+                                tmpObject.setRestCollisionForce(translationNormal.smult(50));
 
                                 if(otherObject.isPartOfBridge()){
                                     //apply impulse on BridgeSupport, by computing the velocity changes of the BridgeSupportAnchorPoints
@@ -231,15 +231,17 @@ public class GameScene {
                                     Vec2 velB = pointB.getVelocity();
 
                                     //vec from origin to B
-                                    Vec2 oa = otherObject.getPos().minus(pointA.getPos());
-                                    Vec2 ob = otherObject.getPos().minus(pointA.getPos());
+                                    Vec2 oa = otherObject.getPos().minus(pointA.getPos()).smult(-1);
+                                    Vec2 ob = otherObject.getPos().minus(pointB.getPos()).smult(-1);
 
 
                                     Vec2 vAPA = vB2.plus(new Vec2(-wB2 * oa.getY(), wB2 * oa.getX()));
                                     Vec2 vAPB = vB2.plus(new Vec2(-wB2 * ob.getY(), wB2 * ob.getX()));
 
-                                    pointA.setVelocity(pointA.getVelocity().plus(vAPA));
-                                    pointB.setVelocity(pointB.getVelocity().plus(vAPB));
+                                    pointA.setVelocity(vAPA);
+                                    pointB.setVelocity(vAPB);
+
+
 
                                     //use vB2 and wB2
                                 }
@@ -307,8 +309,10 @@ public class GameScene {
 
                                 if(otherObject.isPartOfBridge()){
                                     //TODO LOCAL COORDINATES INSTEAD OF MIDDLE
-                                    otherObject.getSupport().getPointA().setAppliedForces(forceY.smult(-5));
-                                    otherObject.getSupport().getPointB().setAppliedForces(forceY.smult(-5));
+                                    otherObject.getSupport().getPointA().setAppliedForces(forceY.smult(-.5));
+                                    otherObject.getSupport().getPointB().setAppliedForces(forceY.smult(-.5));
+                                    if(0.5 < forceY.smult(-1).getY())
+                                        System.out.println(forceY.smult(-1).getY());
                                 }
 
                                 tmpObject.updatePos(dt);
@@ -320,41 +324,9 @@ public class GameScene {
                         }
                     }
 
-//                force = new Vec2(0.001,.002);
-//                if(0 != translationNormal.length()) {
-//                    force = translationNormal.normalize().smult(tmpObject.getMass() * 9.81 * dt);
-//                }
-//                 /* for the lulz
-//                double torque = Math.random() * Math.PI;
-//
-//                double x = Math.cos(torque) * relForcePos.getX() + Math.sin(torque) * relForcePos.getY();
-//                double y = -1 * Math.sin(torque) * relForcePos.getX() + Math.cos(torque) * relForcePos.getY();
-//
-//                relForcePos = new Vec2(x,y);
-//                 end of lulz */
-//
-//                tmpObject.setAngularVel(tmpObject.getAngularVel() + tmpObject.computeAngularAccel(rAP,force) * dt);
-//                tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(force).smult(dt)));
-//                //tmpObject.setVelocity(tmpObject.getVelocity().mul(new Vec2(1,0)).plus(new Vec2(0,.1)));
-//                //tmpObject.setVelocity(tmpObject.getVelocity().mul(new Vec2(1,0)).plus(new Vec2(0,.1)));
-//                Vec2 positionBeforeCollision = tmpObject.getPos();
-//
-//
-//
-//                Vec2 correctionNormal = new Vec2(translationNormal.getY(),translationNormal.getX() * -1);
-//                if(0 != (correctionNormal.smult(correctionNormal.dot(tmpObject.getVelocity())).length())){
-//                    correctionNormal = correctionNormal.normalize();
-//                    tmpObject.setVelocity(correctionNormal.smult(correctionNormal.dot(tmpObject.getVelocity())));
-//                }
-//                tmpObject.setPos(tmpObject.getPos().plus(tmpObject.getVelocity().smult(dt)).plus(translationNormal));
-//
-//                tmpObject.setTorque(tmpObject.getTorque() + tmpObject.getAngularVel() * dt);
-//                //System.out.println(tmpObject.getPos());
-
-
                 } else {
                     //force = new Vec2(0.001,-.01);
-                    forceOnObject = new Vec2(tmpObject.getMass() * 5 * dt, -tmpObject.getMass() * 9.81 * dt);
+                    forceOnObject = new Vec2(tmpObject.getMass() * 2, -tmpObject.getMass() * 9.81);
 
                     tmpObject.setAngularVel(tmpObject.getAngularVel() + tmpObject.computeAngularAccel(rAP, forceOnObject) * dt);
                     tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(forceOnObject).smult(dt)));
@@ -376,36 +348,6 @@ public class GameScene {
                         currSupport.updateRoadRB(dt);
                     }
                 }
-
-
-
-            /*
-            Vec2 p = tmpObject.getPos().minus(new Vec2(150,200));
-            Vec2 correctedPosition = p.normalize().smult(50).minus(p).plus(tmpObject.getPos());
-
-            tmpObject.setPos(correctedPosition);
-
-            double mass = tmpObject.getMass();
-
-            Vec2 fext = tmpObject.getPos().minus(new Vec2(150,200));
-            fext.setPos(fext.getY(),-1 * fext.getX());
-            fext = fext.normalize().smult(0.00001);
-
-            //testing out simple constraint solver with distance preserving constrained for 1 particle
-
-            Vec2 pdot = tmpObject.getVelocity();
-            double lambda = fext.smult(-1).dot(p) - pdot.smult(mass).dot(pdot) / (p.dot(p));
-            Vec2 fc = p.smult(lambda);
-            Vec2 relForcePos = new Vec2(0,0);
-
-            //fc = Vec2.VEC_ZERO;
-
-            //testing custom 2.nd constraint rule
-            tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(fc.plus(fext))));
-            tmpObject.setPos(tmpObject.getPos().plus(tmpObject.getVelocity()));
-            System.out.println(tmpObject.getPos());
-            */
-
 
             }
         }
