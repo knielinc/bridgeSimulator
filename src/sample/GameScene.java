@@ -3,6 +3,7 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import sample.bridge.Bridge;
 import sample.bridge.BridgeSupport;
+import sample.bridge.BridgeSupportAnchorPoint;
 import sample.rigidbodies.DrawablePolygon;
 import sample.rigidbodies.RigidBodyObject;
 import sample.utils.HelperClass;
@@ -27,20 +28,20 @@ public class GameScene {
         rigidBodyObjects.add(new RigidBodyObject(300,300,Math.toRadians(0),1,false, rectangle));
         */
 
-
+        /*
         DrawablePolygon car = new DrawablePolygon(new double[]{-40.,-30,30,40.,40.,20,-20.,-40.},new double[]{0,-5,-5,0,12,28,28,12},8,10);
         rigidBodyObjects.add(new RigidBodyObject(150,300,Math.toRadians(0),false, car));
         rigidBodyObjects.get(0).setVelocity(new Vec2(8,0));
 
         rigidBodyObjects.add(new RigidBodyObject(600,300,Math.toRadians(0),false, car));
-        rigidBodyObjects.get(1).setVelocity(new Vec2(-8,0));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(-8,0));*/
 
 
         //DrawablePolygon rectangle = new DrawablePolygon(new double[]{-1000.,1000.,1000.,-1000.},new double[]{-100.,-100.,100.,100.},4,100);
 
-        DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,100);
+        DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,2);
 
-        //rigidBodyObjects.add(new RigidBodyObject(0,150,Math.toRadians(0),true, rectangle));
+        rigidBodyObjects.add(new RigidBodyObject(450,400,Math.toRadians(0),false, rectangle));
 
 
         //rigidBodyObjects.add(new RigidBodyObject(350,380,Math.toRadians(0),false, rectangle));
@@ -104,6 +105,7 @@ public class GameScene {
 
                 for (BridgeSupport currSupport : myBridge.getSupports()) {
                     if (currSupport.isRoad()) {
+                        //currSupport.updateRoadRB(dt);
                         if (HelperClass.gjk(tmpObject, currSupport.getStreetRB())) {
                             //otherSupport = currSupport;
                             otherObjects.add(currSupport.getStreetRB());
@@ -215,9 +217,34 @@ public class GameScene {
                                     //otherSupport.getPointB().setVelocity(vB2);
 
 
-                                    otherObject.updatePos(dt);
-                                    otherObject.updateTorque(dt);
+
+                                    //otherObject.updatePos(dt);
+                                    //otherObject.updateTorque(dt);
                                 }
+
+                                if(otherObject.isPartOfBridge()){
+                                    //apply impulse on BridgeSupport, by computing the velocity changes of the BridgeSupportAnchorPoints
+                                    BridgeSupportAnchorPoint pointA = otherObject.getSupport().getPointA();
+                                    BridgeSupportAnchorPoint pointB = otherObject.getSupport().getPointB();
+
+                                    Vec2 velA = pointA.getVelocity();
+                                    Vec2 velB = pointB.getVelocity();
+
+                                    //vec from origin to B
+                                    Vec2 oa = otherObject.getPos().minus(pointA.getPos());
+                                    Vec2 ob = otherObject.getPos().minus(pointA.getPos());
+
+
+                                    Vec2 vAPA = vB2.plus(new Vec2(-wB2 * oa.getY(), wB2 * oa.getX()));
+                                    Vec2 vAPB = vB2.plus(new Vec2(-wB2 * ob.getY(), wB2 * ob.getX()));
+
+                                    pointA.setVelocity(pointA.getVelocity().plus(vAPA));
+                                    pointB.setVelocity(pointB.getVelocity().plus(vAPB));
+
+                                    //use vB2 and wB2
+                                }
+
+
                             } else {
 
 
@@ -235,8 +262,8 @@ public class GameScene {
                                 Vec2 vAB1 = vAP1.minus(vBP1);
 
                                 //force applied
-                                Vec2 appliedGravityForce = new Vec2(0, -tmpObject.getMass() * 9.81 * dt);
-                                Vec2 gravityForce = new Vec2(0, -tmpObject.getMass() * 9.81 * dt);
+                                Vec2 gravityForce = new Vec2(5 * dt, -tmpObject.getMass() * 9.81 * dt);
+
 
 
                                 translationNormal = translationNormal.normalize();
@@ -278,7 +305,11 @@ public class GameScene {
                                     tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(forceY).smult(dt)));
                                 }
 
-
+                                if(otherObject.isPartOfBridge()){
+                                    //TODO LOCAL COORDINATES INSTEAD OF MIDDLE
+                                    otherObject.getSupport().getPointA().setAppliedForces(forceY.smult(-5));
+                                    otherObject.getSupport().getPointB().setAppliedForces(forceY.smult(-5));
+                                }
 
                                 tmpObject.updatePos(dt);
                                 tmpObject.updateTorque(dt);
@@ -323,7 +354,7 @@ public class GameScene {
 
                 } else {
                     //force = new Vec2(0.001,-.01);
-                    forceOnObject = new Vec2(0, -tmpObject.getMass() * 9.81 * dt);
+                    forceOnObject = new Vec2(tmpObject.getMass() * 5 * dt, -tmpObject.getMass() * 9.81 * dt);
 
                     tmpObject.setAngularVel(tmpObject.getAngularVel() + tmpObject.computeAngularAccel(rAP, forceOnObject) * dt);
                     tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(forceOnObject).smult(dt)));
@@ -340,7 +371,11 @@ public class GameScene {
 
 
 
-
+                for (BridgeSupport currSupport : myBridge.getSupports()) {
+                    if (currSupport.isRoad()) {
+                        currSupport.updateRoadRB(dt);
+                    }
+                }
 
 
 

@@ -16,9 +16,11 @@ public class BridgeSupportAnchorPoint {
     private Vec2 force = Vec2.VEC_ZERO;
     private ArrayList<BridgeSupport> supports;
     private boolean isFixed;
+    private Vec2 appliedForces;
 
     BridgeSupportAnchorPoint(double x, double y, double weight, boolean fixed){
-        force = Vec2.VEC_ZERO;
+        appliedForces = new Vec2(0,0);
+        force = new Vec2(0,0);
         pos = new Vec2(x,y);
         velocity = new Vec2(0,0);
 
@@ -115,5 +117,21 @@ public class BridgeSupportAnchorPoint {
         if(!isFixed) {
             this.force = force;
         }
+    }
+
+    public void setAppliedForces(Vec2 appliedForces) {
+        this.appliedForces = appliedForces;
+    }
+
+    public Vec2 getAppliedForces() {
+        return appliedForces;
+    }
+
+    public void clearAppliedForces(){
+        this.appliedForces = new Vec2(0,0);
+    }
+
+    public void addAppliedForce(Vec2 inForce){
+        this.appliedForces = this.appliedForces.plus(inForce);
     }
 }

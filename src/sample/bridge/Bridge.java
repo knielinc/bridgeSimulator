@@ -425,8 +425,14 @@ public class Bridge {
         }
 
         for (BridgeSupportAnchorPoint currPoint : bridgeSupportAnchorPoints) {
+            int indexX = currPoint.getMyIndex() * 2;
             int indexY = currPoint.getMyIndex() * 2 + 1;
-            out.setEntry(indexY, out.getEntry(indexY) - 9.81 * currPoint.getWeight());
+
+            out.setEntry(indexX, out.getEntry(indexX) + currPoint.getAppliedForces().getX());
+            out.setEntry(indexY, out.getEntry(indexY) - 9.81 * currPoint.getWeight() + currPoint.getAppliedForces().getY());
+
+            currPoint.clearAppliedForces();
+
             // Additional force for collision with ground
             double kr_ = 100;
             if (currPoint.getPos().getY() < -1)

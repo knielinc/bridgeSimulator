@@ -3,6 +3,7 @@ package sample.rigidbodies;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import sample.Vec2;
+import sample.bridge.BridgeSupport;
 
 public class RigidBodyObject extends Particle{
     double angularVel;
@@ -12,9 +13,14 @@ public class RigidBodyObject extends Particle{
     Vec2 collisionPoint;
     Vec2 collisionCorrectionVec;
     Vec2 restCollisionForce;
+    boolean partOfBridge;
+    BridgeSupport support;
 
     public RigidBodyObject(double x, double y, double torque, boolean fixed, DrawablePolygon polygon) {
         super(x, y, polygon.getMass(), fixed);
+        partOfBridge = false;
+        this.support = null;
+
         angularVel = 0;
         this.polygon = polygon;
         this.torque = torque;
@@ -46,11 +52,12 @@ public class RigidBodyObject extends Particle{
             gc.strokeLine(collisionPoint.getX(), maxY - collisionPoint.getY(), collisionPoint.getX() + collisionCorrectionVec.getX(), maxY - (collisionCorrectionVec.getY() + collisionPoint.getY()));
         }
 
+        /*
         if (collisionPoint != null && restCollisionForce != null) {
             gc.setStroke(Color.BLUE);
             gc.setLineWidth(3);
             gc.strokeLine(collisionPoint.getX(), maxY - collisionPoint.getY(), collisionPoint.getX() + restCollisionForce.getX(), maxY - (restCollisionForce.getY() + collisionPoint.getY()));
-        }
+        }*/
 
         gc.setStroke(Color.BLUE);
         gc.setLineWidth(3);
@@ -149,5 +156,22 @@ public class RigidBodyObject extends Particle{
 
     public void setRestCollisionForce(Vec2 restCollisionForce) {
         this.restCollisionForce = restCollisionForce;
+    }
+
+    public void setPartOfBridge(boolean partOfBridge) {
+        this.partOfBridge = partOfBridge;
+    }
+
+    public boolean isPartOfBridge() {
+        return partOfBridge;
+    }
+
+    public void setSupport(BridgeSupport support) {
+        partOfBridge = true;
+        this.support = support;
+    }
+
+    public BridgeSupport getSupport() {
+        return support;
     }
 }
