@@ -10,6 +10,14 @@ public class RigidBodyObject extends Particle{
     DrawablePolygon polygon;
     double momentOfInertia;
     double torque;
+
+    double prevTorque;
+    Vec2 prevPos;
+    Vec2 prevVel;
+
+    double prevAngularVel;
+
+
     Vec2 collisionPoint;
     Vec2 collisionCorrectionVec;
     Vec2 restCollisionForce;
@@ -25,6 +33,11 @@ public class RigidBodyObject extends Particle{
         this.polygon = polygon;
         this.torque = torque;
         this.momentOfInertia = polygon.getMomentOfInertia();
+
+        prevAngularVel = getAngularVel();
+        prevPos = getPos();
+        prevTorque = getTorque();
+        prevVel = getVelocity();
     }
 
     @Override
@@ -174,5 +187,38 @@ public class RigidBodyObject extends Particle{
 
     public BridgeSupport getSupport() {
         return support;
+    }
+
+    public double getPrevTorque() {
+        return prevTorque;
+    }
+
+
+    public void setPrevTorque(double prevTorque) {
+        this.prevTorque = prevTorque;
+    }
+
+    public Vec2 getPrevPos() {
+        return prevPos;
+    }
+
+    public void setPrevPos(Vec2 prevPos) {
+        this.prevPos = prevPos;
+    }
+
+    public Vec2 getPrevVel() {
+        return prevVel;
+    }
+
+    public void setPrevVel(Vec2 prevVel) {
+        this.prevVel = prevVel;
+    }
+
+    public double getPrevAngularVel() {
+        return prevAngularVel;
+    }
+
+    public void setPrevAngularVel(double prevAngularVel) {
+        this.prevAngularVel = prevAngularVel;
     }
 }
