@@ -51,14 +51,14 @@ public class RigidBodyObject extends Particle{
         gc.rotate(getTorqueInDegrees());
         gc.translate(-getxPos(),getyPos()-maxY);
         //gc.fillOval(getxPos(),maxY-getyPos(),5,5);
-
+        /*
         //draw collisionPoints
         if (collisionPoint != null && collisionCorrectionVec != null) {
-            /*gc.setFill(Color.WHITE);
+            gc.setFill(Color.WHITE);
             gc.fillRect(collisionPoint.getX() - 5, maxY - collisionPoint.getY() - 5, 10, 10);
             gc.setStroke(Color.BLACK);
             gc.setLineWidth(1);
-            gc.strokeRect(collisionPoint.getX() - 5, maxY - collisionPoint.getY() - 5, 10, 10);*/
+            gc.strokeRect(collisionPoint.getX() - 5, maxY - collisionPoint.getY() - 5, 10, 10);
 
             gc.setStroke(Color.RED);
             gc.setLineWidth(3);
@@ -76,7 +76,7 @@ public class RigidBodyObject extends Particle{
         gc.setLineWidth(3);
 
         gc.strokeLine(getxPos(), maxY - getyPos(), getxPos() + getVelocity().getX(), maxY - (getVelocity().getY() + getyPos()));
-
+        */
         collisionPoint = null;
 
 
