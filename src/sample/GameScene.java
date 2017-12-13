@@ -13,15 +13,50 @@ import java.util.ArrayList;
 public class GameScene {
 
     private final double PENETRATION_THRESHOLD = 1;
+
     ArrayList<RigidBodyObject> rigidBodyObjects;
     Bridge myBridge;
 
-    Vec2 GLOVALGRAVITY = new Vec2(1, - 9.81);
+    double GLOBAL_BOUNCINESS = 0.2;
+    Vec2 GLOBAL_GRAVITY = new Vec2(1, - 9.81);
+    boolean GLOBAL_BREAKABLE_BRIDGE = false;
+    double GLOBAL_COLLAPSING_THRESHOLD = 1.2;
 
     public GameScene(){
         rigidBodyObjects = new ArrayList<>();
+
+        init2();
+    }
+
+    //2 cars colliding
+    public void init0(){
+        DrawablePolygon car = new DrawablePolygon(new double[]{-40.,-30,30,40.,40.,20,-20.,-40.},new double[]{0,-5,-5,0,12,28,28,12},8,10);
+        rigidBodyObjects.add(new RigidBodyObject(150,300,Math.toRadians(0),false, car));
+        rigidBodyObjects.get(0).setVelocity(new Vec2(12,0));
+
+        rigidBodyObjects.add(new RigidBodyObject(600,300,Math.toRadians(0),false, car));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(-12,0));
+        GLOBAL_GRAVITY = new Vec2(0,0);
+        GLOBAL_BOUNCINESS = .9;
+    }
+
+    //samplebridge without breaking
+    public void init1(){
+        myBridge = new Bridge();
+        myBridge.createTestBridge2();
+    }
+
+    //samplebridge with breaking
+    public void init2(){
+        myBridge = new Bridge();
+        myBridge.createTestBridge2();
+        GLOBAL_BREAKABLE_BRIDGE = true;
+    }
+
+    //fancyBridge with RigidBodies without Breaking
+    public void init3(){
         /*
-        DrawablePolygon car = new DrawablePolygon(new double[]{-10.,10.,10.,5,-5.,-10.},new double[]{0,0,3,7,7,3},6,1);
+        DrawablePolygon smallcar = new DrawablePolygon(new double[]{-10.,10.,10.,5,-5.,-10.},new double[]{0,0,3,7,7,3},6,1);
         DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,1);
 
         rigidBodyObjects.add(new RigidBodyObject(100,300,Math.toRadians(0),1,false, car));
@@ -39,47 +74,37 @@ public class GameScene {
         rigidBodyObjects.add(new RigidBodyObject(600,300,Math.toRadians(0),false, car));
         rigidBodyObjects.get(1).setVelocity(new Vec2(-5,0));
 
-        /*
-        DrawablePolygon floor = new DrawablePolygon(new double[]{-1000.,1000.,1000.,-1000.},new double[]{-100.,-100.,100.,100.},4,100);
-
-        DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,2);
-
-        rigidBodyObjects.add(new RigidBodyObject(450,400,Math.toRadians(0),false, rectangle));*/
-
-
-        //rigidBodyObjects.add(new RigidBodyObject(0,250,Math.toRadians(0),true, floor));
-        //rigidBodyObjects.add(new RigidBodyObject(350,300,Math.toRadians(0),false, rectangle));
-        //rigidBodyObjects.add(new RigidBodyObject(350,320,Math.toRadians(0),false, rectangle));
-        //rigidBodyObjects.add(new RigidBodyObject(350,340,Math.toRadians(0),false, rectangle));
-        //rigidBodyObjects.add(new RigidBodyObject(350,360,Math.toRadians(0),false, rectangle));
-
 
         myBridge = new Bridge();
-        myBridge.createTestBridge();
-
-
-
+        myBridge.createTestBridge1();
     }
+
+
     private int counter = 0;
     public void draw(GraphicsContext gc){
-        myBridge.draw(gc);
+        if(myBridge != null) {
+            myBridge.draw(gc);
+        }
 
         for(RigidBodyObject tmpObject:rigidBodyObjects){
             tmpObject.draw(gc);
         }
-
-
-        counter++;
-        if (rigidBodyObjects.size() < 5 && counter > 100){
-            DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,2);
-            rigidBodyObjects.add(new RigidBodyObject(350,300,Math.toRadians(0), false, rectangle));
-            counter = 0;
-        }
     }
 
     public void update(double dt){
-        updateRigidBodies(dt,.1);
-        myBridge.computeTimeStepImplicit(0.1,dt);
+        updateRigidBodies(dt,GLOBAL_BOUNCINESS);
+        if(myBridge != null) {
+            myBridge.computeTimeStepImplicit(0.1, dt);
+            for (BridgeSupport currSupport : myBridge.getSupports()) {
+                if (currSupport.isRoad()) {
+                    currSupport.updateRoadRB(dt);
+                }
+            }
+
+            if(GLOBAL_BREAKABLE_BRIDGE){
+                myBridge.collapseBridge(GLOBAL_COLLAPSING_THRESHOLD);
+            }
+        }
         //myBridge.collapseBridge(.9);
     }
 
@@ -106,18 +131,19 @@ public class GameScene {
 
                 boolean collidesWithStatic = true;
 
-                for (BridgeSupport currSupport : myBridge.getSupports()) {
-                    if (currSupport.isRoad()) {
-                        //currSupport.updateRoadRB(dt);
-                        if (HelperClass.gjk(tmpObject, currSupport.getStreetRB())) {
-                            //otherSupport = currSupport;
-                            otherObjects.add(currSupport.getStreetRB());
-                            collides = true;
-                            //currSupport.getPointA().setVelocity(currSupport.getPointA().getVelocity().plus(new Vec2(0,-.5)));
-                            //currSupport.getPointB().setVelocity(currSupport.getPointB().getVelocity().plus(new Vec2(0,-.5)));
+                if(myBridge!= null) {
+                    for (BridgeSupport currSupport : myBridge.getSupports()) {
+                        if (currSupport.isRoad()) {
+                            //currSupport.updateRoadRB(dt);
+                            if (HelperClass.gjk(tmpObject, currSupport.getStreetRB())) {
+                                //otherSupport = currSupport;
+                                otherObjects.add(currSupport.getStreetRB());
+                                collides = true;
+                                //currSupport.getPointA().setVelocity(currSupport.getPointA().getVelocity().plus(new Vec2(0,-.5)));
+                                //currSupport.getPointB().setVelocity(currSupport.getPointB().getVelocity().plus(new Vec2(0,-.5)));
+                            }
                         }
                     }
-
                 }
 
                 for (RigidBodyObject currObject : rigidBodyObjects) {
@@ -265,7 +291,7 @@ public class GameScene {
                                 Vec2 vAB1 = vAP1.minus(vBP1);
 
                                 //force applied
-                                Vec2 gravityForce = GLOVALGRAVITY.smult(tmpObject.getMass());
+                                Vec2 gravityForce = GLOBAL_GRAVITY.smult(tmpObject.getMass());
 
                                 translationNormal = translationNormal.normalize();
 
@@ -332,7 +358,7 @@ public class GameScene {
 
                 } else {
                     //force = new Vec2(0.001,-.01);
-                    forceOnObject = GLOVALGRAVITY.smult(tmpObject.getMass());
+                    forceOnObject = GLOBAL_GRAVITY.smult(tmpObject.getMass());
 
                     tmpObject.setAngularVel(tmpObject.getAngularVel() + tmpObject.computeAngularAccel(rAP, forceOnObject) * dt);
                     tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(forceOnObject).smult(dt)));
@@ -343,17 +369,10 @@ public class GameScene {
                 }
 
                 if (tmpObject.getxPos() > 700 || tmpObject.getyPos() < 0 || tmpObject.getxPos() < 0) {
-                    tmpObject.setPos(new Vec2(200, 300));
+                    tmpObject.setPos(new Vec2(100, 250));
                     tmpObject.setVelocity(new Vec2(10, tmpObject.getVelocity().getY()));
                 }
 
-
-
-                for (BridgeSupport currSupport : myBridge.getSupports()) {
-                    if (currSupport.isRoad()) {
-                        currSupport.updateRoadRB(dt);
-                    }
-                }
 
                 for(RigidBodyObject currBody:rigidBodyObjects){
                     currBody.updatePos(dt);
