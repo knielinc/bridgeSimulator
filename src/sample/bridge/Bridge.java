@@ -423,7 +423,7 @@ public class Bridge {
         addSupport(rampOffset2+5, rampOffset2+6, false);
         addSupport(rampOffset2+5, rampOffset2+7, true);
         // upper bridge pt.2, which is part1 mirrored
-        int rampOffset3=rampOffset2+8; int xOffset3=xOffset1+2*abs(xOffset2-xOffset1); int yTop3=yTop2;
+        int rampOffset3=rampOffset2+8; int xOffset3=xOffset1+400; int yTop3=yTop2;
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset3, yTop3 -80, false)); // 0
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset3, yTop3-40, false)); // 1
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset3,   yTop3, true)); // 2
@@ -445,17 +445,18 @@ public class Bridge {
         addSupport(rampOffset3+5, rampOffset3+7, true);
 
         // a garage extension to catch the car better
-        int garageOffset=rampOffset3+8; int xOffset4=xOffset3+200;
+        int garageOffset=rampOffset3+8; int xOffset4=xOffset3+150;
+        int garageHeight = 70;
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset4, 0, true)); // 0
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset4, 60, true)); // 1
-        int xRightEnd = 800;
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xRightEnd, 60, true)); // 2
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset4, garageHeight, true)); // 1
+        int xRightEnd = 710;
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xRightEnd-20, garageHeight, true)); // 2
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xRightEnd, 0, true)); // 3
+
         // supports for the garage
         addSupport(garageOffset+0, garageOffset+1, false);
         addSupport(garageOffset+1, garageOffset+2, true);
         addSupport(garageOffset+2, garageOffset+3, true);
-
 
     }
 

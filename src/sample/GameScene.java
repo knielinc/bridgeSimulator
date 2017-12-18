@@ -194,10 +194,10 @@ public class GameScene {
 
         DrawablePolygon car2 = createCarCollBoxWithSizeAndWeight(1.5, 5);
         rigidBodyObjects.add(new RigidBodyObject(0,0,Math.toRadians(0),false, car2, carImage));
-        rigidBodyObjects.get(i).setVelocity(new Vec2(100,0));
+        rigidBodyObjects.get(i).setVelocity(new Vec2(80,0));
         i++;
 
-        GLOBAL_GRAVITY = new Vec2(50,-9.81);
+        GLOBAL_GRAVITY = new Vec2(20,-9.81);
 
 
         myBridge = new Bridge();

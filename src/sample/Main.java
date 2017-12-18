@@ -178,7 +178,7 @@ public class Main extends Application {
                 "4 : more sophisticated bridge with a car with breaking enabled\n" +
                 "5 : more sophisticated bridge with a truck with breaking enabled\n" +
                 "6 : a car and a truck interacting with a seesaw and a freely swinging bridge-element\n" +
-                "7 : TODO\n" +
+                "7 : TODO: a car that causes the streets to collapse in its trail\n" +
                 "8 : TODO\n" +
                 "9 : TODO\n\n" +
                 "press Esc to go back to this selection screen\n\n" +
