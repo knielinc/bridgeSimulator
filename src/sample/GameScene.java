@@ -43,13 +43,13 @@ public class GameScene {
         truck1.setImgDrawable(truckImage);
 
         rigidBodyObjects.add(truck1);
-        rigidBodyObjects.get(0).setVelocity(new Vec2(12,0));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(12,0));
 
         RigidBodyObject truck2 = new RigidBodyObject(600,300, Math.toRadians(0),false, carCollBox);
         truck2.setImgDrawable(carImage);
 
         rigidBodyObjects.add(truck2);
-        rigidBodyObjects.get(1).setVelocity(new Vec2(-12,0));
+        rigidBodyObjects.get(2).setVelocity(new Vec2(-12,0));
 
         GLOBAL_GRAVITY = new Vec2(0,0);
         GLOBAL_BOUNCINESS = .9;
@@ -83,7 +83,7 @@ public class GameScene {
 
 
         rigidBodyObjects.add(new RigidBodyObject(100,250,Math.toRadians(0),false, carCollBox,carImage));
-        rigidBodyObjects.get(0).setVelocity(new Vec2(5,0));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(5,0));
 
 
         myBridge = new Bridge();
@@ -107,10 +107,10 @@ public class GameScene {
 
 
         rigidBodyObjects.add(new RigidBodyObject(130,230,Math.toRadians(0),false, truckCollBox,truckImage));
-        rigidBodyObjects.get(0).setVelocity(new Vec2(5,0));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(5,0));
 
         rigidBodyObjects.add(new RigidBodyObject(300,230,Math.toRadians(0),false, truckCollBox,truckImage));
-        rigidBodyObjects.get(0).setVelocity(new Vec2(5,0));
+        rigidBodyObjects.get(2).setVelocity(new Vec2(50,0));
 
         myBridge = new Bridge();
         myBridge.createTestBridge1();
