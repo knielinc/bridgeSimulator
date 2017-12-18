@@ -13,11 +13,19 @@ import java.util.ArrayList;
 
 public class GameScene {
 
-    private DrawablePolygon carCollBox = new DrawablePolygon(new double[]{-20,-15,15,20,17,3,-10,-15,-18},new double[]{0,-5,-5,0,4,12,12,10,5},9,2);
     private Image carImage = new Image("file:res/Car.png");
+    private Image truckImage = new Image("file:res/Truck.png");
+
+    private DrawablePolygon carCollBox = new DrawablePolygon(new double[]{-20,-15,15,20,17,3,-10,-15,-18},new double[]{0,-5,-5,0,4,12,12,10,5},9,2);
+    private DrawablePolygon createCarCollBoxWithSizeAndWeight(double size, double weight){
+        return new DrawablePolygon(new double[]{-20*size,-15*size,15*size,20*size,17*size,3*size,-10*size,-15*size,-18*size},new double[]{0*size,-5*size,-5*size,0*size,4*size,12*size,12*size,10*size,5*size},9,weight);
+    }
 
     private DrawablePolygon truckCollBox = new DrawablePolygon(new double[]{-25,-10,15,25,25,10,-25},new double[]{0,-5,-5,0,10,20,20},7,3.9);
-    private Image truckImage = new Image("file:res/Truck.png");
+
+    private DrawablePolygon createTruckCollBoxWithSizeAndWeight(double size, double weight){
+        return new DrawablePolygon(new double[]{-25*size,-10*size,15*size,25*size,25*size,10*size,-25*size},new double[]{0*size,-5*size,-5*size,0*size,10*size,20*size,20*size},7,weight);
+    }
 
     private final double PENETRATION_THRESHOLD = 1;
 
@@ -110,7 +118,7 @@ public class GameScene {
         rigidBodyObjects.get(1).setVelocity(new Vec2(5,0));
 
         rigidBodyObjects.add(new RigidBodyObject(300,230,Math.toRadians(0),false, truckCollBox,truckImage));
-        rigidBodyObjects.get(2).setVelocity(new Vec2(50,0));
+        rigidBodyObjects.get(2).setVelocity(new Vec2(10,0));
 
         myBridge = new Bridge();
         myBridge.createTestBridge1();
