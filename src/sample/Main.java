@@ -171,7 +171,8 @@ public class Main extends Application {
         setBackground(0);
         gc.drawImage(background,0,0,800,450);
 
-        gc.fillText("Choose a Scene to be played, by pressing a number 0-9\n\n" +
+        gc.fillText("choose a scene to be played, by pressing a number 0-9\n\n" +
+                "0 : bunch of bouncy rigidbodies with gravity" +
                 "1 : 2 rigidbodies colliding with no gravity\n" +
                 "2 : simple bridge without breaking\n" +
                 "3 : simple bridge with breaking\n" +
