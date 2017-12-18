@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
 
+import static java.lang.Math.abs;
+
 public class Bridge {
     private ArrayList<BridgeSupport> supports;
     private ArrayList<BridgeSupportAnchorPoint> bridgeSupportAnchorPoints;
@@ -400,7 +402,7 @@ public class Bridge {
 
 
         // upper bridge pt.1
-        int rampOffset2=10; int xOffset2=xOffset1+163; int yTop2=300;
+        int rampOffset2=rampOffset1+10; int xOffset2=xOffset1+162; int yTop2=300;
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(0+xOffset2, yTop2 -80, false)); // 0
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(0+xOffset2, yTop2-40, false)); // 1
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(0+xOffset2, yTop2, true)); // 2
@@ -408,6 +410,7 @@ public class Bridge {
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(40+xOffset2, yTop2, true));  // 4
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(80+xOffset2, yTop2-20, false));  // 5
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(80+xOffset2, yTop2, true));  // 6
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(120+xOffset2, yTop2, true));  // 7
         // upper bridge pt.1 supports
         addSupport(rampOffset2+0, rampOffset2+1, true);
         addSupport(rampOffset2+0, rampOffset2+3, true);
@@ -418,6 +421,28 @@ public class Bridge {
         addSupport(rampOffset2+3, rampOffset2+5, true);
         addSupport(rampOffset2+4, rampOffset2+5, false);
         addSupport(rampOffset2+5, rampOffset2+6, false);
+        addSupport(rampOffset2+5, rampOffset2+7, true);
+        // upper bridge pt.2, which is part1 mirrored
+        int rampOffset3=rampOffset2+8; int xOffset3=xOffset1+2*abs(xOffset2-xOffset1); int yTop3=yTop2;
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset3, yTop3 -80, false)); // 0
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset3, yTop3-40, false)); // 1
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset3,   yTop3, true)); // 2
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset3-40, yTop3-40, false)); // 3
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset3-40,   yTop3, true));  // 4
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset3-80, yTop3-20, false));  // 5
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset3-80, yTop3, true));  // 6
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset3-120, yTop3, true));  // 7
+        // upper bridge pt.1 supports
+        addSupport(rampOffset3+0, rampOffset3+1, true);
+        addSupport(rampOffset3+0, rampOffset3+3, true);
+        addSupport(rampOffset3+1, rampOffset3+3, false);
+        addSupport(rampOffset3+1, rampOffset3+2, true);
+        addSupport(rampOffset3+2, rampOffset3+3, false);
+        addSupport(rampOffset3+3, rampOffset3+4, false);
+        addSupport(rampOffset3+3, rampOffset3+5, true);
+        addSupport(rampOffset3+4, rampOffset3+5, false);
+        addSupport(rampOffset3+5, rampOffset3+6, false);
+        addSupport(rampOffset3+5, rampOffset3+7, true);
 
 
     }
