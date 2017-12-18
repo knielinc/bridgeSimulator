@@ -43,15 +43,18 @@ public class BridgeSupport {
         double yMax = gc.getCanvas().getHeight();
         int f = (int) Math.floor(Math.abs((length - getCurrentLength()) / length) * 40 * 255);
         f = Math.min(255, f);
-        gc.setStroke(Color.rgb(f, 255 - f, 0));
-        gc.setLineWidth(5);
+
 
         if (isRoad){
             streetRB.draw(gc);
             if (Main.DEBUG_MODE_ENABLED){
+                gc.setStroke(Color.rgb(f, 255 - f, 0));
+                gc.setLineWidth(5);
                 gc.strokeLine(pointA.getxPos(), yMax-pointA.getyPos(), pointB.getxPos(), yMax-pointB.getyPos());
             }
         } else {
+            gc.setStroke(Color.rgb(f, 255 - f, 0));
+            gc.setLineWidth(5);
             gc.strokeLine(pointA.getxPos(), yMax-pointA.getyPos(), pointB.getxPos(), yMax-pointB.getyPos());
         }
 

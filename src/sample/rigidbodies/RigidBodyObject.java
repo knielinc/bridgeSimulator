@@ -117,9 +117,12 @@ public class RigidBodyObject extends Particle{
 
         gc.setStroke(Color.BLUE);
         gc.setLineWidth(3);
-
-        gc.strokeLine(getxPos(), maxY - getyPos(), getxPos() + getVelocity().getX(), maxY - (getVelocity().getY() + getyPos()));
         */
+        if(Main.DEBUG_MODE_ENABLED) {
+            gc.setLineWidth(2);
+            gc.setStroke(Color.PINK);
+            gc.strokeLine(getxPos(), maxY - getyPos(), getxPos() + getVelocity().getX(), maxY - (getVelocity().getY() + getyPos()));
+        }
         collisionPoint = null;
 
 
