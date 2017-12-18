@@ -368,7 +368,7 @@ public class Bridge {
 
     public void createWaveformBridge(){
         // left ramp
-        int rampOffset1 = 0; int xOffset1=200;
+        int rampOffset1 = 0; int xOffset1=100; // modify xOffset1 and everything else in the scene can adjust to the cange
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(0+xOffset1, 0, true)); // 0 -
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(40+xOffset1, 0, true)); // 1
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(40+xOffset1, 20, false)); // 2
@@ -443,6 +443,18 @@ public class Bridge {
         addSupport(rampOffset3+4, rampOffset3+5, false);
         addSupport(rampOffset3+5, rampOffset3+6, false);
         addSupport(rampOffset3+5, rampOffset3+7, true);
+
+        // a garage extension to catch the car better
+        int garageOffset=rampOffset3+8; int xOffset4=xOffset3+200;
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset4, 0, true)); // 0
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xOffset4, 60, true)); // 1
+        int xRightEnd = 800;
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xRightEnd, 60, true)); // 2
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(xRightEnd, 0, true)); // 3
+        // supports for the garage
+        addSupport(garageOffset+0, garageOffset+1, false);
+        addSupport(garageOffset+1, garageOffset+2, true);
+        addSupport(garageOffset+2, garageOffset+3, true);
 
 
     }

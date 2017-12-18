@@ -68,6 +68,9 @@ public class GameScene {
             case 6:
                 initEric1();
                 break;
+            case 7:
+                initEric2();
+                break;
             default:
                 init0();
                 break;
