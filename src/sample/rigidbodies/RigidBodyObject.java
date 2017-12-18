@@ -82,7 +82,7 @@ public class RigidBodyObject extends Particle{
         gc.translate(getxPos(),-getyPos() + maxY);
         gc.rotate(-getTorqueInDegrees());
         if(imgDrawable != null){
-            polygon.draw(gc,false);
+            //polygon.draw(gc,false);
             //gc.fillRect(this.minX,this.minY,this.maxX-this.minX,this.maxY-this.minY);
             gc.drawImage(imgDrawable,this.minX,this.minY,this.maxX-this.minX,this.maxY-this.minY);
         } else {
