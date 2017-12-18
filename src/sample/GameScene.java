@@ -144,23 +144,40 @@ public class GameScene {
     }
 
     public void initEric2(){
+        int i = 1; // easier to comment these in/out. Don't have to change index anymore.
 
+        /*DrawablePolygon car = createCarCollBoxWithSizeAndWeight(1.5, 5);
+        rigidBodyObjects.add(new RigidBodyObject(220,0,Math.toRadians(0),false, car, carImage));
+        rigidBodyObjects.get(i).setVelocity(new Vec2(100,0));
+        i++;*/
 
         DrawablePolygon car2 = createCarCollBoxWithSizeAndWeight(1.5, 5);
         rigidBodyObjects.add(new RigidBodyObject(0,0,Math.toRadians(0),false, car2, carImage));
-        rigidBodyObjects.get(1).setVelocity(new Vec2(50,0));
-
-
-
-        /*DrawablePolygon car = createTruckCollBoxWithSizeAndWeight(1.5, 10);
-        rigidBodyObjects.add(new RigidBodyObject(150,250,Math.toRadians(0),false, car, truckImage));
-        rigidBodyObjects.get(2).setVelocity(new Vec2(15 ,-25));*/
+        rigidBodyObjects.get(i).setVelocity(new Vec2(100,0));
+        i++;
 
         GLOBAL_GRAVITY = new Vec2(50,-9.81);
 
 
         myBridge = new Bridge();
         myBridge.createWaveformBridge();
+        GLOBAL_BREAKABLE_BRIDGE = true;
+    }
+
+    public void initRampComparison(){
+        DrawablePolygon car = createCarCollBoxWithSizeAndWeight(1.5, 5);
+        rigidBodyObjects.add(new RigidBodyObject(220,0,Math.toRadians(0),false, car, carImage));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(100,0));
+
+        DrawablePolygon car2 = createCarCollBoxWithSizeAndWeight(1.5, 5);
+        rigidBodyObjects.add(new RigidBodyObject(0,0,Math.toRadians(0),false, car2, carImage));
+        rigidBodyObjects.get(2).setVelocity(new Vec2(100,0));
+
+        GLOBAL_GRAVITY = new Vec2(0,-9.81);
+
+
+        myBridge = new Bridge();
+        myBridge.createRampComparisonBridges();
         GLOBAL_BREAKABLE_BRIDGE = true;
     }
 

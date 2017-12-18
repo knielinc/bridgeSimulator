@@ -118,21 +118,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameScene.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameScene.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/GameScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="156" column="63" lean-forward="false" selection-start-line="156" selection-start-column="63" selection-end-line="156" selection-end-column="63" />
+            <state relative-caret-position="315">
+              <caret line="158" column="35" lean-forward="false" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bridge.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Bridge.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="339" column="55" lean-forward="true" selection-start-line="339" selection-start-column="55" selection-end-line="339" selection-end-column="55" />
+            <state relative-caret-position="203">
+              <caret line="368" column="42" lean-forward="false" selection-start-line="368" selection-start-column="42" selection-end-line="368" selection-end-column="42" />
               <folding>
                 <element signature="e#1159#1160#0" expanded="true" />
                 <element signature="e#1198#1199#0" expanded="true" />
@@ -740,7 +740,7 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-      <workItem from="1513591214465" duration="20966000" />
+      <workItem from="1513591214465" duration="22549000" />
     </task>
     <task id="LOCAL-00001" summary="Added old c++ Code for comparison in case of a roadbump">
       <created>1510513794723</created>
@@ -904,7 +904,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22268000" />
+    <option name="totallyTimeSpent" value="23851000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1038,13 +1038,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/GameScene.java</url>
-          <line>273</line>
+          <line>290</line>
           <properties />
           <option name="timeStamp" value="119" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/GameScene.java</url>
-          <line>325</line>
+          <line>342</line>
           <properties />
           <option name="timeStamp" value="120" />
         </line-breakpoint>
@@ -1422,22 +1422,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/GameScene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="156" column="63" lean-forward="false" selection-start-line="156" selection-start-column="63" selection-end-line="156" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="339" column="55" lean-forward="true" selection-start-line="339" selection-start-column="55" selection-end-line="339" selection-end-column="55" />
+        <state relative-caret-position="203">
+          <caret line="368" column="42" lean-forward="false" selection-start-line="368" selection-start-column="42" selection-end-line="368" selection-end-column="42" />
           <folding>
             <element signature="e#1159#1160#0" expanded="true" />
             <element signature="e#1198#1199#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/GameScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="158" column="35" lean-forward="false" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
