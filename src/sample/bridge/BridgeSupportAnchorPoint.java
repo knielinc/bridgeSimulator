@@ -3,6 +3,7 @@ package sample.bridge;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import sample.Main;
 import sample.Vec2;
 
 import java.util.ArrayList;
@@ -61,18 +62,18 @@ public class BridgeSupportAnchorPoint {
         }
         double yMax = gc.getCanvas().getHeight();
         gc.fillOval(getxPos()-5,yMax-getyPos()-5,10,10);
-        /*
-        gc.setStroke(Color.BLACK);
-        gc.setLineWidth(2);
-        //gc.strokeLine(getxPos(),yMax-getyPos(),getxPos()+(4*velocity.getX()),yMax-(getyPos() + (4*velocity.getY())));
-        if (force!=Vec2.VEC_ZERO) {
-            double xForce = force.getX();
-            double yForce = force.getY();
-            gc.strokeLine(getxPos(), yMax - getyPos(), getxPos() + (xForce), yMax - (getyPos() + (yForce)));
+        if(Main.DEBUG_MODE_ENABLED) {
+            gc.setStroke(Color.BLACK);
+            gc.setLineWidth(2);
+            //gc.strokeLine(getxPos(),yMax-getyPos(),getxPos()+(4*velocity.getX()),yMax-(getyPos() + (4*velocity.getY())));
+            if (force != Vec2.VEC_ZERO) {
+                double xForce = force.getX();
+                double yForce = force.getY();
+                gc.strokeLine(getxPos(), yMax - getyPos(), getxPos() + (xForce), yMax - (getyPos() + (yForce)));
+            }
+            gc.setFill(Color.CYAN);
+            gc.fillText(String.valueOf(getMyIndex()), getxPos(), yMax - getyPos());
         }
-        gc.setFill(Color.CYAN);
-        gc.fillText(String.valueOf(getMyIndex()),getxPos(),yMax - getyPos());
-        */
 
     }
 

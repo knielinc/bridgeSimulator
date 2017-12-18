@@ -2,8 +2,4 @@
 *.class
 
 .idea/workspace.xml
-<<<<<<< HEAD
-
 out/production/Bridges/sample/Main.class
-=======
->>>>>>> origin/develop

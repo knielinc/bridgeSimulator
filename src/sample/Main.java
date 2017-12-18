@@ -13,19 +13,22 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import sample.bridge.Bridge;
+import sample.bridge.BridgeSupportAnchorPoint;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main extends Application {
     public static int DELAY = 1000/60;
-
+    public static boolean DEBUG_MODE_ENABLED = false;
     GraphicsContext gc;
     boolean gameStarted = false;
     long startTime = System.currentTimeMillis();
     int counterForFps;
     double fps = 0;
     final int UPDATE_FPS_COUNTER_STEPS = 100;
+    private GameScene myGame;
+    private Timeline gameLoop;
 
     @Override
     public void start(Stage theStage) throws Exception{
@@ -39,15 +42,6 @@ public class Main extends Application {
         Group root = new Group();
         Scene theScene = new Scene( root );
 
-        theScene.setOnKeyPressed((KeyEvent keyEvent) ->
-                {
-                        System.out.println("Es wurde folgende Taste gedrückt:\t" + keyEvent.getCode());
-                        if(keyEvent.getCode().isWhitespaceKey() && !gameStarted){
-                            startGame();
-                        }
-                }
-        );
-
         theStage.setScene( theScene );
 
         Canvas canvas = new Canvas( 800, 450 );
@@ -55,15 +49,39 @@ public class Main extends Application {
 
         gc = canvas.getGraphicsContext2D();
 
+        showStartScreen();
+
         theStage.show();
+
+        theScene.setOnKeyPressed((KeyEvent keyEvent) ->
+                {
+                        System.out.println("Es wurde folgende Taste gedrückt:\t" + keyEvent.getCode().getName());
+                        if(keyEvent.getCode().isWhitespaceKey() && !gameStarted) {
+                            //startGame(0);
+                        } else if (keyEvent.getCode().toString().equals("ESCAPE")){
+                            stopGame();
+                        } else if(keyEvent.getCode().isDigitKey() && !gameStarted){
+                            startGame(Integer.parseInt(keyEvent.getCode().getName()));
+                        } else if (keyEvent.getCode().toString().equals("D")) {
+                            if (DEBUG_MODE_ENABLED){
+                                DEBUG_MODE_ENABLED = false;
+                            } else {
+                                DEBUG_MODE_ENABLED = true;
+                            }
+                        }
+                }
+        );
+
+
     }
 
-    public void startGame(){
+    public void startGame(int i){
+
         gameStarted = true;
-        Timeline gameLoop = new Timeline();
+        gameLoop = new Timeline();
         gameLoop.setCycleCount( Timeline.INDEFINITE );
 
-        GameScene myGame = new GameScene();
+        myGame = new GameScene(i);
 
         counterForFps = UPDATE_FPS_COUNTER_STEPS;
         final long timeStart = System.currentTimeMillis();
@@ -120,7 +138,32 @@ public class Main extends Application {
         gameLoop.play();
     }
 
+    public void stopGame(){
+        gameLoop.stop();
+        BridgeSupportAnchorPoint.INDEX = 0;
+        gameLoop.getKeyFrames().removeAll();
+        showStartScreen();
+        //gc.clearRect(0,0,1600,900);
+        gameStarted = false;
+    }
 
+    private void showStartScreen() {
+        gc.clearRect(0,0,1600,900);
+        gc.fillText("Choose a Scene to be played, by pressing a number 0-9\n\n" +
+                "1 : 2 rigidbodies colliding with no gravity\n" +
+                "2 : simple bridge without breaking\n" +
+                "3 : simple bridge with breaking\n" +
+                "4 : more suffisticated bridge with a car with breaking enabled\n" +
+                "5 : more suffisticated bridge with a truck with breaking enabled\n" +
+                "6 : a car and a truck interacting with a seesaw and a freely swinging bridge-element\n" +
+                "7 : TODO\n" +
+                "8 : TODO\n" +
+                "9 : TODO\n\n" +
+                "press Esc to go back to this selection screen\n\n" +
+                "press d to toggle debug-mode",50,20);
+
+
+    }
 
 
     public static void main(String[] args) {
