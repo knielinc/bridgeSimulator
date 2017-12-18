@@ -366,17 +366,17 @@ public class Bridge {
 
     public void createWaveformBridge(){
         // left ramp
-        int rampOffset1 = 0; int xOffset1=0;
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(200+xOffset1, 0, true)); // 0 -
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(240+xOffset1, 0, true)); // 1
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(240+xOffset1, 20, false)); // 2
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(280+xOffset1, 0, true)); // 3
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(280+xOffset1, 20, false));  // 4
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(280+xOffset1, 60, false));  // 5
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(290+xOffset1, 0, true));  // 6 floor
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300+xOffset1, 0, true));  // 7 -
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300+xOffset1, 60, false));  // 8
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300+xOffset1, 100, false));  // 9 -
+        int rampOffset1 = 0; int xOffset1=200;
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(0+xOffset1, 0, true)); // 0 -
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(40+xOffset1, 0, true)); // 1
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(40+xOffset1, 20, false)); // 2
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(80+xOffset1, 0, true)); // 3
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(80+xOffset1, 20, false));  // 4
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(80+xOffset1, 60, false));  // 5
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(90+xOffset1, 0, true));  // 6 floor
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(100+xOffset1, 0, true));  // 7 -
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(100+xOffset1, 60, false));  // 8
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(100+xOffset1, 100, false));  // 9 -
         // add the supports
         addSupport(rampOffset1+0, rampOffset1+1, false);
         addSupport(rampOffset1+0, rampOffset1+2, true);
@@ -397,6 +397,29 @@ public class Bridge {
         addSupport(rampOffset1+3,rampOffset1+5, false);
         addSupport(rampOffset1+5,rampOffset1+7, false);
         addSupport(rampOffset1+6, rampOffset1+2, false);
+
+
+        // upper bridge pt.1
+        int rampOffset2=10; int xOffset2=xOffset1+163; int yTop2=300;
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(0+xOffset2, yTop2 -80, false)); // 0
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(0+xOffset2, yTop2-40, false)); // 1
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(0+xOffset2, yTop2, true)); // 2
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(40+xOffset2, yTop2-40, false)); // 3
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(40+xOffset2, yTop2, true));  // 4
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(80+xOffset2, yTop2-20, false));  // 5
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(80+xOffset2, yTop2, true));  // 6
+        // upper bridge pt.1 supports
+        addSupport(rampOffset2+0, rampOffset2+1, true);
+        addSupport(rampOffset2+0, rampOffset2+3, true);
+        addSupport(rampOffset2+1, rampOffset2+3, false);
+        addSupport(rampOffset2+1, rampOffset2+2, true);
+        addSupport(rampOffset2+2, rampOffset2+3, false);
+        addSupport(rampOffset2+3, rampOffset2+4, false);
+        addSupport(rampOffset2+3, rampOffset2+5, true);
+        addSupport(rampOffset2+4, rampOffset2+5, false);
+        addSupport(rampOffset2+5, rampOffset2+6, false);
+
+
     }
 
     public void computeTimeStepExplicit(double d, double dt) {
