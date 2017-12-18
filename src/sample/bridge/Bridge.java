@@ -332,7 +332,7 @@ public class Bridge {
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(290+xOffset1, 0, true));  // 6 floor
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300+xOffset1, 0, true));  // 7 -
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300+xOffset1, 60, false));  // 8
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300+xOffset1, 100, true));  // 9 -
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300+xOffset1, 100, false));  // 9 -
         // add the supports
         addSupport(rampOffset1+0, rampOffset1+1, false);
         addSupport(rampOffset1+0, rampOffset1+2, true);
@@ -345,6 +345,7 @@ public class Bridge {
         addSupport(rampOffset1+2,rampOffset1+4, false);
         addSupport(rampOffset1+4,rampOffset1+5, false);
         addSupport(rampOffset1+1,rampOffset1+4, false);
+        addSupport(rampOffset1+2,rampOffset1+3,false);
         addSupport(rampOffset1+3,rampOffset1+4, false);
         addSupport(rampOffset1+5,rampOffset1+7, false);
         addSupport(rampOffset1+3,rampOffset1+6, false);

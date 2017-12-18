@@ -145,11 +145,11 @@ public class GameScene {
 
     public void initEric2(){
 
-        /*
+
         DrawablePolygon car2 = createCarCollBoxWithSizeAndWeight(1.5, 5);
         rigidBodyObjects.add(new RigidBodyObject(0,0,Math.toRadians(0),false, car2, carImage));
         rigidBodyObjects.get(1).setVelocity(new Vec2(50,0));
-        */
+
 
 
         /*DrawablePolygon car = createTruckCollBoxWithSizeAndWeight(1.5, 10);
