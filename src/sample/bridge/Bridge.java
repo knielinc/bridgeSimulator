@@ -314,6 +314,45 @@ public class Bridge {
 
     }
 
+    /**
+     * Shortcut for adding the previously stored (in {@link #bridgeSupportAnchorPoints} points to a support in {@link #supports}
+     * */
+    private void addSupport(int a, int b, boolean road){supports.add(new BridgeSupport(bridgeSupportAnchorPoints.get(a), bridgeSupportAnchorPoints.get(b), 70, road,1));}
+
+    public void createWaveformBridge(){
+
+        // left ramp
+        int rampOffset1 = 0; int xOffset1=0;
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(200+xOffset1, 0, true)); // 0 -
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(240+xOffset1, 0, true)); // 1
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(240+xOffset1, 20, false)); // 2
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(280+xOffset1, 0, true)); // 3
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(280+xOffset1, 20, false));  // 4
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(280+xOffset1, 60, false));  // 5
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(290+xOffset1, 0, true));  // 6 floor
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300+xOffset1, 0, true));  // 7 -
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300+xOffset1, 60, false));  // 8
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(300+xOffset1, 100, true));  // 9 -
+        // add the supports
+        addSupport(rampOffset1+0, rampOffset1+1, false);
+        addSupport(rampOffset1+0, rampOffset1+2, true);
+        addSupport(rampOffset1+1,rampOffset1+2, false);
+        addSupport(rampOffset1+2, rampOffset1+5, true);
+        addSupport(rampOffset1+5,rampOffset1+9,true);
+        addSupport(rampOffset1+9,rampOffset1+8,true);
+        addSupport(rampOffset1+8,rampOffset1+7, true);
+        addSupport(rampOffset1+5,rampOffset1+8, false);
+        addSupport(rampOffset1+2,rampOffset1+4, false);
+        addSupport(rampOffset1+4,rampOffset1+5, false);
+        addSupport(rampOffset1+1,rampOffset1+4, false);
+        addSupport(rampOffset1+3,rampOffset1+4, false);
+        addSupport(rampOffset1+5,rampOffset1+7, false);
+        addSupport(rampOffset1+3,rampOffset1+6, false);
+        addSupport(rampOffset1+6,rampOffset1+7, false);
+        addSupport(rampOffset1+3,rampOffset1+5, false);
+        addSupport(rampOffset1+5,rampOffset1+7, false);
+    }
+
     public void computeTimeStepExplicit(double d, double dt) {
         ArrayList<BridgeSupportAnchorPoint> tmpNewAnchorPoints = new ArrayList();
 
