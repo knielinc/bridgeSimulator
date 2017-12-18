@@ -18,11 +18,15 @@ public class BridgeSupport {
     private boolean isBroken = false;
     private boolean isRoad;
     private RigidBodyObject streetRB;
+    private double weight;
 
-    BridgeSupport(BridgeSupportAnchorPoint first, BridgeSupportAnchorPoint second, double inSpringConstant, boolean isRoad){
+    BridgeSupport(BridgeSupportAnchorPoint first, BridgeSupportAnchorPoint second, double inSpringConstant, boolean isRoad,double weight){
+        this.weight = weight;
         pointA = first;
+        pointA.addWeight(weight/2);
         first.addBridgeSupport(this);
         pointB = second;
+        pointB.addWeight(weight/2);
         second.addBridgeSupport(this);
         springConstant = inSpringConstant;
         length = first.getPos().minus(second.getPos()).length();
@@ -40,6 +44,7 @@ public class BridgeSupport {
         f = Math.min(255, f);
         gc.setStroke(Color.rgb(f, 255 - f, 0));
         gc.setLineWidth(5);
+
         if (isRoad){
             streetRB.draw(gc);
         }
@@ -153,5 +158,13 @@ public class BridgeSupport {
             streetRB.setTorque(getAngle());
             streetRB.setPos(getPos());
         }
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 }

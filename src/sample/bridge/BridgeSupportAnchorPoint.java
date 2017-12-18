@@ -18,6 +18,28 @@ public class BridgeSupportAnchorPoint {
     private boolean isFixed;
     private Vec2 appliedForces;
 
+    BridgeSupportAnchorPoint(double x, double y, boolean fixed){
+        appliedForces = new Vec2(0,0);
+        force = new Vec2(0,0);
+        pos = new Vec2(x,y);
+        velocity = new Vec2(0,0);
+
+        this.weight = 0;
+        supports = new ArrayList<>();
+
+        isFixed = fixed;
+        this.myIndex = INDEX;
+        INDEX++;
+    }
+
+    /**
+     * @param x
+     * @param y
+     * @param weight
+     * @param fixed
+     * @deprecated use {@link #BridgeSupportAnchorPoint(double, double, boolean)} instead
+     */
+    @Deprecated
     BridgeSupportAnchorPoint(double x, double y, double weight, boolean fixed){
         appliedForces = new Vec2(0,0);
         force = new Vec2(0,0);
@@ -31,6 +53,7 @@ public class BridgeSupportAnchorPoint {
         this.myIndex = INDEX;
         INDEX++;
     }
+
     public void draw(GraphicsContext gc){
         gc.setFill(Color.RED);
         if(isFixed){
@@ -133,5 +156,9 @@ public class BridgeSupportAnchorPoint {
 
     public void addAppliedForce(Vec2 inForce){
         this.appliedForces = this.appliedForces.plus(inForce);
+    }
+
+    public void addWeight(double weightToAdd){
+        this.weight += weightToAdd;
     }
 }
