@@ -121,10 +121,10 @@ public class GameScene {
 
         DrawablePolygon car = new DrawablePolygon(new double[]{-40.,-30,30,40.,40.,20,-20.,-40.},new double[]{0,-5,-5,0,12,28,28,12},8,10);
         rigidBodyObjects.add(new RigidBodyObject(150,250,Math.toRadians(0),false, car));
-        rigidBodyObjects.get(1).setVelocity(new Vec2(30 ,-15));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(25 ,-15));
 
-        rigidBodyObjects.add(new RigidBodyObject(600,300,Math.toRadians(0),false, car));
-        rigidBodyObjects.get(0).setVelocity(new Vec2(-5,0));
+        rigidBodyObjects.add(new RigidBodyObject(150,500,Math.toRadians(0),false, car));
+        rigidBodyObjects.get(2).setVelocity(new Vec2(10,0));
         GLOBAL_GRAVITY = new Vec2(1,-9.81);
 
 
