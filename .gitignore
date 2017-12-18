@@ -2,14 +2,6 @@
 *.class
 
 .idea/workspace.xml
-<<<<<<< HEAD
 
-out/production/Bridges/sample/Main.class
-=======
->>>>>>> origin/develop
+out/
 
-.idea/workspace.xml
-
-out/production/Bridges/sample/GameScene.class
-
-out/production/Bridges/sample/GameScene.class
