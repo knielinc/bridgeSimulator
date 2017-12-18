@@ -37,11 +37,41 @@ public class GameScene {
     boolean GLOBAL_BREAKABLE_BRIDGE = false;
     double GLOBAL_COLLAPSING_THRESHOLD = 1.2;
 
+
     public GameScene(){
         rigidBodyObjects = new ArrayList<>();
         rigidBodyObjects.add(new RigidBodyObject(450,-50,Math.toRadians(0),true, new DrawablePolygon(new double[]{0,900,900,0},new double[]{0,0,100,100},4, 500)));
 
         initEric1();
+    }
+
+    public GameScene(int i){
+        rigidBodyObjects = new ArrayList<>();
+        rigidBodyObjects.add(new RigidBodyObject(450,-50,Math.toRadians(0),true, new DrawablePolygon(new double[]{0,900,900,0},new double[]{0,0,100,100},4, 500)));
+
+        switch (i){
+            case 1:
+                init0();
+                break;
+            case 2:
+                init1();
+                break;
+            case 3:
+                init2();
+                break;
+            case 4:
+                init3();
+                break;
+            case 5:
+                init4();
+                break;
+            case 6:
+                initEric1();
+                break;
+            default:
+                init0();
+                break;
+        }
     }
 
     //2 cars colliding
@@ -76,7 +106,7 @@ public class GameScene {
         GLOBAL_BREAKABLE_BRIDGE = true;
     }
 
-    //fancyBridge with Cars without Breaking
+    //fancyBridge with Cars with Breaking
     public void init3(){
         /*
         DrawablePolygon smallcar = new DrawablePolygon(new double[]{-10.,10.,10.,5,-5.,-10.},new double[]{0,0,3,7,7,3},6,1);

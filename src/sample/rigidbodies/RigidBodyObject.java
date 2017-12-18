@@ -3,6 +3,7 @@ package sample.rigidbodies;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import sample.Main;
 import sample.Vec2;
 import sample.bridge.BridgeSupport;
 
@@ -82,7 +83,9 @@ public class RigidBodyObject extends Particle{
         gc.translate(getxPos(),-getyPos() + maxY);
         gc.rotate(-getTorqueInDegrees());
         if(imgDrawable != null){
-            //polygon.draw(gc,false);
+            if(Main.DEBUG_MODE_ENABLED) {
+                polygon.draw(gc, false);
+            }
             //gc.fillRect(this.minX,this.minY,this.maxX-this.minX,this.maxY-this.minY);
             gc.drawImage(imgDrawable,this.minX,this.minY,this.maxX-this.minX,this.maxY-this.minY);
         } else {
