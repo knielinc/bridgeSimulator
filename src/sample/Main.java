@@ -153,8 +153,8 @@ public class Main extends Application {
                 "1 : 2 rigidbodies colliding with no gravity\n" +
                 "2 : simple bridge without breaking\n" +
                 "3 : simple bridge with breaking\n" +
-                "4 : more suffisticated bridge with a car with breaking enabled\n" +
-                "5 : more suffisticated bridge with a truck with breaking enabled\n" +
+                "4 : more sophisticated bridge with a car with breaking enabled\n" +
+                "5 : more sophisticated bridge with a truck with breaking enabled\n" +
                 "6 : a car and a truck interacting with a seesaw and a freely swinging bridge-element\n" +
                 "7 : TODO\n" +
                 "8 : TODO\n" +
