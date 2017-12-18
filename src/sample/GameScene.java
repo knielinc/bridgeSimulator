@@ -127,11 +127,13 @@ public class GameScene {
 
     public void initEric1(){
 
-        DrawablePolygon car = new DrawablePolygon(new double[]{-40.,-30,30,40.,40.,20,-20.,-40.},new double[]{0,-5,-5,0,12,28,28,12},8,10);
-        rigidBodyObjects.add(new RigidBodyObject(150,250,Math.toRadians(0),false, car));
-        rigidBodyObjects.get(1).setVelocity(new Vec2(25 ,-15));
+        //DrawablePolygon car = new DrawablePolygon(new double[]{-40.,-30,30,40.,40.,20,-20.,-40.},new double[]{0,-5,-5,0,12,28,28,12},8,10);
+        DrawablePolygon car = createTruckCollBoxWithSizeAndWeight(1.5, 10);
+        rigidBodyObjects.add(new RigidBodyObject(150,250,Math.toRadians(0),false, car, truckImage));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(15 ,-25));
 
-        rigidBodyObjects.add(new RigidBodyObject(150,500,Math.toRadians(0),false, car));
+        DrawablePolygon car2 = createCarCollBoxWithSizeAndWeight(1.5, 5);
+        rigidBodyObjects.add(new RigidBodyObject(50,500,Math.toRadians(0),false, car2, carImage));
         rigidBodyObjects.get(2).setVelocity(new Vec2(10,0));
         GLOBAL_GRAVITY = new Vec2(1,-9.81);
 
