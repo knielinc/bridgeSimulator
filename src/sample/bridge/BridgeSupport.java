@@ -3,6 +3,7 @@ package sample.bridge;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import org.apache.commons.math3.linear.RealMatrix;
+import sample.Main;
 import sample.Vec2;
 import sample.rigidbodies.DrawablePolygon;
 import sample.rigidbodies.RigidBodyObject;
@@ -47,9 +48,13 @@ public class BridgeSupport {
 
         if (isRoad){
             streetRB.draw(gc);
+            if (Main.DEBUG_MODE_ENABLED){
+                gc.strokeLine(pointA.getxPos(), yMax-pointA.getyPos(), pointB.getxPos(), yMax-pointB.getyPos());
+            }
+        } else {
+            gc.strokeLine(pointA.getxPos(), yMax-pointA.getyPos(), pointB.getxPos(), yMax-pointB.getyPos());
         }
 
-        gc.strokeLine(pointA.getxPos(), yMax-pointA.getyPos(), pointB.getxPos(), yMax-pointB.getyPos());
         pointA.draw(gc);
         pointB.draw(gc);
 

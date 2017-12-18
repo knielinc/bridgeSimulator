@@ -91,12 +91,14 @@ public class GameScene {
 
         GLOBAL_GRAVITY = new Vec2(0,0);
         GLOBAL_BOUNCINESS = .9;
+        Main.setBackground(1);
     }
 
     //samplebridge without breaking
     public void init1(){
         myBridge = new Bridge();
         myBridge.createTestBridge2();
+        Main.setBackground(1);
     }
 
     //samplebridge with breaking
@@ -104,6 +106,7 @@ public class GameScene {
         myBridge = new Bridge();
         myBridge.createTestBridge2();
         GLOBAL_BREAKABLE_BRIDGE = true;
+        Main.setBackground(0);
     }
 
     //fancyBridge with Cars with Breaking
@@ -128,6 +131,7 @@ public class GameScene {
         myBridge.createTestBridge1();
         GLOBAL_BREAKABLE_BRIDGE = true;
         GLOBAL_GRAVITY = new Vec2(2,-9.81);
+        Main.setBackground(0);
     }
 
     //fancyBridge with Trucks with Breaking
@@ -153,6 +157,8 @@ public class GameScene {
         myBridge = new Bridge();
         myBridge.createTestBridge1();
         GLOBAL_BREAKABLE_BRIDGE = true;
+        Main.setBackground(0);
+
     }
 
     public void initEric1(){
@@ -171,6 +177,8 @@ public class GameScene {
         myBridge = new Bridge();
         myBridge.createWeirdBridge();
         GLOBAL_BREAKABLE_BRIDGE = false;
+        Main.setBackground(2);
+
     }
 
 
