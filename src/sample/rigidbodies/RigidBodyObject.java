@@ -1,6 +1,7 @@
 package sample.rigidbodies;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import sample.Vec2;
 import sample.bridge.BridgeSupport;
@@ -10,6 +11,9 @@ public class RigidBodyObject extends Particle{
     DrawablePolygon polygon;
     double momentOfInertia;
     double torque;
+
+    Image imgDrawable = null;
+    double minX,maxX,minY,maxY;
 
     double prevTorque;
     Vec2 prevPos;
@@ -33,11 +37,41 @@ public class RigidBodyObject extends Particle{
         this.polygon = polygon;
         this.torque = torque;
         this.momentOfInertia = polygon.getMomentOfInertia();
+        minX = polygon.getSupport(new Vec2(-1.,0.)).getX();
+        maxX = polygon.getSupport(new Vec2(1.,0.)).getX();
+        minY = polygon.getSupport(new Vec2(0.,-1.)).getY();
+        maxY = polygon.getSupport(new Vec2(0.,1.)).getY();
+
 
         prevAngularVel = getAngularVel();
         prevPos = getPos();
         prevTorque = getTorque();
         prevVel = getVelocity();
+    }
+
+    public RigidBodyObject(double x, double y, double torque, boolean fixed, DrawablePolygon polygon,Image img) {
+        super(x, y, polygon.getMass(), fixed);
+        partOfBridge = false;
+        this.support = null;
+
+        angularVel = 0;
+        this.polygon = polygon;
+        this.torque = torque;
+        this.momentOfInertia = polygon.getMomentOfInertia();
+
+        double boundingBox[] = polygon.getBoundingBox();
+
+        minX = boundingBox[0];
+        minY = boundingBox[1];
+        maxX = boundingBox[2];
+        maxY = boundingBox[3];
+
+
+        prevAngularVel = getAngularVel();
+        prevPos = getPos();
+        prevTorque = getTorque();
+        prevVel = getVelocity();
+        this.imgDrawable = img;
     }
 
     @Override
@@ -47,7 +81,13 @@ public class RigidBodyObject extends Particle{
         //gc.fillOval(getxPos(),maxY-getyPos(),5,5);
         gc.translate(getxPos(),-getyPos() + maxY);
         gc.rotate(-getTorqueInDegrees());
-        polygon.draw(gc);
+        if(imgDrawable != null){
+            polygon.draw(gc,false);
+            //gc.fillRect(this.minX,this.minY,this.maxX-this.minX,this.maxY-this.minY);
+            gc.drawImage(imgDrawable,this.minX,this.minY,this.maxX-this.minX,this.maxY-this.minY);
+        } else {
+            polygon.draw(gc,true);
+        }
         gc.rotate(getTorqueInDegrees());
         gc.translate(-getxPos(),getyPos()-maxY);
         //gc.fillOval(getxPos(),maxY-getyPos(),5,5);
@@ -221,4 +261,10 @@ public class RigidBodyObject extends Particle{
     public void setPrevAngularVel(double prevAngularVel) {
         this.prevAngularVel = prevAngularVel;
     }
+
+    public Image getImgDrawable() { return imgDrawable; }
+
+    public void setImgDrawable(Image imgDrawable) { this.imgDrawable = imgDrawable; }
+
+
 }
