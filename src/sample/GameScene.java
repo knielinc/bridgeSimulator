@@ -77,13 +77,13 @@ public class GameScene {
     //2 cars colliding
     public void init0(){
 
-        RigidBodyObject truck1 = new RigidBodyObject(150,300, Math.toRadians(0),false, truckCollBox);
+        RigidBodyObject truck1 = new RigidBodyObject(150,300, Math.toRadians(0),false, createTruckCollBoxWithSizeAndWeight(2,7));
         truck1.setImgDrawable(truckImage);
 
         rigidBodyObjects.add(truck1);
         rigidBodyObjects.get(1).setVelocity(new Vec2(12,0));
 
-        RigidBodyObject truck2 = new RigidBodyObject(600,300, Math.toRadians(0),false, carCollBox);
+        RigidBodyObject truck2 = new RigidBodyObject(600,300, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,3));
         truck2.setImgDrawable(carImage);
 
         rigidBodyObjects.add(truck2);
