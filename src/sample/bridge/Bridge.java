@@ -252,15 +252,18 @@ public class Bridge {
     public void createWeirdBridge(){
 
         // middle object
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(350+20, 125, false)); // 0
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(450+20, 125, true)); // 1
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(550+20, 125, false)); // 2
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(400+20, 100, false)); // 3
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(500+20, 100, false));  // 4
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(350+1, 125, false)); // 0
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(450+1, 125, true)); // 1
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(550+1, 125, false)); // 2
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(400+1, 100, false)); // 3
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(500+1, 100, false));  // 4
 
         // right object
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(500, 50, true));  // 5
-        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(600, 50, true)); // 6
+
+
+        // reusable
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(500, -10, true));  // 5
+        bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(600, -10, true)); // 6
 
         // left object
         bridgeSupportAnchorPoints.add(new BridgeSupportAnchorPoint(200, 300, true)); // 7

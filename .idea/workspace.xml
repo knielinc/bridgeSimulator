@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/Car.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/Truck.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/Bridges/sample/Controller.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/Controller.class" />
       <change beforePath="$PROJECT_DIR$/out/production/Bridges/sample/GameScene.class" afterPath="$PROJECT_DIR$/out/production/Bridges/sample/GameScene.class" />
@@ -41,9 +39,6 @@
       <change beforePath="$PROJECT_DIR$/src/old code/Bridges/main.cpp" afterPath="$PROJECT_DIR$/src/old code/Bridges/main.cpp" />
       <change beforePath="$PROJECT_DIR$/src/sample/GameScene.java" afterPath="$PROJECT_DIR$/src/sample/GameScene.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/bridge/Bridge.java" afterPath="$PROJECT_DIR$/src/sample/bridge/Bridge.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java" afterPath="$PROJECT_DIR$/src/sample/bridge/BridgeSupportAnchorPoint.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/DrawablePolygon.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/RigidBodyObject.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java" afterPath="$PROJECT_DIR$/src/sample/rigidbodies/Simplex.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -125,8 +120,8 @@
       <file leaf-file-name="GameScene.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/GameScene.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+            <state relative-caret-position="161">
+              <caret line="119" column="16" lean-forward="false" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -135,8 +130,8 @@
       <file leaf-file-name="Bridge.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="303" column="76" lean-forward="false" selection-start-line="303" selection-start-column="76" selection-end-line="303" selection-end-column="76" />
+            <state relative-caret-position="315">
+              <caret line="268" column="74" lean-forward="true" selection-start-line="268" selection-start-column="74" selection-end-line="268" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -741,7 +736,7 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
-      <workItem from="1513591214465" duration="13244000" />
+      <workItem from="1513591214465" duration="14509000" />
     </task>
     <task id="LOCAL-00001" summary="Added old c++ Code for comparison in case of a roadbump">
       <created>1510513794723</created>
@@ -905,7 +900,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14546000" />
+    <option name="totallyTimeSpent" value="15811000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -930,7 +925,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17493796" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38391846" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32842582" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19763695" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
@@ -1425,16 +1420,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/bridge/Bridge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="303" column="76" lean-forward="false" selection-start-line="303" selection-start-column="76" selection-end-line="303" selection-end-column="76" />
+        <state relative-caret-position="315">
+          <caret line="268" column="74" lean-forward="true" selection-start-line="268" selection-start-column="74" selection-end-line="268" selection-end-column="74" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/GameScene.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+        <state relative-caret-position="161">
+          <caret line="119" column="16" lean-forward="false" selection-start-line="119" selection-start-column="16" selection-end-line="119" selection-end-column="16" />
           <folding />
         </state>
       </provider>
