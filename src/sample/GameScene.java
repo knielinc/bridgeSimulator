@@ -25,7 +25,7 @@ public class GameScene {
     public GameScene(){
         rigidBodyObjects = new ArrayList<>();
 
-        init2();
+        initEric1();
     }
 
     //2 cars colliding
@@ -77,6 +77,22 @@ public class GameScene {
 
         myBridge = new Bridge();
         myBridge.createTestBridge1();
+    }
+
+    public void initEric1(){
+
+        DrawablePolygon car = new DrawablePolygon(new double[]{-40.,-30,30,40.,40.,20,-20.,-40.},new double[]{0,-5,-5,0,12,28,28,12},8,10);
+        rigidBodyObjects.add(new RigidBodyObject(150,300,Math.toRadians(0),false, car));
+        rigidBodyObjects.get(0).setVelocity(new Vec2(5,0));
+
+        rigidBodyObjects.add(new RigidBodyObject(600,300,Math.toRadians(0),false, car));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(-5,0));
+        GLOBAL_GRAVITY = new Vec2(1,-9.81);
+
+
+        myBridge = new Bridge();
+        myBridge.createWeirdBridge();
+        GLOBAL_BREAKABLE_BRIDGE = false;
     }
 
 
