@@ -2,4 +2,7 @@
 *.class
 
 .idea/workspace.xml
+
 out/production/Bridges/sample/Main.class
+
+out/

@@ -62,14 +62,14 @@ public class DrawablePolygon {
 
     @Deprecated
     public void draw(GraphicsContext gc) {
-        gc.setFill(Color.BLACK);
+        gc.setFill(Color.LIGHTGRAY);
         gc.fillPolygon(xVals,negyVals,numberOfPoints);
     }
 
 
     public void draw(GraphicsContext gc,boolean fill) {
         if(fill){
-            gc.setFill(Color.BLACK);
+            gc.setFill(Color.LIGHTGRAY);
             gc.fillPolygon(xVals,negyVals,numberOfPoints);
         } else {
             gc.setStroke(Color.BLUEVIOLET);

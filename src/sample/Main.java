@@ -2,6 +2,7 @@ package sample;
 
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.MatrixType;
@@ -21,6 +22,22 @@ import java.util.TimerTask;
 public class Main extends Application {
     public static int DELAY = 1000/60;
     public static boolean DEBUG_MODE_ENABLED = false;
+    private static Image background  = new Image("file:res/Background_Grass.png");
+    public static void setBackground(int i){
+        switch(i) {
+            case 0:
+                background = new Image("file:res/Background_Grass.png");
+                break;
+            case 1:
+                background = new Image("file:res/Background_Space.png");
+                break;
+            case 2:
+                background = new Image("file:res/Background_City.png");
+                break;
+            default:
+                break;
+        }
+    }
     GraphicsContext gc;
     boolean gameStarted = false;
     long startTime = System.currentTimeMillis();
@@ -114,7 +131,9 @@ public class Main extends Application {
         KeyFrame kf = new KeyFrame(Duration.seconds(0.017) // 60hz
                 ,(ActionEvent) -> {
             // Clear the canvas
-            gc.clearRect(0, 0, 1600,900);
+            gc.clearRect(0, 0, 800,450);
+            gc.drawImage(background,0,0,800,450);
+
             //testBridge.draw(gc);
             myGame.update(0.03);
             //testBridge.computeTimeStepExplicit(0.5,.001);
@@ -148,7 +167,10 @@ public class Main extends Application {
     }
 
     private void showStartScreen() {
-        gc.clearRect(0,0,1600,900);
+        gc.clearRect(0,0,800,450);
+        setBackground(0);
+        gc.drawImage(background,0,0,800,450);
+
         gc.fillText("Choose a Scene to be played, by pressing a number 0-9\n\n" +
                 "1 : 2 rigidbodies colliding with no gravity\n" +
                 "2 : simple bridge without breaking\n" +
