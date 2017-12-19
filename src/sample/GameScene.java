@@ -95,6 +95,9 @@ public class GameScene {
             case 12:
                 init9();
                 break;
+            case 13:
+                init0_();
+                break;
             default:
                 init5();
                 break;
@@ -121,6 +124,37 @@ public class GameScene {
         Main.setBackground(0);
     }
 
+    public void init0_(){
+
+        DrawablePolygon testTriangle = new DrawablePolygon(new double[]{0,100,50},new double[]{0,0,200},3,3);
+        rigidBodyObjects.add(new RigidBodyObject(200,500,Math.toRadians(0),false,testTriangle));
+
+        DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,1);
+        rigidBodyObjects.add(new RigidBodyObject(200,100,Math.toRadians(0),false,rectangle));
+        rigidBodyObjects.add(new RigidBodyObject(700,100,Math.toRadians(0),false,rectangle));
+        rigidBodyObjects.add(new RigidBodyObject(700,1000,Math.toRadians(0),false,rectangle));
+        rigidBodyObjects.add(new RigidBodyObject(200,1000,Math.toRadians(0),false,rectangle));
+
+
+
+        rigidBodyObjects.add(new RigidBodyObject(550,300, Math.toRadians(0),false, createTruckCollBoxWithSizeAndWeight(3,7),truckImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,300, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(3,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(650,500, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2.5,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,800, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(1,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,900, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,1200, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,7),truckImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,1500, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(.5,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,1800, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,3),carImage));
+
+
+        //myBridge = new Bridge();
+        //myBridge.createSuspensionBrige();
+
+        GLOBAL_GRAVITY = new Vec2(0,-9.81);
+        GLOBAL_BOUNCINESS = .9;
+        GLOBAL_BREAKABLE_BRIDGE = true;
+        Main.setBackground(0);
+    }
     //2 cars colliding
     public void init1(){
 
