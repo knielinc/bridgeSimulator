@@ -62,6 +62,10 @@ public class Main extends Application {
         Scene theScene = new Scene( root );
 
         theStage.setScene( theScene );
+        theScene.getWindow().setHeight(470);
+        theScene.getWindow().setWidth(800);
+
+
 
         Canvas canvas = new Canvas( 800, 450 );
         root.getChildren().add( canvas );
@@ -73,13 +77,17 @@ public class Main extends Application {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 canvas.setScaleX((double)newValue/800);
                 canvas.setTranslateX((theScene.getWidth() / 2) - 400);
+                canvas.setScaleY((double)newValue/800);
+                canvas.setTranslateY((theScene.getHeight() / 2) - 225);
             }
         });
 
         theScene.heightProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                canvas.setScaleY((double)newValue/450);
+                canvas.setScaleX((theScene.getWidth()/800));
+                canvas.setTranslateX((theScene.getWidth() / 2) - 400);
+                canvas.setScaleY(theScene.getWidth()/800);
                 canvas.setTranslateY((theScene.getHeight() / 2) - 225);
             }
         });
@@ -196,7 +204,7 @@ public class Main extends Application {
         setBackground(0);
         gc.drawImage(background,0,0,800,450);
 
-        gc.fillText("choose a scene to be played, by pressing a number 0-9\n\n" +
+        gc.fillText("choose a scene to be played, by pressing a number 0-9/Q,W,E\n\n" +
                 "0 : bunch of bouncy rigidbodies with gravity\n" +
                 "1 : 2 rigidbodies colliding with no gravity\n" +
                 "2 : simple bridge without breaking\n" +
