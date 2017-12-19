@@ -2,6 +2,8 @@ package sample;
 
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -66,6 +68,23 @@ public class Main extends Application {
 
         gc = canvas.getGraphicsContext2D();
 
+        theScene.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                canvas.setScaleX((double)newValue/800);
+                canvas.setTranslateX((theScene.getWidth() / 2) - 400);
+            }
+        });
+
+        theScene.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                canvas.setScaleY((double)newValue/450);
+                canvas.setTranslateY((theScene.getHeight() / 2) - 225);
+            }
+        });
+
+
         showStartScreen();
 
         theStage.show();
@@ -79,6 +98,12 @@ public class Main extends Application {
                             stopGame();
                         } else if(keyEvent.getCode().isDigitKey() && !gameStarted){
                             startGame(Integer.parseInt(keyEvent.getCode().getName()));
+                        } else if(keyEvent.getCode().toString().equals("Q")) {
+                            startGame(10);
+                        } else if(keyEvent.getCode().toString().equals("W")) {
+                            startGame(11);
+                        } else if(keyEvent.getCode().toString().equals("E")) {
+                            startGame(12);
                         } else if (keyEvent.getCode().toString().equals("D")) {
                             if (DEBUG_MODE_ENABLED){
                                 DEBUG_MODE_ENABLED = false;
@@ -172,16 +197,19 @@ public class Main extends Application {
         gc.drawImage(background,0,0,800,450);
 
         gc.fillText("choose a scene to be played, by pressing a number 0-9\n\n" +
-                "0 : bunch of bouncy rigidbodies with gravity" +
+                "0 : bunch of bouncy rigidbodies with gravity\n" +
                 "1 : 2 rigidbodies colliding with no gravity\n" +
                 "2 : simple bridge without breaking\n" +
                 "3 : simple bridge with breaking\n" +
-                "4 : more suffisticated bridge with a car with breaking enabled\n" +
-                "5 : more suffisticated bridge with a truck with breaking enabled\n" +
-                "6 : a car and a truck interacting with a seesaw and a freely swinging bridge-element\n" +
-                "7 : TODO\n" +
-                "8 : TODO\n" +
-                "9 : TODO\n\n" +
+                "4 : more sophisticated bridge with a car with breaking disabled and explicit timestep computation\n" +
+                "5 : more sophisticated bridge with a car with breaking disabled and implicit timestep computation\n" +
+                "6 : more sophisticated bridge with a car with breaking enabled\n" +
+                "7 : more sophisticated bridge with a truck with breaking enabled\n" +
+                "8 : a car and a truck interacting with a seesaw and a freely swinging bridge-element\n" +
+                "9 : stuntmap with car without breaking\n" +
+                "Q : stuntmap with car with breaking\n" +
+                "W : suspension-bridge with truck and car without breaking\n" +
+                "E : suspension-bridge with truck and car with breaking\n\n" +
                 "press Esc to go back to this selection screen\n\n" +
                 "press d to toggle debug-mode",50,20);
 
