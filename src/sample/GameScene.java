@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import sample.bridge.Bridge;
 import sample.bridge.BridgeSupport;
 import sample.bridge.BridgeSupportAnchorPoint;
@@ -12,13 +13,153 @@ import java.util.ArrayList;
 
 public class GameScene {
 
-    private final double PENETRATION_THRESHOLD = 3;
+    private Image carImage = new Image("file:res/Car.png");
+    private Image truckImage = new Image("file:res/Truck.png");
+
+    private DrawablePolygon carCollBox = new DrawablePolygon(new double[]{-20,-15,15,20,17,3,-10,-15,-18},new double[]{0,-5,-5,0,4,12,12,10,5},9,2);
+
+    private DrawablePolygon createCarCollBoxWithSizeAndWeight(double size, double weight){
+        return new DrawablePolygon(new double[]{-20*size,-15*size,15*size,20*size,17*size,3*size,-10*size,-15*size,-18*size},new double[]{0*size,-5*size,-5*size,0*size,4*size,12*size,12*size,10*size,5*size},9,weight);
+    }
+
+    private DrawablePolygon truckCollBox = new DrawablePolygon(new double[]{-25,-10,15,25,25,10,-25},new double[]{0,-5,-5,0,10,20,20},7,3.9);
+
+    private DrawablePolygon createTruckCollBoxWithSizeAndWeight(double size, double weight){
+        return new DrawablePolygon(new double[]{-25*size,-10*size,15*size,25*size,25*size,10*size,-25*size},new double[]{0*size,-5*size,-5*size,0*size,10*size,20*size,20*size},7,weight);
+    }
+
+    private final double PENETRATION_THRESHOLD = 1;
+
     ArrayList<RigidBodyObject> rigidBodyObjects;
     Bridge myBridge;
+
+    boolean GLOBAL_EXPLICIT = false;
+    double GLOBAL_BOUNCINESS = 0.2;
+    Vec2 GLOBAL_GRAVITY = new Vec2(1, - 9.81);
+    boolean GLOBAL_BREAKABLE_BRIDGE = false;
+    double GLOBAL_COLLAPSING_THRESHOLD = 1.2;
+    Vec2 GLOBAL_SPAWN_LOCATION = new Vec2(100, 250);
+    Vec2 GLOBAL_SPAWN_SPEED = new Vec2(10,0);
+    boolean GLOBAL_KEEP_YVEL = true;
+
+
+
     public GameScene(){
         rigidBodyObjects = new ArrayList<>();
+        rigidBodyObjects.add(new RigidBodyObject(450,-50,Math.toRadians(0),true, new DrawablePolygon(new double[]{0,900,900,0},new double[]{0,0,100,100},4, 500)));
+
+        initEric1();
+    }
+
+    public GameScene(int i){
+        rigidBodyObjects = new ArrayList<>();
+        rigidBodyObjects.add(new RigidBodyObject(450,-50,Math.toRadians(0),true, new DrawablePolygon(new double[]{0,900,900,0},new double[]{0,0,100,100},4, 500)));
+
+        switch (i){
+            case 0:
+                init0();
+                break;
+            case 1:
+                init1();
+                break;
+            case 2:
+                init2();
+                break;
+            case 3:
+                init3();
+                break;
+            case 4:
+                init4_e();
+                break;
+            case 5:
+                init4_();
+                break;
+            case 6:
+                init4();
+                break;
+            case 7:
+                init5();
+                break;
+            case 8:
+                initEric1();
+                break;
+            case 9:
+                init6();
+                break;
+            case 10:
+                init7();
+                break;
+            case 11:
+                init8();
+                break;
+            case 12:
+                init9();
+                break;
+            default:
+                init5();
+                break;
+        }
+    }
+
+    //2 cars colliding
+    public void init0(){
+
+        DrawablePolygon testTriangle = new DrawablePolygon(new double[]{0,100,50},new double[]{0,0,200},3,3);
+        rigidBodyObjects.add(new RigidBodyObject(200,100,Math.toRadians(0),false,testTriangle));
+
+        rigidBodyObjects.add(new RigidBodyObject(550,300, Math.toRadians(0),false, createTruckCollBoxWithSizeAndWeight(2,7),truckImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,300, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(650,500, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,800, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,900, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,1200, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,3),carImage));
+
+
+
+        GLOBAL_GRAVITY = new Vec2(0,-9.81);
+        GLOBAL_BOUNCINESS = .6;
+        Main.setBackground(0);
+    }
+
+    //2 cars colliding
+    public void init1(){
+
+        RigidBodyObject truck1 = new RigidBodyObject(150,300, Math.toRadians(0),false, createTruckCollBoxWithSizeAndWeight(2,7));
+        truck1.setImgDrawable(truckImage);
+
+        rigidBodyObjects.add(truck1);
+        rigidBodyObjects.get(1).setVelocity(new Vec2(12,0));
+
+        RigidBodyObject truck2 = new RigidBodyObject(600,300, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,3));
+        truck2.setImgDrawable(carImage);
+
+        rigidBodyObjects.add(truck2);
+        rigidBodyObjects.get(2).setVelocity(new Vec2(-12,0));
+
+        GLOBAL_GRAVITY = new Vec2(0,0);
+        GLOBAL_BOUNCINESS = .9;
+        Main.setBackground(1);
+    }
+
+    //samplebridge without breaking
+    public void init2(){
+        myBridge = new Bridge();
+        myBridge.createTestBridge2();
+        Main.setBackground(0);
+    }
+
+    //samplebridge with breaking
+    public void init3(){
+        myBridge = new Bridge();
+        myBridge.createTestBridge2();
+        GLOBAL_BREAKABLE_BRIDGE = true;
+        Main.setBackground(0);
+    }
+
+    //fancyBridge with Cars with Breaking
+    public void init4_e(){
         /*
-        DrawablePolygon car = new DrawablePolygon(new double[]{-10.,10.,10.,5,-5.,-10.},new double[]{0,0,3,7,7,3},6,1);
+        DrawablePolygon smallcar = new DrawablePolygon(new double[]{-10.,10.,10.,5,-5.,-10.},new double[]{0,0,3,7,7,3},6,1);
         DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,1);
 
         rigidBodyObjects.add(new RigidBodyObject(100,300,Math.toRadians(0),1,false, car));
@@ -29,54 +170,203 @@ public class GameScene {
         */
 
 
-        DrawablePolygon car = new DrawablePolygon(new double[]{-40.,-30,30,40.,40.,20,-20.,-40.},new double[]{0,-5,-5,0,12,28,28,12},8,10);
-        rigidBodyObjects.add(new RigidBodyObject(150,300,Math.toRadians(0),false, car));
-        rigidBodyObjects.get(0).setVelocity(new Vec2(8,0));
-
-        rigidBodyObjects.add(new RigidBodyObject(600,300,Math.toRadians(0),false, car));
-        rigidBodyObjects.get(1).setVelocity(new Vec2(-8,0));
-
-        /*
-        DrawablePolygon floor = new DrawablePolygon(new double[]{-1000.,1000.,1000.,-1000.},new double[]{-100.,-100.,100.,100.},4,100);
-
-        DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,2);
-
-        rigidBodyObjects.add(new RigidBodyObject(450,400,Math.toRadians(0),false, rectangle));*/
-
-
-        //rigidBodyObjects.add(new RigidBodyObject(0,250,Math.toRadians(0),true, floor));
-        //rigidBodyObjects.add(new RigidBodyObject(350,300,Math.toRadians(0),false, rectangle));
-        //rigidBodyObjects.add(new RigidBodyObject(350,320,Math.toRadians(0),false, rectangle));
-        //rigidBodyObjects.add(new RigidBodyObject(350,340,Math.toRadians(0),false, rectangle));
-        //rigidBodyObjects.add(new RigidBodyObject(350,360,Math.toRadians(0),false, rectangle));
+        rigidBodyObjects.add(new RigidBodyObject(100,250,Math.toRadians(0),false, carCollBox,carImage));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(5,0));
 
 
         myBridge = new Bridge();
-        myBridge.createTestBridge();
+        myBridge.createTestBridge1();
+        GLOBAL_EXPLICIT = true;
+        GLOBAL_BREAKABLE_BRIDGE = false;
+        GLOBAL_GRAVITY = new Vec2(2,-9.81);
+        Main.setBackground(0);
+    }
+
+    public void init4_(){
+        /*
+        DrawablePolygon smallcar = new DrawablePolygon(new double[]{-10.,10.,10.,5,-5.,-10.},new double[]{0,0,3,7,7,3},6,1);
+        DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,1);
+
+        rigidBodyObjects.add(new RigidBodyObject(100,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(150,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(200,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(250,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(300,300,Math.toRadians(0),1,false, rectangle));
+        */
 
 
+        rigidBodyObjects.add(new RigidBodyObject(100,250,Math.toRadians(0),false, carCollBox,carImage));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(5,0));
+
+
+        myBridge = new Bridge();
+        myBridge.createTestBridge1();
+        GLOBAL_BREAKABLE_BRIDGE = true;
+        GLOBAL_GRAVITY = new Vec2(2,-9.81);
+        Main.setBackground(0);
+    }
+
+    public void init4(){
+        /*
+        DrawablePolygon smallcar = new DrawablePolygon(new double[]{-10.,10.,10.,5,-5.,-10.},new double[]{0,0,3,7,7,3},6,1);
+        DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,1);
+
+        rigidBodyObjects.add(new RigidBodyObject(100,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(150,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(200,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(250,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(300,300,Math.toRadians(0),1,false, rectangle));
+        */
+
+
+        rigidBodyObjects.add(new RigidBodyObject(100,250,Math.toRadians(0),false, carCollBox,carImage));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(5,0));
+
+
+        myBridge = new Bridge();
+        myBridge.createTestBridge1();
+        GLOBAL_BREAKABLE_BRIDGE = true;
+        GLOBAL_GRAVITY = new Vec2(2,-9.81);
+        Main.setBackground(0);
+    }
+
+    //fancyBridge with Trucks with Breaking
+    public void init5(){
+        /*
+        DrawablePolygon smallcar = new DrawablePolygon(new double[]{-10.,10.,10.,5,-5.,-10.},new double[]{0,0,3,7,7,3},6,1);
+        DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,1);
+
+        rigidBodyObjects.add(new RigidBodyObject(100,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(150,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(200,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(250,300,Math.toRadians(0),1,false, car));
+        rigidBodyObjects.add(new RigidBodyObject(300,300,Math.toRadians(0),1,false, rectangle));
+        */
+
+
+        rigidBodyObjects.add(new RigidBodyObject(130,230,Math.toRadians(0),false, truckCollBox,truckImage));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(5,0));
+
+        rigidBodyObjects.add(new RigidBodyObject(300,230,Math.toRadians(0),false, truckCollBox,truckImage));
+        rigidBodyObjects.get(2).setVelocity(new Vec2(10,0));
+
+        myBridge = new Bridge();
+        myBridge.createTestBridge1();
+        GLOBAL_BREAKABLE_BRIDGE = true;
+        Main.setBackground(0);
 
     }
+
+    public void init6(){
+        rigidBodyObjects.add(new RigidBodyObject(0,20,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,3),carImage));
+
+        rigidBodyObjects.get(1).setVelocity(new Vec2(200,0));
+
+        myBridge = new Bridge();
+        myBridge.createStuntBridge();
+
+        GLOBAL_SPAWN_LOCATION = new Vec2(0,30);
+        GLOBAL_SPAWN_SPEED = new Vec2(100,0);
+        GLOBAL_GRAVITY = new Vec2(0,-9.81);
+        GLOBAL_BREAKABLE_BRIDGE = false;
+    }
+
+    public void init7(){
+        rigidBodyObjects.add(new RigidBodyObject(0,20,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,3),carImage));
+
+        rigidBodyObjects.get(1).setVelocity(new Vec2(200,0));
+
+        myBridge = new Bridge();
+        myBridge.createStuntBridge();
+
+        GLOBAL_SPAWN_LOCATION = new Vec2(0,30);
+        GLOBAL_SPAWN_SPEED = new Vec2(100,0);
+        GLOBAL_GRAVITY = new Vec2(0,-9.81);
+        GLOBAL_BREAKABLE_BRIDGE = true;
+    }
+
+    public void init8(){
+        rigidBodyObjects.add(new RigidBodyObject(70,180,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(10,180,Math.toRadians(0),false,createTruckCollBoxWithSizeAndWeight(1,10),truckImage));
+
+        rigidBodyObjects.get(1).setVelocity(new Vec2(20,0));
+        rigidBodyObjects.get(2).setVelocity(new Vec2(20,0));
+
+        myBridge = new Bridge();
+        myBridge.createSuspensionBrige();
+
+        GLOBAL_SPAWN_LOCATION = new Vec2(10,180);
+        GLOBAL_SPAWN_SPEED = new Vec2(20,0);
+        GLOBAL_GRAVITY = new Vec2(2,-9.81);
+        GLOBAL_BREAKABLE_BRIDGE = false;
+    }
+
+    public void init9(){
+        rigidBodyObjects.add(new RigidBodyObject(70,180,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(10,180,Math.toRadians(0),false,createTruckCollBoxWithSizeAndWeight(1,10),truckImage));
+
+        rigidBodyObjects.get(1).setVelocity(new Vec2(20,0));
+        rigidBodyObjects.get(2).setVelocity(new Vec2(20,0));
+
+        myBridge = new Bridge();
+        myBridge.createSuspensionBrige();
+
+        GLOBAL_SPAWN_LOCATION = new Vec2(10,180);
+        GLOBAL_SPAWN_SPEED = new Vec2(20,0);
+        GLOBAL_GRAVITY = new Vec2(2,-9.81);
+        GLOBAL_BREAKABLE_BRIDGE = true;
+    }
+
+    public void initEric1(){
+
+        //DrawablePolygon car = new DrawablePolygon(new double[]{-40.,-30,30,40.,40.,20,-20.,-40.},new double[]{0,-5,-5,0,12,28,28,12},8,10);
+        DrawablePolygon car = createTruckCollBoxWithSizeAndWeight(1.5, 10);
+        rigidBodyObjects.add(new RigidBodyObject(150,250,Math.toRadians(0),false, car, truckImage));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(12 ,-25));
+
+        DrawablePolygon car2 = createCarCollBoxWithSizeAndWeight(1.5, 5);
+        rigidBodyObjects.add(new RigidBodyObject(50,500,Math.toRadians(0),false, car2, carImage));
+        rigidBodyObjects.get(2).setVelocity(new Vec2(4,0));
+        GLOBAL_GRAVITY = new Vec2(1,-9.81);
+
+
+        myBridge = new Bridge();
+        myBridge.createWeirdBridge();
+        GLOBAL_BREAKABLE_BRIDGE = false;
+        Main.setBackground(2);
+
+    }
+
+
     private int counter = 0;
     public void draw(GraphicsContext gc){
-        myBridge.draw(gc);
+        if(myBridge != null) {
+            myBridge.draw(gc);
+        }
 
         for(RigidBodyObject tmpObject:rigidBodyObjects){
             tmpObject.draw(gc);
         }
-
-
-        counter++;
-        if (rigidBodyObjects.size() < 5 && counter > 100){
-            DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,2);
-            rigidBodyObjects.add(new RigidBodyObject(350,300,Math.toRadians(0), false, rectangle));
-            counter = 0;
-        }
     }
 
     public void update(double dt){
-        updateRigidBodies(dt,1);
-        myBridge.computeTimeStepImplicit(0.1,dt);
+        updateRigidBodies(dt,GLOBAL_BOUNCINESS);
+        if(myBridge != null) {
+            if(GLOBAL_EXPLICIT){
+                myBridge.computeTimeStepExplicit(0.1, dt);
+            } else {
+                myBridge.computeTimeStepImplicit(0.1, dt);
+            }
+            for (BridgeSupport currSupport : myBridge.getSupports()) {
+                if (currSupport.isRoad()) {
+                    currSupport.updateRoadRB(dt);
+                }
+            }
+
+            if(GLOBAL_BREAKABLE_BRIDGE){
+                myBridge.collapseBridge(GLOBAL_COLLAPSING_THRESHOLD);
+            }
+        }
         //myBridge.collapseBridge(.9);
     }
 
@@ -103,18 +393,19 @@ public class GameScene {
 
                 boolean collidesWithStatic = true;
 
-                for (BridgeSupport currSupport : myBridge.getSupports()) {
-                    if (currSupport.isRoad()) {
-                        //currSupport.updateRoadRB(dt);
-                        if (HelperClass.gjk(tmpObject, currSupport.getStreetRB())) {
-                            //otherSupport = currSupport;
-                            otherObjects.add(currSupport.getStreetRB());
-                            collides = true;
-                            //currSupport.getPointA().setVelocity(currSupport.getPointA().getVelocity().plus(new Vec2(0,-.5)));
-                            //currSupport.getPointB().setVelocity(currSupport.getPointB().getVelocity().plus(new Vec2(0,-.5)));
+                if(myBridge!= null) {
+                    for (BridgeSupport currSupport : myBridge.getSupports()) {
+                        if (currSupport.isRoad()) {
+                            //currSupport.updateRoadRB(dt);
+                            if (HelperClass.gjk(tmpObject, currSupport.getStreetRB())) {
+                                //otherSupport = currSupport;
+                                otherObjects.add(currSupport.getStreetRB());
+                                collides = true;
+                                //currSupport.getPointA().setVelocity(currSupport.getPointA().getVelocity().plus(new Vec2(0,-.5)));
+                                //currSupport.getPointB().setVelocity(currSupport.getPointB().getVelocity().plus(new Vec2(0,-.5)));
+                            }
                         }
                     }
-
                 }
 
                 for (RigidBodyObject currObject : rigidBodyObjects) {
@@ -130,14 +421,14 @@ public class GameScene {
                 if (collides) {
 
                     for (RigidBodyObject otherObject : otherObjects) {
-                        if (!Double.isNaN(tmpObject.getPos().length()) && !Double.isNaN(otherObject.getPos().length())) {
+                        if (!Double.isNaN(tmpObject.getPrevPos().length()) && !Double.isNaN(otherObject.getPrevPos().length())) {
                             Vec2[] epaResults = HelperClass.EPA2(tmpObject, otherObject);
                             //Vec2[] epaResults2 = HelperClass.EPA2(tmpObject, otherObject);
 
 
                             translationVec = epaResults[0];
-                            rAP = epaResults[1].minus(tmpObject.getPos());
-                            rBP = epaResults[1].minus(otherObject.getPos());
+                            rAP = epaResults[1].minus(tmpObject.getPrevPos());
+                            rBP = epaResults[1].minus(otherObject.getPrevPos());
                             translationNormal = epaResults[3];
 
                             double penetration = translationVec.length();
@@ -145,14 +436,14 @@ public class GameScene {
                             if (penetration > PENETRATION_THRESHOLD) {
 
 
-                                Vec2 vA1 = tmpObject.getVelocity();
-                                Vec2 vB1 = otherObject.getVelocity();
+                                Vec2 vA1 = tmpObject.getPrevVel();
+                                Vec2 vB1 = otherObject.getPrevVel();
 
                                 double m1 = tmpObject.getMass();
                                 double m2 = otherObject.getMass(); // check not null
 
-                                double wA1 = tmpObject.getAngularVel();
-                                double wB1 = otherObject.getAngularVel();
+                                double wA1 = tmpObject.getPrevAngularVel();
+                                double wB1 = otherObject.getPrevAngularVel();
 
                                 Vec2 vAP1 = vA1.plus(new Vec2(-wA1 * rAP.getY(), wA1 * rAP.getX()));
                                 Vec2 vBP1 = vB1.plus(new Vec2(-wB1 * rBP.getY(), wB1 * rBP.getX()));
@@ -201,26 +492,27 @@ public class GameScene {
                                 double rhs = translationNormal.dot(vAB1) * (-e);
 
 
-                                tmpObject.setVelocity(vA2);
-                                tmpObject.setAngularVel(wA2);
+                                //prev + delta = nacher
+                                //delta = nacher - prev
 
-                                if (tmpObject.getPos().minus(tmpObject.getPos().plus(tmpObject.getVelocity()).plus(translationVec)).length() > 50) {
-                                    //System.out.println("CAAARE");
-                                }
+                                tmpObject.setVelocity(tmpObject.getVelocity().plus(vA2.minus(tmpObject.getPrevVel())));
+                                tmpObject.setAngularVel(tmpObject.getAngularVel() + wA2-tmpObject.getPrevAngularVel());
 
-                                tmpObject.updatePos(dt);
+                                //tmpObject.updatePos(dt);
+
                                 if(translationVec.length() > 0) {
-                                    tmpObject.setPos(tmpObject.getPos().plus(translationVec.normalize().smult(translationVec.length() - PENETRATION_THRESHOLD/2.0)));
+                                    tmpObject.setPos(tmpObject.getPos().plus(translationVec.normalize().smult(translationVec.length() - PENETRATION_THRESHOLD/4.0)));
                                 }
                                 //System.out.println(translationVec);
-                                tmpObject.updateTorque(dt);
+                                //tmpObject.updateTorque(dt);
 
                                 if (!otherObject.isFixed() && !otherObject.isPartOfBridge()) {
                                     otherObject.setVelocity(vB2);
                                     otherObject.setAngularVel(wB2);
                                 }
 
-                                tmpObject.setRestCollisionForce(translationNormal.smult(50));
+
+                                //tmpObject.setRestCollisionForce(translationNormal.smult(50));
 
                                 if(otherObject.isPartOfBridge()){
                                     //apply impulse on BridgeSupport, by computing the velocity changes of the BridgeSupportAnchorPoints
@@ -241,22 +533,19 @@ public class GameScene {
                                     pointA.setVelocity(vAPA);
                                     pointB.setVelocity(vAPB);
 
-
-
                                     //use vB2 and wB2
                                 }
 
 
                             } else {
 
+                                double VEL_THRESHOLD = 10;
 
-                                double VEL_THRESHOLD = 3;
+                                Vec2 vA1 = tmpObject.getPrevVel();
+                                Vec2 vB1 = otherObject.getPrevVel();
 
-                                Vec2 vA1 = tmpObject.getVelocity();
-                                Vec2 vB1 = otherObject.getVelocity();
-
-                                double wA1 = tmpObject.getAngularVel();
-                                double wB1 = otherObject.getAngularVel();
+                                double wA1 = tmpObject.getPrevAngularVel();
+                                double wB1 = otherObject.getPrevAngularVel();
 
                                 Vec2 vAP1 = vA1.plus(new Vec2(-wA1 * rAP.getY(), wA1 * rAP.getX()));
                                 Vec2 vBP1 = vB1.plus(new Vec2(-wB1 * rBP.getY(), wB1 * rBP.getX()));
@@ -264,9 +553,7 @@ public class GameScene {
                                 Vec2 vAB1 = vAP1.minus(vBP1);
 
                                 //force applied
-                                Vec2 gravityForce = new Vec2(5 * dt, -tmpObject.getMass() * 9.81 * dt);
-
-
+                                Vec2 gravityForce = GLOBAL_GRAVITY.smult(tmpObject.getMass());
 
                                 translationNormal = translationNormal.normalize();
 
@@ -274,16 +561,22 @@ public class GameScene {
                                 Vec2 forceY = new Vec2(0,0);
                                 Vec2 forceX = new Vec2(0,0);
 
-
                                 Vec2 correctionNormal = new Vec2(translationNormal.getY() * -1,translationNormal.getX());
-                                if(0 < (correctionNormal.smult(correctionNormal.dot(gravityForce)).length())){
+                                if(true){
+                                    translationNormal = translationNormal.normalize();
+                                    correctionNormal = correctionNormal.normalize();
+
                                     forceY = translationNormal.smult(translationNormal.dot(gravityForce));
 
                                     if (gravityForce.dot(translationNormal) < 0) {
                                         forceY = forceY.smult(-1);
                                     }
 
-                                    forceX = gravityForce.plus(forceY);
+                                    forceX = correctionNormal.smult(correctionNormal.dot(gravityForce));
+
+                                    if (gravityForce.dot(correctionNormal) < 0) {
+                                        forceX = forceX.smult(-1);
+                                    }
 
                                     //System.out.println("forceY = " + forceY + " gravityforce= " +gravityForce + " forcex = " + forceX);
 
@@ -294,13 +587,14 @@ public class GameScene {
                                 }
 
                                 if(penetration < PENETRATION_THRESHOLD){
-                                    forceY = forceY.smult(penetration/PENETRATION_THRESHOLD);
+                                    //forceY = forceY.smult(penetration/PENETRATION_THRESHOLD);
                                 }
 
                                 //forcey = normalkraft forcex = gravity + normalkraft
 
-                                tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(forceX).smult(dt)));
                                 tmpObject.setAngularVel(tmpObject.getAngularVel() + tmpObject.computeAngularAccel(rAP, forceY) * dt);
+                                tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(forceX).smult(dt * 0)));
+
 
                                 //apply y force if velocities towards collision not slow enough yet
                                 if(vAB1.length() > VEL_THRESHOLD) {
@@ -311,14 +605,14 @@ public class GameScene {
                                     //TODO LOCAL COORDINATES INSTEAD OF MIDDLE
                                     otherObject.getSupport().getPointA().setAppliedForces(forceY.smult(-.5));
                                     otherObject.getSupport().getPointB().setAppliedForces(forceY.smult(-.5));
-                                    if(0.5 < forceY.smult(-1).getY())
-                                        System.out.println(forceY.smult(-1).getY());
+                                    /*if(0.5 < forceY.smult(-1).getY())
+                                        System.out.println(forceY.smult(-1).getY());*/
                                 }
 
-                                tmpObject.updatePos(dt);
-                                tmpObject.updateTorque(dt);
+                                //tmpObject.updatePos(dt);
+                                //tmpObject.updateTorque(dt);
 
-                                tmpObject.setRestCollisionForce(forceX.smult(50));
+                                //tmpObject.setRestCollisionForce(forceY.smult(50));
                             }
 
                         }
@@ -326,26 +620,35 @@ public class GameScene {
 
                 } else {
                     //force = new Vec2(0.001,-.01);
-                    forceOnObject = new Vec2(tmpObject.getMass() * 2, -tmpObject.getMass() * 9.81);
+                    forceOnObject = GLOBAL_GRAVITY.smult(tmpObject.getMass());
 
                     tmpObject.setAngularVel(tmpObject.getAngularVel() + tmpObject.computeAngularAccel(rAP, forceOnObject) * dt);
                     tmpObject.setVelocity(tmpObject.getVelocity().plus(tmpObject.linearAcceleration(forceOnObject).smult(dt)));
-                    tmpObject.setPos(tmpObject.getPos().plus(tmpObject.getVelocity().smult(dt)));
-                    tmpObject.setTorque(tmpObject.getTorque() + tmpObject.getAngularVel() * dt);
+                    //tmpObject.setPos(tmpObject.getPos().plus(tmpObject.getVelocity().smult(dt)));
+                    //tmpObject.setTorque(tmpObject.getTorque() + tmpObject.getAngularVel() * dt);
                     //System.out.println(tmpObject.getPos());
 
                 }
 
-                if (tmpObject.getxPos() > 700 || tmpObject.getyPos() < 0 || tmpObject.getxPos() < 0) {
-                    tmpObject.setPos(new Vec2(200, 300));
-                    tmpObject.setVelocity(new Vec2(10, tmpObject.getVelocity().getY()));
+                if (tmpObject.getxPos() > 700 || tmpObject.getyPos() < -100 || tmpObject.getxPos() < -100) {
+                    tmpObject.setPos(GLOBAL_SPAWN_LOCATION);
+                    if(GLOBAL_KEEP_YVEL) {
+                        tmpObject.setVelocity(new Vec2(GLOBAL_SPAWN_SPEED.getX(), tmpObject.getVelocity().getY()));
+                    } else {
+                        tmpObject.setVelocity(GLOBAL_SPAWN_SPEED);
+                    }
                 }
 
 
+                for(RigidBodyObject currBody:rigidBodyObjects){
+                    if(!currBody.isFixed()) {
+                        currBody.updatePos(dt);
+                        currBody.updateTorque(dt);
 
-                for (BridgeSupport currSupport : myBridge.getSupports()) {
-                    if (currSupport.isRoad()) {
-                        currSupport.updateRoadRB(dt);
+                        currBody.setPrevPos(currBody.getPos());
+                        currBody.setPrevTorque(currBody.getTorque());
+                        currBody.setPrevVel(currBody.getVelocity());
+                        currBody.setPrevAngularVel(currBody.getAngularVel());
                     }
                 }
 

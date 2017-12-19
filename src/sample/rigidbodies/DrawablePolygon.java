@@ -11,14 +11,19 @@ public class DrawablePolygon {
     double area;
     double momentOfInertia;
     double mass;
+    double[] boundingBox;
 
     public DrawablePolygon(double[] xValues, double [] yValues, int n, double mass){
         //care! points must be defined as a traversal over the edges
+        boundingBox = new double[]{Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY,Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY};
         this.mass = mass;
+        numberOfPoints = n;
+
         xVals = xValues.clone();
         yVals = yValues.clone();
         negyVals = new double[n];
-        numberOfPoints = n;
+
+
         computeArea();
         //move shape so that it's centroid is in the origin
         Vec2 centroid = computeCentroid();
@@ -26,18 +31,51 @@ public class DrawablePolygon {
         for (int i = 0; i < numberOfPoints;i++){
             xVals[i] -= centroid.getX();
             yVals[i] -= centroid.getY();
-        }
 
-        computeMomentOfInertia();
+            if(boundingBox[0] > xVals[i]){
+                boundingBox[0] = xVals[i];
+            }
+            if(boundingBox[1] > -yVals[i]){
+                boundingBox[1] = -yVals[i];
+            }
+            if(boundingBox[2] < xVals[i]){
+                boundingBox[2] = xVals[i];
+            }
+            if(boundingBox[3] < -yVals[i]){
+                boundingBox[3] = -yVals[i];
+            }
+        }
 
         for (int i = 0; i < numberOfPoints;i++){
             negyVals[i] = -yVals[i];
         }
+
+        computeMomentOfInertia();
+
+
     }
 
+    public double[] getBoundingBox(){
+        return boundingBox;
+    }
+
+
+    @Deprecated
     public void draw(GraphicsContext gc) {
-        gc.setFill(Color.BLACK);
+        gc.setFill(Color.LIGHTGRAY);
         gc.fillPolygon(xVals,negyVals,numberOfPoints);
+    }
+
+
+    public void draw(GraphicsContext gc,boolean fill) {
+        if(fill){
+            gc.setFill(Color.LIGHTGRAY);
+            gc.fillPolygon(xVals,negyVals,numberOfPoints);
+        } else {
+            gc.setStroke(Color.BLUEVIOLET);
+            gc.setLineWidth(2);
+            gc.strokePolygon(xVals, negyVals, numberOfPoints);
+        }
     }
 
     public double[] getxVals() {

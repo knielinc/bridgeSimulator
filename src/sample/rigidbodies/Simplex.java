@@ -1,6 +1,5 @@
 package sample.rigidbodies;
 
-import com.sun.tools.corba.se.idl.toJavaPortable.Helper;
 import sample.Vec2;
 import sample.utils.HelperClass;
 

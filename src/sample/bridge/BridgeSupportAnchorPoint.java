@@ -3,6 +3,7 @@ package sample.bridge;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import sample.Main;
 import sample.Vec2;
 
 import java.util.ArrayList;
@@ -18,6 +19,28 @@ public class BridgeSupportAnchorPoint {
     private boolean isFixed;
     private Vec2 appliedForces;
 
+    BridgeSupportAnchorPoint(double x, double y, boolean fixed){
+        appliedForces = new Vec2(0,0);
+        force = new Vec2(0,0);
+        pos = new Vec2(x,y);
+        velocity = new Vec2(0,0);
+
+        this.weight = 0;
+        supports = new ArrayList<>();
+
+        isFixed = fixed;
+        this.myIndex = INDEX;
+        INDEX++;
+    }
+
+    /**
+     * @param x
+     * @param y
+     * @param weight
+     * @param fixed
+     * @deprecated use {@link #BridgeSupportAnchorPoint(double, double, boolean)} instead
+     */
+    @Deprecated
     BridgeSupportAnchorPoint(double x, double y, double weight, boolean fixed){
         appliedForces = new Vec2(0,0);
         force = new Vec2(0,0);
@@ -31,6 +54,7 @@ public class BridgeSupportAnchorPoint {
         this.myIndex = INDEX;
         INDEX++;
     }
+
     public void draw(GraphicsContext gc){
         gc.setFill(Color.RED);
         if(isFixed){
@@ -38,16 +62,18 @@ public class BridgeSupportAnchorPoint {
         }
         double yMax = gc.getCanvas().getHeight();
         gc.fillOval(getxPos()-5,yMax-getyPos()-5,10,10);
-        gc.setStroke(Color.BLACK);
-        gc.setLineWidth(2);
-        //gc.strokeLine(getxPos(),yMax-getyPos(),getxPos()+(4*velocity.getX()),yMax-(getyPos() + (4*velocity.getY())));
-        if (force!=Vec2.VEC_ZERO) {
-            double xForce = force.getX();
-            double yForce = force.getY();
-            gc.strokeLine(getxPos(), yMax - getyPos(), getxPos() + (xForce), yMax - (getyPos() + (yForce)));
+        if(Main.DEBUG_MODE_ENABLED) {
+            gc.setStroke(Color.BLACK);
+            gc.setLineWidth(2);
+            //gc.strokeLine(getxPos(),yMax-getyPos(),getxPos()+(4*velocity.getX()),yMax-(getyPos() + (4*velocity.getY())));
+            if (force != Vec2.VEC_ZERO) {
+                double xForce = force.getX();
+                double yForce = force.getY();
+                gc.strokeLine(getxPos(), yMax - getyPos(), getxPos() + (xForce), yMax - (getyPos() + (yForce)));
+            }
+            gc.setFill(Color.CYAN);
+            gc.fillText(String.valueOf(getMyIndex()), getxPos(), yMax - getyPos());
         }
-        gc.setFill(Color.CYAN);
-        gc.fillText(String.valueOf(getMyIndex()),getxPos(),yMax - getyPos());
 
     }
 
@@ -133,5 +159,9 @@ public class BridgeSupportAnchorPoint {
 
     public void addAppliedForce(Vec2 inForce){
         this.appliedForces = this.appliedForces.plus(inForce);
+    }
+
+    public void addWeight(double weightToAdd){
+        this.weight += weightToAdd;
     }
 }

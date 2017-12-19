@@ -1,7 +1,9 @@
 package sample.rigidbodies;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import sample.Main;
 import sample.Vec2;
 import sample.bridge.BridgeSupport;
 
@@ -10,6 +12,17 @@ public class RigidBodyObject extends Particle{
     DrawablePolygon polygon;
     double momentOfInertia;
     double torque;
+
+    Image imgDrawable = null;
+    double minX,maxX,minY,maxY;
+
+    double prevTorque;
+    Vec2 prevPos;
+    Vec2 prevVel;
+
+    double prevAngularVel;
+
+
     Vec2 collisionPoint;
     Vec2 collisionCorrectionVec;
     Vec2 restCollisionForce;
@@ -25,6 +38,41 @@ public class RigidBodyObject extends Particle{
         this.polygon = polygon;
         this.torque = torque;
         this.momentOfInertia = polygon.getMomentOfInertia();
+        minX = polygon.getSupport(new Vec2(-1.,0.)).getX();
+        maxX = polygon.getSupport(new Vec2(1.,0.)).getX();
+        minY = polygon.getSupport(new Vec2(0.,-1.)).getY();
+        maxY = polygon.getSupport(new Vec2(0.,1.)).getY();
+
+
+        prevAngularVel = getAngularVel();
+        prevPos = getPos();
+        prevTorque = getTorque();
+        prevVel = getVelocity();
+    }
+
+    public RigidBodyObject(double x, double y, double torque, boolean fixed, DrawablePolygon polygon,Image img) {
+        super(x, y, polygon.getMass(), fixed);
+        partOfBridge = false;
+        this.support = null;
+
+        angularVel = 0;
+        this.polygon = polygon;
+        this.torque = torque;
+        this.momentOfInertia = polygon.getMomentOfInertia();
+
+        double boundingBox[] = polygon.getBoundingBox();
+
+        minX = boundingBox[0];
+        minY = boundingBox[1];
+        maxX = boundingBox[2];
+        maxY = boundingBox[3];
+
+
+        prevAngularVel = getAngularVel();
+        prevPos = getPos();
+        prevTorque = getTorque();
+        prevVel = getVelocity();
+        this.imgDrawable = img;
     }
 
     @Override
@@ -34,18 +82,26 @@ public class RigidBodyObject extends Particle{
         //gc.fillOval(getxPos(),maxY-getyPos(),5,5);
         gc.translate(getxPos(),-getyPos() + maxY);
         gc.rotate(-getTorqueInDegrees());
-        polygon.draw(gc);
+        if(imgDrawable != null){
+            if(Main.DEBUG_MODE_ENABLED) {
+                polygon.draw(gc, false);
+            }
+            //gc.fillRect(this.minX,this.minY,this.maxX-this.minX,this.maxY-this.minY);
+            gc.drawImage(imgDrawable,this.minX,this.minY,this.maxX-this.minX,this.maxY-this.minY);
+        } else {
+            polygon.draw(gc,true);
+        }
         gc.rotate(getTorqueInDegrees());
         gc.translate(-getxPos(),getyPos()-maxY);
         //gc.fillOval(getxPos(),maxY-getyPos(),5,5);
-
+        /*
         //draw collisionPoints
         if (collisionPoint != null && collisionCorrectionVec != null) {
-            /*gc.setFill(Color.WHITE);
+            gc.setFill(Color.WHITE);
             gc.fillRect(collisionPoint.getX() - 5, maxY - collisionPoint.getY() - 5, 10, 10);
             gc.setStroke(Color.BLACK);
             gc.setLineWidth(1);
-            gc.strokeRect(collisionPoint.getX() - 5, maxY - collisionPoint.getY() - 5, 10, 10);*/
+            gc.strokeRect(collisionPoint.getX() - 5, maxY - collisionPoint.getY() - 5, 10, 10);
 
             gc.setStroke(Color.RED);
             gc.setLineWidth(3);
@@ -61,9 +117,12 @@ public class RigidBodyObject extends Particle{
 
         gc.setStroke(Color.BLUE);
         gc.setLineWidth(3);
-
-        gc.strokeLine(getxPos(), maxY - getyPos(), getxPos() + getVelocity().getX(), maxY - (getVelocity().getY() + getyPos()));
-
+        */
+        if(Main.DEBUG_MODE_ENABLED) {
+            gc.setLineWidth(2);
+            gc.setStroke(Color.PINK);
+            gc.strokeLine(getxPos(), maxY - getyPos(), getxPos() + getVelocity().getX(), maxY - (getVelocity().getY() + getyPos()));
+        }
         collisionPoint = null;
 
 
@@ -175,4 +234,43 @@ public class RigidBodyObject extends Particle{
     public BridgeSupport getSupport() {
         return support;
     }
+
+    public double getPrevTorque() {
+        return prevTorque;
+    }
+
+
+    public void setPrevTorque(double prevTorque) {
+        this.prevTorque = prevTorque;
+    }
+
+    public Vec2 getPrevPos() {
+        return prevPos;
+    }
+
+    public void setPrevPos(Vec2 prevPos) {
+        this.prevPos = prevPos;
+    }
+
+    public Vec2 getPrevVel() {
+        return prevVel;
+    }
+
+    public void setPrevVel(Vec2 prevVel) {
+        this.prevVel = prevVel;
+    }
+
+    public double getPrevAngularVel() {
+        return prevAngularVel;
+    }
+
+    public void setPrevAngularVel(double prevAngularVel) {
+        this.prevAngularVel = prevAngularVel;
+    }
+
+    public Image getImgDrawable() { return imgDrawable; }
+
+    public void setImgDrawable(Image imgDrawable) { this.imgDrawable = imgDrawable; }
+
+
 }

@@ -2,6 +2,9 @@ package sample;
 
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.MatrixType;
@@ -13,19 +16,38 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 import sample.bridge.Bridge;
+import sample.bridge.BridgeSupportAnchorPoint;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main extends Application {
     public static int DELAY = 1000/60;
-
+    public static boolean DEBUG_MODE_ENABLED = false;
+    private static Image background  = new Image("file:res/Background_Grass.png");
+    public static void setBackground(int i){
+        switch(i) {
+            case 0:
+                background = new Image("file:res/Background_Grass.png");
+                break;
+            case 1:
+                background = new Image("file:res/Background_Space.png");
+                break;
+            case 2:
+                background = new Image("file:res/Background_City.png");
+                break;
+            default:
+                break;
+        }
+    }
     GraphicsContext gc;
     boolean gameStarted = false;
     long startTime = System.currentTimeMillis();
     int counterForFps;
     double fps = 0;
     final int UPDATE_FPS_COUNTER_STEPS = 100;
+    private GameScene myGame;
+    private Timeline gameLoop;
 
     @Override
     public void start(Stage theStage) throws Exception{
@@ -39,31 +61,77 @@ public class Main extends Application {
         Group root = new Group();
         Scene theScene = new Scene( root );
 
-        theScene.setOnKeyPressed((KeyEvent keyEvent) ->
-                {
-                        System.out.println("Es wurde folgende Taste gedrückt:\t" + keyEvent.getCode());
-                        if(keyEvent.getCode().isWhitespaceKey() && !gameStarted){
-                            startGame();
-                        }
-                }
-        );
-
         theStage.setScene( theScene );
+        theScene.getWindow().setHeight(470);
+        theScene.getWindow().setWidth(800);
+
+
 
         Canvas canvas = new Canvas( 800, 450 );
         root.getChildren().add( canvas );
 
         gc = canvas.getGraphicsContext2D();
 
+        theScene.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                canvas.setScaleX((double)newValue/800);
+                canvas.setTranslateX((theScene.getWidth() / 2) - 400);
+                canvas.setScaleY((double)newValue/800);
+                canvas.setTranslateY((theScene.getHeight() / 2) - 225);
+            }
+        });
+
+        theScene.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                canvas.setScaleX((theScene.getWidth()/800));
+                canvas.setTranslateX((theScene.getWidth() / 2) - 400);
+                canvas.setScaleY(theScene.getWidth()/800);
+                canvas.setTranslateY((theScene.getHeight() / 2) - 225);
+            }
+        });
+
+
+        showStartScreen();
+
         theStage.show();
+
+        theScene.setOnKeyPressed((KeyEvent keyEvent) ->
+                {
+                        System.out.println("Es wurde folgende Taste gedrückt:\t" + keyEvent.getCode().getName());
+                        if(keyEvent.getCode().isWhitespaceKey() && !gameStarted) {
+                            //startGame(0);
+                        } else if (keyEvent.getCode().toString().equals("ESCAPE")){
+                            stopGame();
+                        } else if(keyEvent.getCode().isDigitKey() && !gameStarted){
+                            startGame(Integer.parseInt(keyEvent.getCode().getName()));
+                        } else if(keyEvent.getCode().toString().equals("Q")) {
+                            startGame(10);
+                        } else if(keyEvent.getCode().toString().equals("W")) {
+                            startGame(11);
+                        } else if(keyEvent.getCode().toString().equals("E")) {
+                            startGame(12);
+                        } else if (keyEvent.getCode().toString().equals("D")) {
+                            if (DEBUG_MODE_ENABLED){
+                                DEBUG_MODE_ENABLED = false;
+                            } else {
+                                DEBUG_MODE_ENABLED = true;
+                            }
+                        }
+                }
+        );
+
+
     }
 
-    public void startGame(){
+    public void startGame(int i){
+
         gameStarted = true;
-        Timeline gameLoop = new Timeline();
+        gameLoop = new Timeline();
         gameLoop.setCycleCount( Timeline.INDEFINITE );
 
-        GameScene myGame = new GameScene();
+        myGame = new GameScene(i);
 
         counterForFps = UPDATE_FPS_COUNTER_STEPS;
         final long timeStart = System.currentTimeMillis();
@@ -96,7 +164,9 @@ public class Main extends Application {
         KeyFrame kf = new KeyFrame(Duration.seconds(0.017) // 60hz
                 ,(ActionEvent) -> {
             // Clear the canvas
-            gc.clearRect(0, 0, 1600,900);
+            gc.clearRect(0, 0, 800,450);
+            gc.drawImage(background,0,0,800,450);
+
             //testBridge.draw(gc);
             myGame.update(0.03);
             //testBridge.computeTimeStepExplicit(0.5,.001);
@@ -120,7 +190,39 @@ public class Main extends Application {
         gameLoop.play();
     }
 
+    public void stopGame(){
+        gameLoop.stop();
+        BridgeSupportAnchorPoint.INDEX = 0;
+        gameLoop.getKeyFrames().removeAll();
+        showStartScreen();
+        //gc.clearRect(0,0,1600,900);
+        gameStarted = false;
+    }
 
+    private void showStartScreen() {
+        gc.clearRect(0,0,800,450);
+        setBackground(0);
+        gc.drawImage(background,0,0,800,450);
+
+        gc.fillText("choose a scene to be played, by pressing a number 0-9/Q,W,E\n\n" +
+                "0 : bunch of bouncy rigidbodies with gravity\n" +
+                "1 : 2 rigidbodies colliding with no gravity\n" +
+                "2 : simple bridge without breaking\n" +
+                "3 : simple bridge with breaking\n" +
+                "4 : more sophisticated bridge with a car with breaking disabled and explicit timestep computation\n" +
+                "5 : more sophisticated bridge with a car with breaking disabled and implicit timestep computation\n" +
+                "6 : more sophisticated bridge with a car with breaking enabled\n" +
+                "7 : more sophisticated bridge with a truck with breaking enabled\n" +
+                "8 : a car and a truck interacting with a seesaw and a freely swinging bridge-element\n" +
+                "9 : stuntmap with car without breaking\n" +
+                "Q : stuntmap with car with breaking\n" +
+                "W : suspension-bridge with truck and car without breaking\n" +
+                "E : suspension-bridge with truck and car with breaking\n\n" +
+                "press Esc to go back to this selection screen\n\n" +
+                "press d to toggle debug-mode",50,20);
+
+
+    }
 
 
     public static void main(String[] args) {
