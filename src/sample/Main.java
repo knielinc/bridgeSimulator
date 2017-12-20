@@ -4,6 +4,7 @@ import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -18,6 +19,10 @@ import javafx.stage.Stage;
 import sample.bridge.Bridge;
 import sample.bridge.BridgeSupportAnchorPoint;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -29,12 +34,33 @@ public class  Main extends Application {
         switch(i) {
             case 0:
                 background = new Image("file:res/Background_Grass.png");
+                URL url = Main.class.getResource("/Background_Grass.png");
+                try {
+                    BufferedImage image = ImageIO.read(url);
+                    background = SwingFXUtils.toFXImage(image, null);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case 1:
                 background = new Image("file:res/Background_Space.png");
+                URL url2 = Main.class.getResource("/Background_Space.png");
+                try {
+                    BufferedImage image = ImageIO.read(url2);
+                    background = SwingFXUtils.toFXImage(image, null);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case 2:
                 background = new Image("file:res/Background_City.png");
+                URL url3 = Main.class.getResource("/Background_City.png");
+                try {
+                    BufferedImage image = ImageIO.read(url3);
+                    background = SwingFXUtils.toFXImage(image, null);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             default:
                 break;

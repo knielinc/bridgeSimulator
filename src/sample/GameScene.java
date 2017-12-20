@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import sample.bridge.Bridge;
@@ -9,12 +10,17 @@ import sample.rigidbodies.DrawablePolygon;
 import sample.rigidbodies.RigidBodyObject;
 import sample.utils.HelperClass;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class GameScene {
 
-    private Image carImage = new Image("file:res/Car.png");
-    private Image truckImage = new Image("file:res/Truck.png");
+
+    private Image carImage; //= new Image("file:src/res/Car.png");
+    private Image truckImage; //= new Image("file:src/res/Truck.png");
 
     private DrawablePolygon carCollBox = new DrawablePolygon(new double[]{-20,-15,15,20,17,3,-10,-15,-18},new double[]{0,-5,-5,0,4,12,12,10,5},9,2);
 
@@ -52,6 +58,24 @@ public class GameScene {
     }
 
     public GameScene(int i){
+        carImage = new Image("file:res/Car.png.png");
+        URL url = Main.class.getResource("/Car.png");
+        try {
+            BufferedImage image = ImageIO.read(url);
+            carImage = SwingFXUtils.toFXImage(image, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        truckImage = new Image("file:res/Truck.png");
+        URL url2 = Main.class.getResource("/Truck.png");
+        try {
+            BufferedImage image = ImageIO.read(url2);
+            truckImage = SwingFXUtils.toFXImage(image, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         rigidBodyObjects = new ArrayList<>();
         rigidBodyObjects.add(new RigidBodyObject(450,-50,Math.toRadians(0),true, new DrawablePolygon(new double[]{0,900,900,0},new double[]{0,0,100,100},4, 500)));
 
