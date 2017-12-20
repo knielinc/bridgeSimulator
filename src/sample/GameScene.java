@@ -292,23 +292,23 @@ public class GameScene {
     }
 
     public void init6(){
-        rigidBodyObjects.add(new RigidBodyObject(0,20,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(0,20,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,2.2),carImage));
 
-        rigidBodyObjects.get(1).setVelocity(new Vec2(200,0));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(173,0));
 
         myBridge = new Bridge();
         myBridge.createStuntBridge();
 
         GLOBAL_SPAWN_LOCATION = new Vec2(0,30);
-        GLOBAL_SPAWN_SPEED = new Vec2(100,0);
+        GLOBAL_SPAWN_SPEED = new Vec2(88,0);
         GLOBAL_GRAVITY = new Vec2(0,-9.81);
         GLOBAL_BREAKABLE_BRIDGE = false;
     }
 
     public void init7(){
-        rigidBodyObjects.add(new RigidBodyObject(0,20,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(0,20,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,1.2),carImage));
 
-        rigidBodyObjects.get(1).setVelocity(new Vec2(200,0));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(190,0));
 
         myBridge = new Bridge();
         myBridge.createStuntBridge();
@@ -354,11 +354,11 @@ public class GameScene {
     public void initEric1(){
 
         //DrawablePolygon car = new DrawablePolygon(new double[]{-40.,-30,30,40.,40.,20,-20.,-40.},new double[]{0,-5,-5,0,12,28,28,12},8,10);
-        DrawablePolygon car = createTruckCollBoxWithSizeAndWeight(1.5, 10);
+        DrawablePolygon car = createTruckCollBoxWithSizeAndWeight(1.5, 6);
         rigidBodyObjects.add(new RigidBodyObject(150,250,Math.toRadians(0),false, car, truckImage));
-        rigidBodyObjects.get(1).setVelocity(new Vec2(12 ,-25));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(10 ,-25));
 
-        DrawablePolygon car2 = createCarCollBoxWithSizeAndWeight(1.5, 5);
+        DrawablePolygon car2 = createCarCollBoxWithSizeAndWeight(1.5, 2);
         rigidBodyObjects.add(new RigidBodyObject(50,500,Math.toRadians(0),false, car2, carImage));
         rigidBodyObjects.get(2).setVelocity(new Vec2(4,0));
         GLOBAL_GRAVITY = new Vec2(1,-9.81);
@@ -636,7 +636,6 @@ public class GameScene {
                                 }
 
                                 if(otherObject.isPartOfBridge()){
-                                    //TODO LOCAL COORDINATES INSTEAD OF MIDDLE
                                     otherObject.getSupport().getPointA().setAppliedForces(forceY.smult(-.5));
                                     otherObject.getSupport().getPointB().setAppliedForces(forceY.smult(-.5));
                                     /*if(0.5 < forceY.smult(-1).getY())
