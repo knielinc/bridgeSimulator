@@ -95,6 +95,9 @@ public class GameScene {
             case 12:
                 init9();
                 break;
+            case 13:
+                init0_();
+                break;
             default:
                 init5();
                 break;
@@ -121,6 +124,37 @@ public class GameScene {
         Main.setBackground(0);
     }
 
+    public void init0_(){
+
+        DrawablePolygon testTriangle = new DrawablePolygon(new double[]{0,100,50},new double[]{0,0,200},3,3);
+        rigidBodyObjects.add(new RigidBodyObject(200,500,Math.toRadians(0),false,testTriangle));
+
+        DrawablePolygon rectangle = new DrawablePolygon(new double[]{-10.,10.,10.,-10.},new double[]{-10.,-10.,10.,10.},4,1);
+        rigidBodyObjects.add(new RigidBodyObject(200,100,Math.toRadians(0),false,rectangle));
+        rigidBodyObjects.add(new RigidBodyObject(700,100,Math.toRadians(0),false,rectangle));
+        rigidBodyObjects.add(new RigidBodyObject(700,1000,Math.toRadians(0),false,rectangle));
+        rigidBodyObjects.add(new RigidBodyObject(200,1000,Math.toRadians(0),false,rectangle));
+
+
+
+        rigidBodyObjects.add(new RigidBodyObject(550,300, Math.toRadians(0),false, createTruckCollBoxWithSizeAndWeight(3,7),truckImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,300, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(3,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(650,500, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2.5,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,800, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(1,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,900, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,1200, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,7),truckImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,1500, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(.5,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(600,1800, Math.toRadians(0),false, createCarCollBoxWithSizeAndWeight(2,3),carImage));
+
+
+        //myBridge = new Bridge();
+        //myBridge.createSuspensionBrige();
+
+        GLOBAL_GRAVITY = new Vec2(0,-9.81);
+        GLOBAL_BOUNCINESS = .9;
+        GLOBAL_BREAKABLE_BRIDGE = true;
+        Main.setBackground(0);
+    }
     //2 cars colliding
     public void init1(){
 
@@ -258,23 +292,23 @@ public class GameScene {
     }
 
     public void init6(){
-        rigidBodyObjects.add(new RigidBodyObject(0,20,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(0,20,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,2.2),carImage));
 
-        rigidBodyObjects.get(1).setVelocity(new Vec2(200,0));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(173,0));
 
         myBridge = new Bridge();
         myBridge.createStuntBridge();
 
         GLOBAL_SPAWN_LOCATION = new Vec2(0,30);
-        GLOBAL_SPAWN_SPEED = new Vec2(100,0);
+        GLOBAL_SPAWN_SPEED = new Vec2(88,0);
         GLOBAL_GRAVITY = new Vec2(0,-9.81);
         GLOBAL_BREAKABLE_BRIDGE = false;
     }
 
     public void init7(){
-        rigidBodyObjects.add(new RigidBodyObject(0,20,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,3),carImage));
+        rigidBodyObjects.add(new RigidBodyObject(0,20,Math.toRadians(0),false,createCarCollBoxWithSizeAndWeight(1,1.2),carImage));
 
-        rigidBodyObjects.get(1).setVelocity(new Vec2(200,0));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(190,0));
 
         myBridge = new Bridge();
         myBridge.createStuntBridge();
@@ -320,11 +354,11 @@ public class GameScene {
     public void initEric1(){
 
         //DrawablePolygon car = new DrawablePolygon(new double[]{-40.,-30,30,40.,40.,20,-20.,-40.},new double[]{0,-5,-5,0,12,28,28,12},8,10);
-        DrawablePolygon car = createTruckCollBoxWithSizeAndWeight(1.5, 10);
+        DrawablePolygon car = createTruckCollBoxWithSizeAndWeight(1.5, 6);
         rigidBodyObjects.add(new RigidBodyObject(150,250,Math.toRadians(0),false, car, truckImage));
-        rigidBodyObjects.get(1).setVelocity(new Vec2(12 ,-25));
+        rigidBodyObjects.get(1).setVelocity(new Vec2(10 ,-25));
 
-        DrawablePolygon car2 = createCarCollBoxWithSizeAndWeight(1.5, 5);
+        DrawablePolygon car2 = createCarCollBoxWithSizeAndWeight(1.5, 2);
         rigidBodyObjects.add(new RigidBodyObject(50,500,Math.toRadians(0),false, car2, carImage));
         rigidBodyObjects.get(2).setVelocity(new Vec2(4,0));
         GLOBAL_GRAVITY = new Vec2(1,-9.81);
@@ -602,7 +636,6 @@ public class GameScene {
                                 }
 
                                 if(otherObject.isPartOfBridge()){
-                                    //TODO LOCAL COORDINATES INSTEAD OF MIDDLE
                                     otherObject.getSupport().getPointA().setAppliedForces(forceY.smult(-.5));
                                     otherObject.getSupport().getPointB().setAppliedForces(forceY.smult(-.5));
                                     /*if(0.5 < forceY.smult(-1).getY())

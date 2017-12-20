@@ -21,7 +21,7 @@ import sample.bridge.BridgeSupportAnchorPoint;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Main extends Application {
+public class  Main extends Application {
     public static int DELAY = 1000/60;
     public static boolean DEBUG_MODE_ENABLED = false;
     private static Image background  = new Image("file:res/Background_Grass.png");
@@ -112,6 +112,8 @@ public class Main extends Application {
                             startGame(11);
                         } else if(keyEvent.getCode().toString().equals("E")) {
                             startGame(12);
+                        } else if(keyEvent.getCode().toString().equals("R")) {
+                            startGame(13);
                         } else if (keyEvent.getCode().toString().equals("D")) {
                             if (DEBUG_MODE_ENABLED){
                                 DEBUG_MODE_ENABLED = false;
@@ -217,7 +219,8 @@ public class Main extends Application {
                 "9 : stuntmap with car without breaking\n" +
                 "Q : stuntmap with car with breaking\n" +
                 "W : suspension-bridge with truck and car without breaking\n" +
-                "E : suspension-bridge with truck and car with breaking\n\n" +
+                "E : suspension-bridge with truck and car with breaking\n" +
+                "R : many rigidbodies in different sizes with very high collision response\n" +
                 "press Esc to go back to this selection screen\n\n" +
                 "press d to toggle debug-mode",50,20);
 
